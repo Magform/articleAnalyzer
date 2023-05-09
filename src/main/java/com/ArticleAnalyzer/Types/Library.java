@@ -1,3 +1,5 @@
+package com.ArticleAnalyzer.Types;
+
 public class Library {
     private int totalArticlesNumber;
     private int scannedArticles;
