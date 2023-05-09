@@ -17,32 +17,30 @@ public class Article {
     private String apiUrl;
     private String trailText;
     private String headline;
-    private boolean showInRelatedContent;
+    private Boolean showInRelatedContent;
     private String body;
     private LocalDateTime lastModified;
-    private boolean hasStoryPackage;
+    private Boolean hasStoryPackage;
     private float score;
     private String standfirst;
     private String shortUrl;
     private String thumbnail;
     private int wordcount;
-    private boolean commentable;
-    private boolean isPremoderated;
-    private boolean allowUGc;
+    private Boolean commentable;
+    private Boolean isPremoderated;
+    private Boolean allowUGc;
     private String byline;
     private String publication;
     private String internalPageCode;
     private String productionOffice;
-    private boolean shouldHideAdverts;
-    private boolean liveBloggingNow;
+    private Boolean shouldHideAdverts;
+    private Boolean liveBloggingNow;
     private LocalDateTime commentCloseDate;
     private int starRating;
     private String title;
     private String fulltext;
     private String SourceSet;
     private String Source;
-
-    //variable that are not configured yet
     private String main;
     private String bylineHtml;
     private String BodyText;
@@ -51,12 +49,12 @@ public class Article {
     private int charCount;
     private LocalDateTime firstPublicationDate;
     private LocalDateTime newspaperEditionDate;
-    private boolean legallySensitive;
-    private boolean isLive;
-    private boolean isInappropriateForSponsorship;
-    private boolean shouldHideReaderRevenue;
-    private boolean showAffiliateLinks;
-    private boolean showTableOfContents;
+    private Boolean legallySensitive;
+    private Boolean isLive;
+    private Boolean isInappropriateForSponsorship;
+    private Boolean shouldHideReaderRevenue;
+    private Boolean showAffiliateLinks;
+    private Boolean showTableOfContents;
 
 
 
@@ -70,31 +68,18 @@ public class Article {
         this.id = "";
         this.type = "";
         this.sectionID = "";
-        this.webPublicationDate = null;
         this.webUrl = "";
         this.apiUrl = "";
         this.trailText = "";
         this.headline = "";
-        this.showInRelatedContent = false;
-        this.body = "";
-        this.lastModified = null;
-        this.hasStoryPackage = false;
-        this.score = 0.0f;
-        this.standfirst = "";
-        this.shortUrl = "";
-        this.thumbnail = "";
-        this.wordcount = 0;
-        this.commentable = false;
-        this.isPremoderated = false;
-        this.allowUGc = false;
         this.byline = "";
         this.publication = "";
         this.internalPageCode = "";
         this.productionOffice = "";
-        this.shouldHideAdverts = false;
-        this.liveBloggingNow = false;
-        this.commentCloseDate = null;
-        this.starRating = 0;
+        this.body = "";
+        this.standfirst = "";
+        this.shortUrl = "";
+        this.thumbnail = "";
         this.title = "";
         this.fulltext = "";
         this.SourceSet = "";
@@ -103,27 +88,40 @@ public class Article {
         this.bylineHtml = "";
         this.BodyText = "";
         this.lang = "";
+        this.score = 0.0f;
+        this.starRating = 0;
         this.newspaperPageNumber = 0;
         this.charCount = 0;
+        this.wordcount = 0;
+        this.webPublicationDate = null;
+        this.lastModified = null;
+        this.commentCloseDate = null;
         this.firstPublicationDate = null;
         this.newspaperEditionDate = null;
-        this.legallySensitive = false;
-        this.isLive = false;
-        this.isInappropriateForSponsorship = false;
-        this.shouldHideReaderRevenue = false;
-        this.showAffiliateLinks = false;
-        this.showTableOfContents = false;
+        this.commentable = null;
+        this.isPremoderated = null;
+        this.allowUGc = null;
+        this.shouldHideAdverts = null;
+        this.liveBloggingNow = null;
+        this.hasStoryPackage = null;
+        this.showInRelatedContent = null;
+        this.legallySensitive = null;
+        this.isLive = null;
+        this.isInappropriateForSponsorship = null;
+        this.shouldHideReaderRevenue = null;
+        this.showAffiliateLinks = null;
+        this.showTableOfContents = null;
     }
 
     // Constructor that takes input for all fields in right format
     public Article(String id, String type, String sectionID, LocalDateTime webPublicationDate, String webUrl, String apiUrl,
-                   String trailText, String headline, boolean showInRelatedContent, String body, LocalDateTime lastModified,
-                   boolean hasStoryPackage, float score, String standfirst, String shortUrl, String thumbnail, int wordcount,
-                   boolean commentable, boolean isPremoderated, boolean allowUGc, String byline, String publication, String internalPageCode,
-                   String productionOffice, boolean shouldHideAdverts, boolean liveBloggingNow, LocalDateTime commentCloseDate, int starRating,
+                   String trailText, String headline, Boolean showInRelatedContent, String body, LocalDateTime lastModified,
+                   Boolean hasStoryPackage, float score, String standfirst, String shortUrl, String thumbnail, int wordcount,
+                   Boolean commentable, Boolean isPremoderated, Boolean allowUGc, String byline, String publication, String internalPageCode,
+                   String productionOffice, Boolean shouldHideAdverts, Boolean liveBloggingNow, LocalDateTime commentCloseDate, int starRating,
                    String title, String fulltext, String SourceSet, String Source, String main, String bylineHtml, String BodyText, String lang, 
-                   int newspaperPageNumber, int charCount, LocalDateTime firstPublicationDate, LocalDateTime newspaperEditionDate, boolean legallySensitive,
-                   boolean isLive, boolean isInappropriateForSponsorship, boolean shouldHideReaderRevenue, boolean showAffiliateLinks, boolean showTableOfContents) {
+                   int newspaperPageNumber, int charCount, LocalDateTime firstPublicationDate, LocalDateTime newspaperEditionDate, Boolean legallySensitive,
+                   Boolean isLive, Boolean isInappropriateForSponsorship, Boolean shouldHideReaderRevenue, Boolean showAffiliateLinks, Boolean showTableOfContents) {
         this.id = id;
         this.type = type;
         this.sectionID = sectionID;
@@ -267,7 +265,7 @@ public class Article {
         return headline;
     }
 
-    public boolean isShowInRelatedContent() {
+    public Boolean isShowInRelatedContent() {
         return showInRelatedContent;
     }
 
@@ -279,7 +277,7 @@ public class Article {
         return lastModified;
     }
 
-    public boolean isHasStoryPackage() {
+    public Boolean isHasStoryPackage() {
         return hasStoryPackage;
     }
 
@@ -303,15 +301,15 @@ public class Article {
         return wordcount;
     }
 
-    public boolean isCommentable() {
+    public Boolean isCommentable() {
         return commentable;
     }
 
-    public boolean isPremoderated() {
+    public Boolean isPremoderated() {
         return isPremoderated;
     }
 
-    public boolean isAllowUGc() {
+    public Boolean isAllowUGc() {
         return allowUGc;
     }
 
@@ -331,11 +329,11 @@ public class Article {
         return productionOffice;
     }
 
-    public boolean isShouldHideAdverts() {
+    public Boolean isShouldHideAdverts() {
         return shouldHideAdverts;
     }
 
-    public boolean isLiveBloggingNow() {
+    public Boolean isLiveBloggingNow() {
         return liveBloggingNow;
     }
 
@@ -395,27 +393,27 @@ public class Article {
         return newspaperEditionDate;
     }
     
-    public boolean isLegallySensitive() {
+    public Boolean isLegallySensitive() {
         return legallySensitive;
     }
     
-    public boolean isLive() {
+    public Boolean isLive() {
         return isLive;
     }
     
-    public boolean isInappropiateForSponsorShip() {
+    public Boolean isInappropiateForSponsorShip() {
         return isInappropriateForSponsorship;
     }
     
-    public boolean shouldHideReaderRevenue() {
+    public Boolean shouldHideReaderRevenue() {
         return shouldHideReaderRevenue;
     }
     
-    public boolean isShowAffiliateLinks() {
+    public Boolean isShowAffiliateLinks() {
         return showAffiliateLinks;
     }
     
-    public boolean isShowTableOfContents() {
+    public Boolean isShowTableOfContents() {
         return showTableOfContents;
     }
 
@@ -458,7 +456,7 @@ public class Article {
         this.headline = headline;
     }
     
-    public void setShowInRelatedContent(boolean showInRelatedContent) {
+    public void setShowInRelatedContent(Boolean showInRelatedContent) {
         this.showInRelatedContent = showInRelatedContent;
     }
     
@@ -477,7 +475,7 @@ public class Article {
     public void setLastModified(String lastModified) {
         this.lastModified = LocalDateTime.parse(lastModified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX"));;
     }
-    public void setHasStoryPackage(boolean hasStoryPackage) {
+    public void setHasStoryPackage(Boolean hasStoryPackage) {
         this.hasStoryPackage = hasStoryPackage;
     }
     
@@ -513,7 +511,7 @@ public class Article {
         this.wordcount = Integer.parseInt(wordcount);
     }
 
-    public void setCommentable(boolean commentable) {
+    public void setCommentable(Boolean commentable) {
         this.commentable = commentable;
     }
     
@@ -521,7 +519,7 @@ public class Article {
         this.commentable = Boolean.parseBoolean(commentable);
     }
 
-    public void setIsPremoderated(boolean isPremoderated) {
+    public void setIsPremoderated(Boolean isPremoderated) {
         this.isPremoderated = isPremoderated;
     }
     
@@ -529,7 +527,7 @@ public class Article {
         this.isPremoderated = Boolean.parseBoolean(isPremoderated);
     }
 
-    public void setAllowUGc(boolean allowUGc) {
+    public void setAllowUGc(Boolean allowUGc) {
         this.allowUGc = allowUGc;
     }
 
@@ -553,7 +551,7 @@ public class Article {
         this.productionOffice = productionOffice;
     }
     
-    public void setShouldHideAdverts(boolean shouldHideAdverts) {
+    public void setShouldHideAdverts(Boolean shouldHideAdverts) {
         this.shouldHideAdverts = shouldHideAdverts;
     }
     
@@ -561,7 +559,7 @@ public class Article {
         this.shouldHideAdverts = Boolean.parseBoolean(shouldHideAdverts);
     }
 
-    public void setLiveBloggingNow(boolean liveBloggingNow) {
+    public void setLiveBloggingNow(Boolean liveBloggingNow) {
         this.liveBloggingNow = liveBloggingNow;
     }
     
@@ -649,7 +647,7 @@ public class Article {
         this.newspaperEditionDate = LocalDateTime.parse(newspaperEditionDate);
     }
 
-    public void setLegallySensitive(boolean legallySensitive) {
+    public void setLegallySensitive(Boolean legallySensitive) {
         this.legallySensitive = legallySensitive;
     }
 
@@ -657,7 +655,7 @@ public class Article {
         this.legallySensitive = Boolean.parseBoolean(legallySensitive);
     }
     
-    public void setLive(boolean live) {
+    public void setLive(Boolean live) {
         this.isLive = live;
     }
     
@@ -665,7 +663,7 @@ public class Article {
         this.isLive = Boolean.parseBoolean(live);
     }
 
-    public void setInappropriateForSponsorship(boolean isInappropriateForSponsorship) {
+    public void setInappropriateForSponsorship(Boolean isInappropriateForSponsorship) {
         this.isInappropriateForSponsorship = isInappropriateForSponsorship;
     }
     
@@ -673,7 +671,7 @@ public class Article {
         this.isInappropriateForSponsorship = Boolean.parseBoolean(isInappropriateForSponsorship);
     }
 
-    public void setShouldHideReaderRevenue(boolean shouldHideReaderRevenue) {
+    public void setShouldHideReaderRevenue(Boolean shouldHideReaderRevenue) {
         this.shouldHideReaderRevenue = shouldHideReaderRevenue;
     }
     
@@ -681,7 +679,7 @@ public class Article {
         this.shouldHideReaderRevenue = Boolean.parseBoolean(shouldHideReaderRevenue);
     }
 
-    public void setShowAffiliateLinks(boolean showAffiliateLinks) {
+    public void setShowAffiliateLinks(Boolean showAffiliateLinks) {
         this.showAffiliateLinks = showAffiliateLinks;
     }
     
@@ -689,7 +687,7 @@ public class Article {
         this.showAffiliateLinks = Boolean.parseBoolean(showAffiliateLinks);
     }
 
-    public void setShowTableOfContents(boolean showTableOfContents) {
+    public void setShowTableOfContents(Boolean showTableOfContents) {
         this.showTableOfContents = showTableOfContents;
     }
     
