@@ -12,7 +12,7 @@ public class ArticleLoader {
     private File file;
     private Library loadedLibrary;
 
-    ArticleLoader(String file) throws FileNotFoundException {
+    public ArticleLoader(String file) throws FileNotFoundException {
         loadedLibrary = new Library();
         this.file = new File(file);
         if (!this.file.exists()) {
