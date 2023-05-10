@@ -40,7 +40,7 @@ public class Downloader {
                 link = value;
             } else if (key.equalsIgnoreCase("query")) {
                 query = value;
-            } else if (key.equalsIgnoreCase("query")) {
+            } else if (key.equalsIgnoreCase("APIkey")) {
                 APIkey = value;
             } else if (key.equalsIgnoreCase("JSONoutput")) {
                 JSONoutput = value;
@@ -52,6 +52,10 @@ public class Downloader {
         configurationFileScanner.close();
         download();
  
+    }
+
+    public String getJSONoutput(){
+        return JSONoutput;
     }
 
     private void download() throws IOException{
