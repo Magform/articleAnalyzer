@@ -2,7 +2,7 @@ package com.ArticleAnalyzer.DataManagement;
 
 import java.io.FileWriter;
 import java.io.File;
-import java.util.Map;
+import java.util.LinkedHashMap;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import com.ArticleAnalyzer.Types.Article;
@@ -232,7 +232,7 @@ public class Outputter {
         }
     }
 
-    public void print(Map<String, Integer> toPrint){
+    public void print(LinkedHashMap<String, Integer> toPrint){
         for (String key : toPrint.keySet()) {
             System.out.println(key + " " + toPrint.get(key));
         }
