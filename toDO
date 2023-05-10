@@ -17,7 +17,9 @@ Comment
 Test
 
 ## Downloader
-ALL
+Comment
+Test
+Optional: Some speed improvement
 
 ## ArticleLoader
 Comment
@@ -25,7 +27,8 @@ Test
 Optional: legibility
 
 ## Elaborator
-ALL
+Comment
+Test
 
 ## Main
 ALL

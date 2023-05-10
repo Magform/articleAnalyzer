@@ -1,0 +1,4 @@
+link: "https://content.guardianapis.com/search"
+APIkey: "ba9727f4-08a4-4a28-8494-e2212104e3e1"
+query: "nuclear power"
+JSONoutput: "outputter_results.json"
