@@ -1,7 +1,9 @@
 package com.ArticleAnalyzer.Types;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.lang.reflect.Field; //used in an alternative fullSetter implementation
 
 //My suggestion using this class is to never use constructor, different from Article(), all costructor are created anc configured but if u dont have ALL the things it wont work so I think that is better to use default constructor and use set to set all the things that u need to set.
 
@@ -693,5 +695,113 @@ public class Article {
     public void setShowTableOfContents(String showTableOfContents) {
         this.showTableOfContents = Boolean.parseBoolean(showTableOfContents);
     }
+
+    public void fullSetter(String toSet, String whereToSet) throws IOException{
+        if(whereToSet.equalsIgnoreCase("id")){
+            this.setId(toSet);
+        }else if(whereToSet.equalsIgnoreCase("type")){
+            this.setType(toSet);
+        }else if (whereToSet.equalsIgnoreCase("sectionID")) {
+            this.setSectionID(toSet);
+        } else if (whereToSet.equalsIgnoreCase("webUrl")) {
+            this.setWebUrl(toSet);
+        } else if (whereToSet.equalsIgnoreCase("apiUrl")) {
+            this.setApiUrl(toSet);
+        } else if (whereToSet.equalsIgnoreCase("trailText")) {
+            this.setTrailText(toSet);
+        } else if (whereToSet.equalsIgnoreCase("headline")) {
+            this.setHeadline(toSet);
+        } else if (whereToSet.equalsIgnoreCase("byline")) {
+            this.setByline(toSet);
+        } else if (whereToSet.equalsIgnoreCase("publication")) {
+            this.setPublication(toSet);
+        } else if (whereToSet.equalsIgnoreCase("internalPageCode")) {
+            this.setInternalPageCode(toSet);
+        } else if (whereToSet.equalsIgnoreCase("productionOffice")) {
+            this.setProductionOffice(toSet);
+        } else if (whereToSet.equalsIgnoreCase("body")) {
+            this.setBody(toSet);
+        } else if (whereToSet.equalsIgnoreCase("standfirst")) {
+            this.setStandfirst(toSet);
+        } else if (whereToSet.equalsIgnoreCase("shortUrl")) {
+            this.setShortUrl(toSet);
+        } else if (whereToSet.equalsIgnoreCase("thumbnail")) {
+            this.setThumbnail(toSet);
+        } else if (whereToSet.equalsIgnoreCase("title")) {
+            this.setTitle(toSet);
+        } else if (whereToSet.equalsIgnoreCase("fulltext")) {
+            this.setFullText(toSet);
+        } else if (whereToSet.equalsIgnoreCase("SourceSet")) {
+            this.setSourceSet(toSet);
+        } else if (whereToSet.equalsIgnoreCase("Source")) {
+            this.setSource(toSet);
+        } else if (whereToSet.equalsIgnoreCase("main")) {
+            this.setMain(toSet);
+        } else if (whereToSet.equalsIgnoreCase("bylineHtml")) {
+            this.setBylineHtml(toSet);
+        } else if (whereToSet.equalsIgnoreCase("BodyText")) {
+            this.setBodyText(toSet);
+        } else if (whereToSet.equalsIgnoreCase("lang")) {
+            this.setLang(toSet);
+        } else if (whereToSet.equalsIgnoreCase("score")) {
+            this.setScore(toSet);
+        } else if (whereToSet.equalsIgnoreCase("starRating")) {
+            this.setStarRating(toSet);
+        } else if (whereToSet.equalsIgnoreCase("newspaperPageNumber")) {
+            this.setNewspaperPageNumber(toSet);
+        } else if (whereToSet.equalsIgnoreCase("charCount")) {
+            this.setCharCount(toSet);
+        } else if (whereToSet.equalsIgnoreCase("wordcount")) {
+            this.setWordcount(toSet);
+        } else if (whereToSet.equalsIgnoreCase("webPublicationDate")) {
+            this.setWebPublicationDate(toSet);
+        } else if (whereToSet.equalsIgnoreCase("lastModified")) {
+            this.setLastModified(toSet);
+        } else if (whereToSet.equalsIgnoreCase("commentCloseDate")) {
+            this.setCommentCloseDate(toSet);
+        } else if (whereToSet.equalsIgnoreCase("firstPublicationDate")) {
+            this.setFirstPublicationDate(toSet);
+        } else if (whereToSet.equalsIgnoreCase("newspaperEditionDate")) {
+            this.setNewspaperEditionDate(toSet);
+        } else if (whereToSet.equalsIgnoreCase("commentable")) {
+            this.setCommentable(toSet);
+        } else if (whereToSet.equalsIgnoreCase("isPremoderated")) {
+            this.setIsPremoderated(toSet);
+        } else if (whereToSet.equalsIgnoreCase("allowUGc")) {
+            this.setAllowUGc(toSet);
+        } else if (whereToSet.equalsIgnoreCase("shouldHideAdverts")) {
+            this.setShouldHideAdverts(toSet);
+        } else if (whereToSet.equalsIgnoreCase("liveBloggingNow")) {
+            this.setLiveBloggingNow(toSet);
+        } else if (whereToSet.equalsIgnoreCase("hasStoryPackage")) {
+            this.setHasStoryPackage(toSet);
+        } else if (whereToSet.equalsIgnoreCase("showInRelatedContent")) {
+            this.setShowInRelatedContent(toSet);
+        } else if (whereToSet.equalsIgnoreCase("legallySensitive")) {
+            this.setLegallySensitive(toSet);
+        } else if (whereToSet.equalsIgnoreCase("isLive")) {
+            this.setLive(toSet);
+        } else if (whereToSet.equalsIgnoreCase("isInappropriateForSponsorship")) {
+            this.setInappropriateForSponsorship(toSet);
+        } else if (whereToSet.equalsIgnoreCase("shouldHideReaderRevenue")) {
+            this.setShouldHideReaderRevenue(toSet);
+        } else if (whereToSet.equalsIgnoreCase("showAffiliateLinks")) {
+            this.setShowAffiliateLinks(toSet);
+        } else if (whereToSet.equalsIgnoreCase("showTableOfContents")) {
+            this.setShowTableOfContents(toSet);
+        } else {
+            throw new IOException("Key not valid ");
+        }
+    }
+
+    //This approach might make the code more concise and easier to maintain, although it comes with its own trade-offs, such as reduced performance and less compile-time safety.
+    //And also not tested
+    /*
+    public void fullSetter(String toSet, String whereToSet) throws NoSuchFieldException, IllegalAccessException {
+        Field field = this.getClass().getDeclaredField(whereToSet);
+        field.setAccessible(true);
+        field.set(this, toSet);
+    }
+    */
 
 }
