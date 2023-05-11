@@ -5,6 +5,7 @@ A software capable of download (download) articles from online newspapers render
 
 Made for a university project
 
+Leggete nel file WhatAntonioDid cosa ho fatto e guardate il codice nella cartella Antonio (tutto i file in una stessa cartella per facilitare tutto)
 
 NELLA CLASSE ARTICLE
 
