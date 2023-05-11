@@ -189,14 +189,14 @@ public class Article {
     this.id = id;
     this.type = type;
     this.sectionID = sectionID;
-    this.webPublicationDate = LocalDateTime.parse(webPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX"));
+    this.webPublicationDate = LocalDateTime.parse(webPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     this.webUrl = webUrl;
     this.apiUrl = apiUrl;
     this.trailText = trailText;
     this.headline = headline;
     this.showInRelatedContent = Boolean.parseBoolean(showInRelatedContent);
     this.body = body;
-    this.lastModified = LocalDateTime.parse(lastModified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX"));
+    this.lastModified = LocalDateTime.parse(lastModified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     this.hasStoryPackage = Boolean.parseBoolean(hasStoryPackage);
     this.score = Float.parseFloat(score);
     this.standfirst = standfirst;
@@ -212,7 +212,7 @@ public class Article {
     this.productionOffice = productionOffice;
     this.shouldHideAdverts = Boolean.parseBoolean(shouldHideAdverts);
     this.liveBloggingNow = Boolean.parseBoolean(liveBloggingNow);
-    this.commentCloseDate = LocalDateTime.parse(commentCloseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX"));
+    this.commentCloseDate = LocalDateTime.parse(commentCloseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     this.starRating = Integer.parseInt(starRating);
     this.title = title;
     this.fulltext = fulltext;
@@ -438,7 +438,7 @@ public class Article {
     }
     
     public void setWebPublicationDate(String webPublicationDate) {
-        this.webPublicationDate = LocalDateTime.parse(webPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX"));
+        this.webPublicationDate = LocalDateTime.parse(webPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     }
 
     public void setWebUrl(String webUrl) {
@@ -474,7 +474,7 @@ public class Article {
     }
     
     public void setLastModified(String lastModified) {
-        this.lastModified = LocalDateTime.parse(lastModified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX"));;
+        this.lastModified = LocalDateTime.parse(lastModified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     }
     public void setHasStoryPackage(Boolean hasStoryPackage) {
         this.hasStoryPackage = hasStoryPackage;
@@ -573,7 +573,7 @@ public class Article {
     }
     
     public void setCommentCloseDate(String commentCloseDate) {
-        this.commentCloseDate = LocalDateTime.parse(commentCloseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX"));;
+        this.commentCloseDate = LocalDateTime.parse(commentCloseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     }
 
     public void setStarRating(int starRating) {
@@ -637,7 +637,7 @@ public class Article {
     }
     
     public void setFirstPublicationDate(String firstPublicationDate) {
-        this.firstPublicationDate = LocalDateTime.parse(firstPublicationDate);
+        this.firstPublicationDate = LocalDateTime.parse(firstPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     }
 
     public void setNewspaperEditionDate(LocalDateTime newspaperEditionDate) {
@@ -645,7 +645,7 @@ public class Article {
     }
 
     public void setNewspaperEditionDate(String newspaperEditionDate) {
-        this.newspaperEditionDate = LocalDateTime.parse(newspaperEditionDate);
+        this.newspaperEditionDate = LocalDateTime.parse(newspaperEditionDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     }
 
     public void setLegallySensitive(Boolean legallySensitive) {
@@ -790,7 +790,7 @@ public class Article {
         } else if (whereToSet.equalsIgnoreCase("showTableOfContents")) {
             this.setShowTableOfContents(toSet);
         } else {
-            throw new IOException("Key not valid ");
+            throw new IOException(whereToSet+" is not a valid key");
         }
     }
 
