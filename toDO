@@ -4,34 +4,42 @@ This toDO contain all the things that we need to do.
 ## Article
 Comment
 Check Variable Name
-Test
+More test
 Optional: Sort variables by type
 
 ## Library
 Comment
-Test
+More test
 Check Variable Name
 
 ## Outputter
 Comment
-Test
+More test
 
 ## Downloader
 Comment
-Test
+More test
 Optional: Some speed improvement
 
 ## ArticleLoader
+!!!!!DONT WORK!!!!!
 Comment
 Test
 Optional: legibility
 
 ## Elaborator
 Comment
-Test
+Test (We need to fix ArticleLoader frist)
+
+## argparser
+Comment
+More test
+Optional: legibility, modularity
 
 ## Main
-ALL
+Comment
+More test
+toEnd (Problem with Article Loader)
 
 ## module-info
 ALL
