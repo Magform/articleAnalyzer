@@ -5,22 +5,35 @@ import java.io.IOException;
 
 import org.apache.commons.cli.*;
 
-import com.ArticleAnalyzer.DataManagement.ArticleLoader;
+//import com.ArticleAnalyzer.DataManagement.ArticleLoader;
+import com.ArticleAnalyzer.DataManagement.ArticleLoader_withLib;
 import com.ArticleAnalyzer.DataManagement.Downloader;
 import com.ArticleAnalyzer.DataManagement.Outputter;
 
 public class Argparser {
 
     private Outputter outputter = null;
-    private ArticleLoader articleLoader = null;
+    //private ArticleLoader articleLoader = null;
+    private ArticleLoader_withLib articleLoader = null;
+
     private Boolean dataFromFile = null;
     private Downloader downloader = null;
+    private String[] toExclude = null;
+    private int toShow = -1;
 
     public Outputter getOutputter(){
         return outputter;
     }
 
-    public ArticleLoader getArticleLoader(){
+    public String[] getToExclude(){
+        return toExclude;
+    }
+
+    public int getToShow(){
+        return toShow;
+    }
+
+    public ArticleLoader_withLib getArticleLoader(){
         return articleLoader;
     }
 
@@ -28,6 +41,9 @@ public class Argparser {
         return downloader;
     }
 
+    public Boolean getDataFromFile(){
+        return dataFromFile;
+    }
 
     public Argparser(String[] args) throws FileNotFoundException, IllegalArgumentException, IOException{
 
@@ -38,6 +54,8 @@ public class Argparser {
         options.addOption("om", "outputMethod", true, "Choose output method (C -> console, F -> file, CF -> console and file)");
         options.addOption("i", "inputFile", true, "Input file path");
         options.addOption("o", "outputFile", true, "Output file path");
+        options.addOption("e", "toExclude", true, "Choose some string to exclude from the output (Ex. \"str1, str2, str3\")");
+        options.addOption("s", "show", true, "Choose the number of results to show");
 
         // parse the command line arguments
         CommandLineParser parser = new DefaultParser();
@@ -61,11 +79,15 @@ public class Argparser {
             } 
         }
 
+
         if(!dataFromFile && !cmd.hasOption("c")){
             throw new IllegalArgumentException("Argument configurationFile is required to download file");
+        }else if(dataFromFile){
+
         }else{
             downloader = new Downloader(cmd.getOptionValue("c"));
         }
+
 
         if(!cmd.hasOption("om")){
             throw new IllegalArgumentException("Argument outputMethod is required");
@@ -81,22 +103,38 @@ public class Argparser {
             } 
         }
 
+
         if(dataFromFile && !cmd.hasOption("i")){
             throw new IllegalArgumentException("Argument inputFile is required if you are taking data from file");
         }else if(!dataFromFile && !cmd.hasOption("i")){
-            articleLoader = new ArticleLoader(downloader.getJSONoutput());
+            articleLoader = new ArticleLoader_withLib(downloader.getJSONoutput());
         }else{
             try{
-                articleLoader = new ArticleLoader(cmd.getOptionValue("i"));
+                articleLoader = new ArticleLoader_withLib(cmd.getOptionValue("i"));
             }catch(FileNotFoundException e){
                 throw new IllegalArgumentException("Invalid data input file");
             }
         }
 
+
         if(outputter.getToFile() && !cmd.hasOption("o")){
             throw new IllegalArgumentException("Argument outputFile is required if you are outputting data to a file");
         }else{
             outputter.setFile(cmd.getOptionValue("o"));
+        }
+
+        if(cmd.hasOption("s")){
+            try{
+                toShow = Integer.parseInt(cmd.getOptionValue("s"));
+            }catch(NumberFormatException e){
+                throw new IllegalArgumentException("Argument show need an int");
+            }
+        }
+
+        if(cmd.hasOption("e")){
+            String toToExclude = cmd.getOptionValue("e").replace("\"", "");
+            toToExclude = toToExclude.replace(" ", "");
+            toExclude = toToExclude.split(",");
         }
 
         }catch(ParseException e){
