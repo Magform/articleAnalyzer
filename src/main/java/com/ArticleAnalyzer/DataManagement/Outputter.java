@@ -74,6 +74,9 @@ public class Outputter {
         }
         try {
             File file = new File(this.file);
+            if (file.exists()){
+                file.delete();
+            }
             file.createNewFile();
             FileWriter fileWriter = new FileWriter(this.file, true);
             fileWriter.write(toPrint);
