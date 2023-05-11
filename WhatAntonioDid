@@ -1,1 +1,26 @@
+Per prima cosa ho creato una mappa <parola> <conteggio> (Container e Map sono interfacce che possiamo anche unire se dite, mentre ArrayMap è la classe effettiva) utilizzando un array (adesso che mi viene in mente potremmo fare anche con l'arrayList piuttosto di usare il resize)
+E' simile a quella che avevamo fatto con la Pizzi solo che ho messo la classe Pair con attributi rispettivamente String e int rispetto ad Object per entrambi e così per tutti i metodi
+Inoltre in questa classe ho creato il metodo orderByValue con metodi "helper" swap e findMaxPosFrom che in base alle occorrenze più alte mi ordina anche la parola
 
+Per il file .csv del New York Times ho usato la seconda versione messa dal prof su moodle l'11 maggio (in cui il titolo e il corpo di ciascun articolo sono divisi e non insieme come nella prima versione). Penso che sia meglio usare la seconda
+
+La classe WriteXML scrive un file xml su disco (il metodo writeXMLFile l'ho inserito perchè va invocato quando tutto il file è scritto e non nel costruttore)
+Ho visto che è stata creata la classe Article che possiamo utilizzare nel metodo addArticle (infatti ho fatto un commento) invece di mettere tutti i campi dell'articolo
+Va aggiornata ovviamente per tutti i campi che vogliamo mettere
+Il file xml non viene identato perchè c'è un problema che sotto spiego
+
+La classe ReadXML invece legge un file xml e come prima va modificata con ogni metodo per ogni campo che decidiamo di inserire
+
+La classe ReadCSV apre il file csv e per ogni riga (articolo) che legge (la prima fuori dal ciclo permette di leggere la prima riga del file con i nomi dei campi che a noi non interessano) ogni campo di ciascun articolo
+Uno dei problemi è che nel secondo articolo (probabilmente accade in altri articoli ma si vede subito dal secondo) compare una virgola nel titolo che viene interpretata come la fine di un campo e l'inizio dell'altro e quindi ho dovuto gestire questa cosa (righe 19-36)
+Di conseguenza cambia dove inizia il corpo, dipende da quante virgole sono presenti nel titolo (ce ne è una solo di solito e va tutto ma ho un po' generalizzato per renderlo più flessibile come vuole il prof) (righe 37-49)
+E poi viene scritto il file xml invocando writeXMLFile di WriteXML
+
+La classe ArticlesOccurences salva in un file txt le 50 parole che compaiono di più in tutti gli articoli
+A tutte le parole vengono tolti altri caratteri che non siano alfanumerici e vengono tutte messe in minuscolo.
+Per ogni articolo si salva nella stringa articleText (riga 34) le parole contate una sola volta (quindi li non ci sono parole con più occorrenze) e poi tutte queste stringhe vengono salvate nella mappa che viene ordinata per valore e poi si stampa nel file nel formato "parola conteggio"
+Il problema del mettere il file xml identato è che java legge gli spazi e le andature a capo come dei nodi figli di articles e quindi conta tutto il doppio
+Infatti se identate il codice con questa istruzione transformer.setOutputProperty(OutputKeys.INDENT, "yes"); dopo la riga 49 in WriteXML dopo aver importato javax.xml.transform.OutputKeys il metodo getArticlesNumber di ReadXML restituisce 2001 invece di 1000 ed inoltre nel file occurences compare la stringa " 1001", in pratica stringa vuota
+
+La classe ReadJSON è tutta commentata perchè devo ancora iniziarla ma è per fare allo stesso modo di ReadCSV
+ReadCSV non dovrebbe essere eseguibile con un main (presente sia qui sia in ArticlesOccurences) quindi va modificata, la modificherò nei prossimi giorni
