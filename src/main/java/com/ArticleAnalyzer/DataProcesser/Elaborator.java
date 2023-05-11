@@ -14,7 +14,7 @@ public class Elaborator {
     private LinkedHashMap <String, Integer> words;
     private Library toAnalyze;
 
-    Elaborator(Library toAnalyze){
+    public Elaborator(Library toAnalyze){
         this.toAnalyze = toAnalyze;
         words = new LinkedHashMap<>();
         analyze();
@@ -64,12 +64,70 @@ public class Elaborator {
         return words;
     }
 
+    public LinkedHashMap<String, Integer> getWords(String[] toExclude){
+        LinkedHashMap<String, Integer> toReturn = new LinkedHashMap<>();
+        Boolean good = false;
+        while(!good){
+            Map.Entry<String, Integer> entry = words.entrySet().iterator().next();
+            good = true;
+            for (String str : toExclude) {
+                if (str.equals(entry.getKey())) {
+                    good = false;
+                }
+            }
+            if(good){
+                toReturn.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return toReturn;
+    }
+
     public LinkedHashMap<String, Integer> getWords(int n) throws IllegalArgumentException{
         LinkedHashMap<String, Integer> toReturn = new LinkedHashMap<>();
+        if(n == -1){
+            return this.getWords();
+        }
+        if(n < -1){
+            throw new IllegalArgumentException("Request an invalid number of results");
+        }
         for(int i = 0; i < n; i++){
             try{
                 Map.Entry<String, Integer> entry = words.entrySet().iterator().next();
                 toReturn.put(entry.getKey(), entry.getValue());
+            }catch(NoSuchElementException e){
+                if(toReturn.isEmpty()){
+                    throw new IllegalArgumentException("Not enough entry");
+                }else{
+                    return toReturn;
+                }
+            }
+        }
+        return toReturn;
+    }
+
+    public LinkedHashMap<String, Integer> getWords(String[] toExclude, int n) throws IllegalArgumentException{
+        LinkedHashMap<String, Integer> toReturn = new LinkedHashMap<>();
+        if(n == -1){
+            return this.getWords(toExclude);
+        }
+        if(n < -1){
+            throw new IllegalArgumentException("Request an invalid number of results");
+        }
+        for(int i = 0; i < n; i++){
+            try{
+                Boolean good = false;
+                while(!good){
+                    Map.Entry<String, Integer> entry = words.entrySet().iterator().next();
+                    good = true;
+                    for (String str : toExclude) {
+                        if (str.equals(entry.getKey())) {
+                            good = false;
+                        }
+                    }
+                    if(good){
+                        toReturn.put(entry.getKey(), entry.getValue());
+                    }
+                }
             }catch(NoSuchElementException e){
                 if(toReturn.isEmpty()){
                     throw new IllegalArgumentException("Not enough entry");
