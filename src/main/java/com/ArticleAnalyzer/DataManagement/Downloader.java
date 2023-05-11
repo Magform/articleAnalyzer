@@ -33,9 +33,20 @@ public class Downloader {
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
         while(configurationFileScanner.hasNextLine()){
             String line = configurationFileScanner.nextLine();
-            String[] parts = line.split(":");
-            String key = parts[0];
-            String value = parts[1].replace("\"", "");
+            int splitter = line.indexOf(":");
+            if(splitter == -1){
+                configurationFileScanner.close();
+                throw new IllegalArgumentException("Invalid configuration file");
+            }
+            String key = line.substring(0, splitter);
+            String value = line.substring(splitter+1, line.length());
+            try{
+                value = value.substring(value.indexOf("\"")+1, value.length());
+                value = value.substring(0, value.indexOf("\""));
+            }catch(IndexOutOfBoundsException e){
+                configurationFileScanner.close();
+                throw new IllegalArgumentException("Invalid argument in configuration file");
+            }
             if (key.equalsIgnoreCase("link")) {
                 link = value;
             } else if (key.equalsIgnoreCase("query")) {
@@ -46,10 +57,13 @@ public class Downloader {
                 JSONoutput = value;
             }else{
                 configurationFileScanner.close();
-                throw new IllegalArgumentException("Invalid key in configuration file");
+                throw new IllegalArgumentException(key +" is an invalid key but it is in the configuration file");
             }
         }
         configurationFileScanner.close();
+        if(link == null || link.equalsIgnoreCase("")){
+            throw new IllegalArgumentException("link need to be configured");
+        }
         download();
  
     }
@@ -59,8 +73,9 @@ public class Downloader {
     }
 
     private void download() throws IOException{
+        String urlString = "";
         try {
-            String urlString = link+"?";
+            urlString = link+"?";
             if(APIkey != null){
                 urlString = urlString + "&api-key="+APIkey;
             }
@@ -87,7 +102,7 @@ public class Downloader {
             
             connection.disconnect();
         }catch(MalformedURLException e){
-            throw new IOException("Invalid link");
+            throw new IOException(urlString+" is an invalid link");
         }catch(IOException e){
             throw new IOException("Error with connection to the API");
         }
