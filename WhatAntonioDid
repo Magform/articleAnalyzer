@@ -1,4 +1,4 @@
-Per prima cosa ho creato una mappa <parola> <conteggio> (Container e Map sono interfacce che possiamo anche unire se dite, mentre ArrayMap è la classe effettiva) utilizzando un array (adesso che mi viene in mente potremmo fare anche con l'arrayList piuttosto di usare il resize)
+Per prima cosa ho creato una mappa <parola> <conteggio> (Container e Map sono interfacce che possiamo anche unire se dite, mentre ArrayMap è la classe effettiva) utilizzando un array (adesso che mi viene in mente potremmo fare anche con l'ArrayList piuttosto di usare il resize)
 E' simile a quella che avevamo fatto con la Pizzi solo che ho messo la classe Pair con attributi rispettivamente String e int rispetto ad Object per entrambi e così per tutti i metodi
 Inoltre in questa classe ho creato il metodo orderByValue con metodi "helper" swap e findMaxPosFrom che in base alle occorrenze più alte mi ordina anche la parola
 
