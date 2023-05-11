@@ -2,7 +2,7 @@ Per prima cosa ho creato una mappa <parola> <conteggio> (Container e Map sono in
 E' simile a quella che avevamo fatto con la Pizzi solo che ho messo la classe Pair con attributi rispettivamente String e int rispetto ad Object per entrambi e così per tutti i metodi
 Inoltre in questa classe ho creato il metodo orderByValue con metodi "helper" swap e findMaxPosFrom che in base alle occorrenze più alte mi ordina anche la parola
 
-Per il file .csv del New York Times ho usato la seconda versione messa dal prof su moodle l'11 maggio (in cui il titolo e il corpo di ciascun articolo sono divisi e non insieme come nella prima versione). Penso che sia meglio usare la seconda
+Per il file .csv del New York Times ho usato la seconda versione messa dal prof su moodle l'11 maggio (in cui il titolo e il corpo di ciascun articolo sono divisi e non insieme come nella prima versione). Penso che sia meglio usare la seconda versione
 
 La classe WriteXML scrive un file xml su disco (il metodo writeXMLFile l'ho inserito perchè va invocato quando tutto il file è scritto e non nel costruttore)
 Ho visto che è stata creata la classe Article che possiamo utilizzare nel metodo addArticle (infatti ho fatto un commento) invece di mettere tutti i campi dell'articolo
