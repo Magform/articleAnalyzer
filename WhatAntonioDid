@@ -28,4 +28,4 @@ ReadCSV non dovrebbe essere eseguibile con un main (presente sia qui sia in Arti
 IL FILE ReadCSV VIENE ESEGUITO SUBITO
 CI VOGLIONO 28 SECONDI PER L'ESECUZIONE DI ArticlesOccurences, PENSO POSSA ANDARE BENE VISTO CHE DEVE CREARE LA MAPPA, LEGGERE DA UN XML ED ELABORARE 1000 ARTICOLI
 
-Per il JSON, possiamo usare la cartella the_guardian, ma vorrei capire come compilare e fare andare il client su github e modificato dal prof così possiamo interrogare il the guardian visto che il prof ha detto che sarebbe meglios e lo usassimo
+Per il JSON, possiamo usare la cartella the_guardian, ma vorrei capire come compilare e fare andare il client su github e modificato dal prof così possiamo interrogare il the guardian visto che il prof ha detto che sarebbe meglio se lo usassimo
