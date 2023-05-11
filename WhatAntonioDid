@@ -12,7 +12,7 @@ Il file xml non viene identato perchè c'è un problema che sotto spiego
 La classe ReadXML invece legge un file xml e come prima va modificata con ogni metodo per ogni campo che decidiamo di inserire
 
 La classe ReadCSV apre il file csv e per ogni riga (articolo) che legge (la prima fuori dal ciclo permette di leggere la prima riga del file con i nomi dei campi che a noi non interessano) ogni campo di ciascun articolo
-Uno dei problemi è che nel secondo articolo (probabilmente accade in altri articoli ma si vede subito dal secondo) compare una virgola nel titolo che viene interpretata come la fine di un campo e l'inizio dell'altro e quindi ho dovuto gestire questa cosa (righe 19-36)
+Uno dei problemi è che nel secondo articolo (probabilmente accade in altri articoli ma si vede subito dal secondo) compare una virgola nel titolo che viene interpretata come la fine di un campo e l'inizio di un altro e quindi ho dovuto gestire questa cosa (righe 19-36)
 Di conseguenza cambia dove inizia il corpo, dipende da quante virgole sono presenti nel titolo (ce ne è una solo di solito e va tutto ma ho un po' generalizzato per renderlo più flessibile come vuole il prof) (righe 37-49)
 E poi viene scritto il file xml invocando writeXMLFile di WriteXML
 
