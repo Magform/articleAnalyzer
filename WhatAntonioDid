@@ -24,3 +24,6 @@ Infatti se identate il codice con questa istruzione transformer.setOutputPropert
 
 La classe ReadJSON è tutta commentata perchè devo ancora iniziarla ma è per fare allo stesso modo di ReadCSV
 ReadCSV non dovrebbe essere eseguibile con un main (presente sia qui sia in ArticlesOccurences) quindi va modificata, la modificherò nei prossimi giorni
+
+IL FILE ReadCSV VIENE ESEGUITO SUBITO
+CI VOGLIONO 28 SECONDI PER L'ESECUZIONE DI ArticlesOccurences, PENSO POSSA ANDARE BENE VISTO CHE DEVE CREARE LA MAPPA, LEGGERE DA UN XML ED ELABORARE 1000 ARTICOLI
