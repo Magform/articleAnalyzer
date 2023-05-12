@@ -173,19 +173,19 @@ public class Outputter {
             System.out.println("\"wordCount\" : " + toPrint.getWordcount() + ",\n");
         }
         if (toPrint.getWebPublicationDate() != null) {
-            print("\"webPublicationDate\": \"" + toPrint.getWebPublicationDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
+            print("\"webPublicationDate\": \"" + toPrint.getWebPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
         }
         if (toPrint.getLastModified() != null) {
-            print("\"lastModified\": \"" + toPrint.getLastModified().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
+            print("\"lastModified\": \"" + toPrint.getLastModified().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
         }
         if (toPrint.getCommentCloseDate() != null) {
-            print("\"commentCloseDate\": \"" + toPrint.getCommentCloseDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
+            print("\"commentCloseDate\": \"" + toPrint.getCommentCloseDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
         }
         if (toPrint.getFirstPublicationDate() != null) {
-            print("\"firstPublicationDate\": \"" + toPrint.getFirstPublicationDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
+            print("\"firstPublicationDate\": \"" + toPrint.getFirstPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
         }
         if (toPrint.getNewspaperEditionDate() != null) {
-            print("\"newspaperEditionDate\": \"" + toPrint.getNewspaperEditionDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
+            print("\"newspaperEditionDate\": \"" + toPrint.getNewspaperEditionDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
         }
         if (toPrint.getCommentable() != null) {
             print("\"commentable\": " + toPrint.getCommentable() + ",\n");

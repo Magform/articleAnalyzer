@@ -75,7 +75,7 @@ public class Downloader {
     private void download() throws IOException{
         String urlString = "";
         try {
-            urlString = link+"?";
+            urlString = link + "?show-fields=all&page-size=100";
             if(APIkey != null){
                 urlString = urlString + "&api-key="+APIkey;
             }

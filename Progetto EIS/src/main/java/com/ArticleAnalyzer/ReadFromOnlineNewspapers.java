@@ -1,4 +1,3 @@
-package com.ArticleAnalyzer;
 
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -28,23 +27,6 @@ public class ReadFromOnlineNewspapers {
           }
           sc.close();
         }
-        else if (fileName.substring(fileName.indexOf(".") + 1).equals("json")) {
-          JSONParser parser = new JSONParser();
-          Object obj = parser.parse(fileReader);
-          JSONObject response = (JSONObject)obj;
-          JSONObject responseFields = (JSONObject)response.get("response");
-          JSONArray results = (JSONArray)responseFields.get("results");
-          Iterator iteratorArticles = results.iterator();
-          while (iteratorArticles.hasNext()) {
-            JSONObject article = (JSONObject)iteratorArticles.next();
-            Article a = createArticleFromJSON(article);
-            xmlWriter.addArticle(a);
-          }
-        }
-        /*else if (...) {
-          si possono fare altri else if in futuro in caso vengano aggiunte altre testate
-          Bisogna capire come fare se due testate restituiscono la stessa estensione ma i file hanno diversi formati
-        }*/
         fileReader.close();
       }
       xmlWriter.writeXMLFile();

@@ -1,5 +1,6 @@
 package com.ArticleAnalyzer.DataProcesser;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -7,6 +8,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import com.ArticleAnalyzer.DataManagement.Outputter;
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
 
@@ -55,6 +57,7 @@ public class Elaborator {
                 }
             }
             toReturn.put(maxEntry.getKey(), maxEntry.getValue());
+            System.out.println(maxEntry.getKey()+" "+maxEntry.getValue());
             words.remove(maxEntry.getKey());
         }
         words = toReturn;
@@ -82,7 +85,7 @@ public class Elaborator {
         return toReturn;
     }
 
-    public LinkedHashMap<String, Integer> getWords(int n) throws IllegalArgumentException{
+    public LinkedHashMap<String, Integer> getWords(int n) throws IllegalArgumentException, IOException{
         LinkedHashMap<String, Integer> toReturn = new LinkedHashMap<>();
         if(n == -1){
             return this.getWords();
@@ -93,6 +96,7 @@ public class Elaborator {
         for(int i = 0; i < n; i++){
             try{
                 Map.Entry<String, Integer> entry = words.entrySet().iterator().next();
+                Outputter debug = new Outputter(true, false, null);
                 toReturn.put(entry.getKey(), entry.getValue());
             }catch(NoSuchElementException e){
                 if(toReturn.isEmpty()){
