@@ -19,35 +19,29 @@ public class Outputter {
         this.file = "";
     }
 
-    public Outputter(boolean toConsole, boolean toFile) {
+    public Outputter(boolean toConsole, boolean toFile) throws IOException {
         this.toConsole = toConsole;
         this.toFile = toFile;
         this.file = "";
     }
 
-    public Outputter(boolean toConsole, boolean toFile, String file) {
+    public Outputter(boolean toConsole, boolean toFile, String file) throws IOException {
         this(toConsole, toFile);
         this.file = file;
-    }
-
-    public void setFile(String file){
-        this.file = file;
+        check();
     }
 
     public String getFile(){
         return this.file;
     }
 
-    public void setToConsole(boolean toSet){
-        this.toConsole = toSet;
-    }
-
-    public void setToFile(boolean toSet){
-        this.toFile = toSet;
-    }
-
     public boolean getToConsole(){
         return this.toConsole;       
+    }
+
+    public void setFile(String toSet) throws IOException{
+        this.file = toSet;   
+        check();    
     }
 
     public boolean getToFile(){
@@ -68,15 +62,10 @@ public class Outputter {
         System.out.println(toPrint);
     }
 
+    
     private void printToFile(String toPrint) throws IOException{
-        if(this.file==""){
-            throw new IOException("File were to print not setted");
-        }
         try {
             File file = new File(this.file);
-            if (file.exists()){
-                file.delete();
-            }
             file.createNewFile();
             FileWriter fileWriter = new FileWriter(this.file, true);
             fileWriter.write(toPrint);
@@ -235,10 +224,22 @@ public class Outputter {
         }
     }
 
-    public void print(LinkedHashMap<String, Integer> toPrint){
+    public void print(LinkedHashMap<String, Integer> toPrint) throws IOException{
         for (String key : toPrint.keySet()) {
-            System.out.println(key + " " + toPrint.get(key));
+            print(key + " " + toPrint.get(key)+"\n");
         }
     }
 
+    private void check() throws IOException{
+        if(toFile){
+            if(this.file==""){
+                throw new IOException("File were to print not setted");
+            }
+            File file = new File(this.file);
+            if (file.exists()){
+                file.delete();
+            }
+            file.createNewFile();
+        }
+    }
 }

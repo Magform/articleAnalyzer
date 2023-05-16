@@ -19,12 +19,11 @@ public class Main {
       articleLoader = argparser.getArticleLoader();
       Library toAnalyze = articleLoader.getLoadedLibrary();
       elaborator = new Elaborator(toAnalyze);
-      outputter.print(elaborator.getWords());
-      /*if(argparser.getToExclude() == null){
+      if(argparser.getToExclude() == null){
         outputter.print(elaborator.getWords(argparser.getToShow()));
       }else{
         outputter.print(elaborator.getWords(argparser.getToExclude(), argparser.getToShow()));
-      }*/
+      }
     }catch(Exception e){
       System.err.println("Error: "+e);
       System.exit(1);
