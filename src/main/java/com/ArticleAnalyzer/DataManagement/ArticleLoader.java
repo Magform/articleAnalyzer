@@ -1,24 +1,19 @@
 package com.ArticleAnalyzer.DataManagement;
 
-import java.io.BufferedReader;
 import java.io.File;
 
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Scanner;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -35,7 +30,7 @@ public class ArticleLoader {
         }
     }
 
-    private void loadLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException{
+    private void loadLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException, CsvValidationException{
         String extension = file.getName().substring(file.getName().lastIndexOf("."));
         if(extension.equalsIgnoreCase(".csv")){
             loadCSV();
@@ -48,22 +43,36 @@ public class ArticleLoader {
         }
     }
 
-    private void loadCSV() throws FileNotFoundException, IOException{
+    private void loadCSV() throws FileNotFoundException, IOException, CsvValidationException{
         FileReader fileReader = new FileReader(file);
-        BufferedReader br = new BufferedReader(fileReader);
-        CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
-        CSVParser csvParser = new CSVParser(br, csvFormat);
-        for (CSVRecord record : csvParser) {
+
+        CSVReader reader = new CSVReader(fileReader);
+        String[] index = reader.readNext();
+        index[0] = index[0].replace("ï»¿", "");
+        String[] line;
+        while ((line = reader.readNext()) != null) {
             Article toLibrary = new Article();
-            for (String fieldName : record.getParser().getHeaderMap().keySet()) {
-                String fieldValue = record.get(fieldName);
-                toLibrary.fullSetter(fieldValue, fieldName);
+            for (int i = 0; i<index.length; i++) {
+                try{
+                    if(index[i].equalsIgnoreCase("Identifier")){
+                        toLibrary.fullSetter(line[i], "id");
+                    }else if(index[i].equalsIgnoreCase("URL")){
+                        toLibrary.fullSetter(line[i], "webURL");
+                    }else if(index[i].equalsIgnoreCase("Date")){
+                        //Skip this since date is not a lot important and it is in a different format(EASY TO FIX)
+                        //toLibrary.fullSetter(line[i], "webPublicationDate");
+                    }else if(index[i].equalsIgnoreCase("Source Set")){
+                        toLibrary.fullSetter(line[i], "SourceSet");
+                    }else{
+                        toLibrary.fullSetter(line[i], index[i]);
+                    }
+                }catch(IOException e){
+                    System.out.println(e);
+                }
             }
             loadedLibrary.addArticle(toLibrary);
         }
-        csvParser.close();
-        br.close();
-
+        reader.close();
     }  
 
     private void loadJSON() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
@@ -93,7 +102,7 @@ public class ArticleLoader {
         }
     }
 
-    public Library getLoadedLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException{
+    public Library getLoadedLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException, CsvValidationException{
         loadLibrary();
         return loadedLibrary;
     }

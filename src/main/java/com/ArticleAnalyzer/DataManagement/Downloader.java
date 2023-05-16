@@ -14,6 +14,7 @@ public class Downloader {
     private String APIkey;
     private String query;
     private String JSONoutput;
+    private String articleNumber;
 
     public Downloader(){
         configurationFile = null;
@@ -21,6 +22,7 @@ public class Downloader {
         query = null;
         APIkey = null;
         JSONoutput = null;
+        articleNumber = null;
     }
 
     public Downloader(String configurationFile) throws FileNotFoundException, IllegalArgumentException, IOException{
@@ -29,6 +31,7 @@ public class Downloader {
         query = null;
         APIkey = null;
         JSONoutput = null;
+        articleNumber = null;
 
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
         while(configurationFileScanner.hasNextLine()){
@@ -55,6 +58,8 @@ public class Downloader {
                 APIkey = value;
             } else if (key.equalsIgnoreCase("JSONoutput")) {
                 JSONoutput = value;
+            }else if (key.equalsIgnoreCase("articleNumber")) {
+                articleNumber = value;
             }else{
                 configurationFileScanner.close();
                 throw new IllegalArgumentException(key +" is an invalid key but it is in the configuration file");
@@ -75,7 +80,10 @@ public class Downloader {
     private void download() throws IOException{
         String urlString = "";
         try {
-            urlString = link + "?show-fields=all&page-size=100";
+            urlString = link + "?show-fields=all";
+            if(articleNumber != null){
+                urlString = urlString + "&page-size="+articleNumber;
+            }
             if(APIkey != null){
                 urlString = urlString + "&api-key="+APIkey;
             }
@@ -104,7 +112,7 @@ public class Downloader {
         }catch(MalformedURLException e){
             throw new IOException(urlString+" is an invalid link");
         }catch(IOException e){
-            throw new IOException("Error with connection to the API");
+            throw new IOException("Error with connection to the API with URL: "+ urlString);
         }
     }
 
