@@ -47,13 +47,13 @@ public class LibraryTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void otherConstructor_getArticleOverLimit(){
-        Library test = new Library();
+        Library test = new Library(new Article());
         test.getArticle(2);
     }
 
     @Test
     public void otherConstructor_getArticle(){
-        Library test = new Library();
+        Library test = new Library(new Article());
         assertEquals("", test.getArticle(1).getId());
     }
 
@@ -63,6 +63,7 @@ public class LibraryTest {
         Library test = new Library();
         Article toAdd = new Article();
         toAdd.setId("TestID");
+        test.addArticle(toAdd);
         assertEquals(1, test.getTotalArticleNumber());
         assertEquals("TestID", test.getNextArticle().getId());
     }
@@ -75,6 +76,8 @@ public class LibraryTest {
         Article toAdd2 = new Article();
         toAdd.setId("TestID");
         toAdd2.setId("TestID2");
+        test.addArticle(toAdd);
+        test.addArticle(toAdd2);
         assertEquals(2, test.getTotalArticleNumber());
         assertEquals("TestID", test.getNextArticle().getId());
         assertEquals("TestID2", test.getNextArticle().getId());
