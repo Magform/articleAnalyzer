@@ -2,49 +2,100 @@
 This toDO contain all the things that we need to do.
 
 ## Article
-Comment
-Check Variable Name
-More test
-Optional: Sort variables by type
+### Add test to tester
+[] Test ALL SETTERS
+[] Test ALL GETTERS
+[] Test ALL Constructor
+[] Test TWO FULLSETTER IMPLEMENTATION
+
+### Optional
+[] Sort variables by type
 
 ## Library
-Comment
-More test
-Check Variable Name
-
-## Outputter
-Comment
-More test
+[x] ENDED
 
 ## Downloader
-Comment
-More test
-Optional: Some speed improvement
+[x] ENDED
+### Optional
+[] Improve test with autosetting path
+
+## Outputter
+[] Comment
+### Add test to tester
+[] toCosole
+    [] String
+    [] Article
+    [] Library
+    [] LinkedHashMap<String, Integer>
+[] toFile
+    [] String
+    [] Article
+    [] Library
+    [] LinkedHashMap<String, Integer>
+[] getters
+[] setters
 
 ## ArticleLoader
-!!!!!DONT WORK!!!!!
-Comment
-Test
-Optional: legibility
+[] Comment
+### Add test to tester
+[] constructor
+[] LoadLibrary
+    [] From CSV
+    [] From JSON
+### Optional
+[] Remove use of external lib
 
 ## Elaborator
-Comment
-Test (We need to fix ArticleLoader frist)
+[] Comment
+### Add test to tester
+[] analyze
+[] orderMap
+[] getNthEntry
+[] getWords
+    [] String[] toExclude
+    [] int n
+    [] String[] toExclude, int n
 
 ## argparser
-Comment
-More test
-Optional: legibility, modularity
+[] Comment
+[] different function (modularity)
+### Add test to tester
+[] missing
+    [] all the things
 
 ## Main
-Comment
-More test
-toEnd (Problem with Article Loader)
+[] Comment
 
-## module-info
-ALL
-
-## ALL INTERFACE
-## DIRECTORY
+## Documentantion
+[] main page
+### Class
+[] Article
+[] Library
+[] Argparser
+[] Elaborator
+[] Outputter
+[] Downloader
+[] ArticleLoader
+### How to use
+[] Prerequisite
+[] Installing
+### Test
+[] How run test
+### Usage
+[] How to run
+### Library used
+### Author
+### Licence
 
 ## UPDATE UML
+[] Domain Model
+[] Design Model
+
+
+# FINAL CHECK
+## Documento requisiti
+## Domain Model
+## Design Model
+## Codice
+## Test
+## Manuale

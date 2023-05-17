@@ -1,5 +1,17 @@
 package com.ArticleAnalyzer.Types;
 
+/* 
+ * The Library class represents a collection of Article objects and provides various functions for interacting with the collection.
+ * It has a default constructor that initializes the collection with an array of 10 articles created using the default Article constructor.
+ * Additionally, there is a constructor that accepts an Article parameter, which initializes the first article in the collection with the given article.
+ * Public functions:
+ * - addArticle(Article): Adds the given article to the collection.
+ * - getTotalArticleNumber(): Returns the total number of available articles as an integer.
+ * - getArticle(int): Returns the Article corresponding to the given integer index.
+ * - getNextArticle(): Retrieves the next article in the collection based on an internal index. Returns null if there are no more articles.
+ * - resetScannedArticle(): Resets the internal index for the getNextArticle() function, allowing it to start from the first article again.
+ */
+
 public class Library {
     private int totalArticlesNumber;
     private int scannedArticles;
@@ -7,9 +19,9 @@ public class Library {
     private static final int INITIAL_CAPACITY = 10; // choose the initial size of the collection with a fixed size of 10
 
     public Library() {
-        this.totalArticlesNumber = 0;
-        this.scannedArticles = -1; // initialize to -1 so that getNextArticle() starts with the first article
-        this.collection = new Article[INITIAL_CAPACITY];
+        totalArticlesNumber = 0;
+        scannedArticles = 0;
+        collection = new Article[INITIAL_CAPACITY];
     }
 
     public Library(Article article) {
@@ -17,33 +29,43 @@ public class Library {
         addArticle(article);
     }
 
-    public boolean addArticle(Article article){
-        if (this.totalArticlesNumber == this.collection.length) { // collection is full we need to resize
-            Article[] newCollection = new Article[this.collection.length * 2];   //I chose to double te lenght of article array
-            System.arraycopy(this.collection, 0, newCollection, 0, this.collection.length);
-            this.collection = newCollection;
+    //Adds the given article to the collection.
+    public void addArticle(Article article){
+        //Check if collection[] is full, if yes it double it's lenght
+        if (totalArticlesNumber == collection.length) {
+            Article[] newCollection = new Article[collection.length * 2];
+            System.arraycopy(collection, 0, newCollection, 0, collection.length);
+            collection = newCollection;
         }
-        this.collection[this.totalArticlesNumber] = article;
-        this.totalArticlesNumber++;
-        return true;
+        collection[totalArticlesNumber] = article;
+        totalArticlesNumber++;
     }
 
+    //Returns the total number of available articles as an integer.
     public int getTotalArticleNumber(){
         return this.totalArticlesNumber;
     }
 
-    public Article getNextArticle(){
-        if (this.scannedArticles == this.totalArticlesNumber - 1) {
-            return null; // no more articles to scan
-        }
-        this.scannedArticles++;
-        return this.collection[this.scannedArticles];
-    }
-
-    public Article getArticle(int articleNumber){
-        if(articleNumber <= 0 || articleNumber > this.totalArticlesNumber){
+    //Returns the Article corresponding to the given integer index.
+    public Article getArticle(int articleNumber) throws IllegalArgumentException{
+        if(articleNumber <= 0 || articleNumber > totalArticlesNumber){
             throw new IllegalArgumentException("Invalid articleNumber");
         }
         return this.collection[articleNumber - 1];
     }
+
+    //Retrieves the next article in the collection based on an internal index. Returns null if there are no more articles.
+    public Article getNextArticle(){
+        if (scannedArticles == totalArticlesNumber) {
+            return null; // no more articles to scan
+        }
+        scannedArticles++;
+        return collection[scannedArticles - 1];
+    }
+
+    // Resets the internal index for the getNextArticle() function, allowing it to start from the first article again.
+    public void resetScannedArticle(){
+        scannedArticles = 0;
+    }
+
 }

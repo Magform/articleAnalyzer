@@ -1,5 +1,6 @@
 package com.ArticleAnalyzer.DataProcesser;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -21,14 +22,15 @@ public class Elaborator {
     }
 
     private void analyze(){
-        while(toAnalyze.getNextArticle() != null){
+        for(int i = 1; i<= toAnalyze.getTotalArticleNumber(); i++){
             Map<String, Boolean> founded = new HashMap<>();
-            Article article = toAnalyze.getNextArticle();
+            Article article = toAnalyze.getArticle(i);
             String body = article.getBodyText();
             Scanner scanner = new Scanner(body);
             scanner.useDelimiter("\\W+");
             while (scanner.hasNext()) {
                 String word = scanner.next();
+                word = word.toLowerCase();
                 if(!founded.containsKey(word)){
                     founded.put(word, true);
                     words.merge(word, 1, Integer::sum);
@@ -82,7 +84,7 @@ public class Elaborator {
         return toReturn;
     }
 
-    public LinkedHashMap<String, Integer> getWords(int n) throws IllegalArgumentException{
+    public LinkedHashMap<String, Integer> getWords(int n) throws IllegalArgumentException, IOException{
         LinkedHashMap<String, Integer> toReturn = new LinkedHashMap<>();
         if(n == -1){
             return this.getWords();
@@ -92,7 +94,7 @@ public class Elaborator {
         }
         for(int i = 0; i < n; i++){
             try{
-                Map.Entry<String, Integer> entry = words.entrySet().iterator().next();
+                Map.Entry<String, Integer> entry = getNthEntry(i, words);
                 toReturn.put(entry.getKey(), entry.getValue());
             }catch(NoSuchElementException e){
                 if(toReturn.isEmpty()){
@@ -113,11 +115,12 @@ public class Elaborator {
         if(n < -1){
             throw new IllegalArgumentException("Request an invalid number of results");
         }
+        int EntryToLoad=0;
         for(int i = 0; i < n; i++){
             try{
                 Boolean good = false;
                 while(!good){
-                    Map.Entry<String, Integer> entry = words.entrySet().iterator().next();
+                    Map.Entry<String, Integer> entry = getNthEntry(EntryToLoad, words);
                     good = true;
                     for (String str : toExclude) {
                         if (str.equals(entry.getKey())) {
@@ -127,6 +130,7 @@ public class Elaborator {
                     if(good){
                         toReturn.put(entry.getKey(), entry.getValue());
                     }
+                    EntryToLoad++;
                 }
             }catch(NoSuchElementException e){
                 if(toReturn.isEmpty()){
@@ -137,6 +141,21 @@ public class Elaborator {
             }
         }
         return toReturn;
+    }
+
+    private Map.Entry<String, Integer> getNthEntry(int n, LinkedHashMap<String, Integer> map){
+        Map.Entry<String, Integer> nthEntry = null;
+        if (n >= 0 && n < map.size()) {
+            int i = 0;
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                if (i == n) {
+                    nthEntry = entry;
+                    break;
+                }
+                i++;
+            }
+        }
+        return nthEntry;
     }
 
 }
