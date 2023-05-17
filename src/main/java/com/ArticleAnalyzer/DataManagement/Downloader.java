@@ -1,8 +1,18 @@
 package com.ArticleAnalyzer.DataManagement;
 
-/*
+ /**
+ * The Downloader class is responsible for downloading data from a specified endpoint based on a configuration file.
+ * It supports TheGuardian as the current implemented endpoint.
  * 
+ * The class provides two constructors: a default constructor that initializes all variables to null, making it inactive,
+ * and a parameterized constructor that takes a configuration file path. The configuration file specifies the necessary
+ * parameters for the download process (refer to the documentation for more details on the configuration file format).
  * 
+ * Once the configuration is set, the class initiates the download process by sending a request to the specified endpoint
+ * and saving the response data in a file. The file is formatted in a JSON-like structure, with the output file path
+ * specified in the configuration file.
+ * 
+ * The class also offers a getJSONOutput() method, which returns the file path of the saved response data.
  */
 
 import java.io.File;
@@ -81,7 +91,10 @@ public class Downloader {
             throw new IllegalArgumentException("link need to be configured");
         }
         if(endpoint == null || endpoint.equalsIgnoreCase("")){
-            throw new IllegalArgumentException("link need to be configured");
+            throw new IllegalArgumentException("endpoint need to be configured");
+        }
+        if(APIkey == null || APIkey.equalsIgnoreCase("")){
+            throw new IllegalArgumentException("APIkey need to be configured");
         }
         download();
  
