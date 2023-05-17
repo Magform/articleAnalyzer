@@ -1,0 +1,7 @@
+endpoint: "TheGuardian"
+link: "https://content.guardianapis.com/search"
+APIkey: "APIkey"
+query: "nuclear power"
+articleNumber: "1000"
+JSONoutput: "outputter_results.json"
+test: "test"
