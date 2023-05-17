@@ -15,19 +15,19 @@ public class LibraryTest {
 
     //Test for default constructor
     @Test
-    public void testDefaultConstructor_getTotalArticleNumber(){
+    public void DefaultConstructor_getTotalArticleNumber(){
         Library test = new Library();
         assertEquals(0, test.getTotalArticleNumber());
     }
 
     @Test
-    public void testDefaultConstructor_getNextArticle(){
+    public void DefaultConstructor_getNextArticle(){
         Library test = new Library();
         assertNull(test.getNextArticle());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testDefaultConstructor_getArticle(){
+    public void DefaultConstructor_getArticle(){
         Library test = new Library();
         test.getArticle(1);
     }

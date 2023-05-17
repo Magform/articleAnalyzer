@@ -11,7 +11,7 @@ import org.junit.runners.JUnit4;
 public class ArticleTest {
 
     @Test
-    public void testDefaultConstructor() {
+    public void DefaultConstructor() {
         Article article = new Article();
 
         assertEquals("", article.getId());
