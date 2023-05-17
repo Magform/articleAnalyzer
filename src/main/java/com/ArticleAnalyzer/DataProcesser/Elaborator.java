@@ -30,6 +30,7 @@ public class Elaborator {
             scanner.useDelimiter("\\W+");
             while (scanner.hasNext()) {
                 String word = scanner.next();
+                word = word.toLowerCase();
                 if(!founded.containsKey(word)){
                     founded.put(word, true);
                     words.merge(word, 1, Integer::sum);
