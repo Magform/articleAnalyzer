@@ -1,22 +1,16 @@
 package com.ArticleAnalyzer.DataManagement;
 
+import java.io.File;
+
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.Scanner;
 import java.io.IOException;
-import java.io.File;
-import java.util.Iterator;
-import java.util.Map;
-import java.text.ParseException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ArticleLoader {
-
     private File file;
     private Library loadedLibrary;
 
@@ -28,8 +22,9 @@ public class ArticleLoader {
         }
     }
 
-    private void loadLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException, CsvValidationException{
+    private void loadLibrary() throws FileNotFoundException, IOException{
         String extension = file.getName().substring(file.getName().lastIndexOf("."));
+        System.out.println(extension);
         if(extension.equalsIgnoreCase(".csv")){
             loadCSV();
         }else if(extension.equalsIgnoreCase(".json")){
@@ -41,69 +36,129 @@ public class ArticleLoader {
         }
     }
 
-    private void loadCSV() throws FileNotFoundException, IOException, CsvValidationException{
-        FileReader fileReader = new FileReader(file);
+    private void loadCSV() throws FileNotFoundException, IOException{
+        Scanner CSV = new Scanner(file);
 
-        CSVReader reader = new CSVReader(fileReader);
-        String[] index = reader.readNext();
-        index[0] = index[0].replace("ï»¿", "");
-        String[] line;
-        while ((line = reader.readNext()) != null) {
-            Article toLibrary = new Article();
-            for (int i = 0; i<index.length; i++) {
-                try{
-                    if(index[i].equalsIgnoreCase("Identifier")){
-                        toLibrary.fullSetter(line[i], "id");
-                    }else if(index[i].equalsIgnoreCase("URL")){
-                        toLibrary.fullSetter(line[i], "webURL");
-                    }else if(index[i].equalsIgnoreCase("Date")){
-                        //Skip this since date is not a lot important and it is in a different format(EASY TO FIX)
-                        //toLibrary.fullSetter(line[i], "webPublicationDate");
-                    }else if(index[i].equalsIgnoreCase("Source Set")){
-                        toLibrary.fullSetter(line[i], "SourceSet");
-                    }else if(index[i].equalsIgnoreCase("Fulltext")){
-                        toLibrary.fullSetter(line[i], "BodyText");
-                        toLibrary.fullSetter(line[i], index[i]);
-                    }else{
-                        toLibrary.fullSetter(line[i], index[i]);
-                    }
-                }catch(IOException e){
-                    System.out.println(e);
-                }
+        //Scan frist line to make index
+        String[] index;
+        int numberOfIndex = 0;
+
+        if (CSV.hasNextLine()) {
+            String firstLine = CSV.nextLine();
+            index = firstLine.split(","); // initialize the index array with the first line
+            index[0] = index[0].replace("ï»¿", "");
+            numberOfIndex = index.length;
+
+            for(int i=0; i< index.length; i++){
+                System.out.println(index[i]);  
             }
-            loadedLibrary.addArticle(toLibrary);
+            while (CSV.hasNextLine()) {
+                Article toLibrary = new Article(); // create a new Article object for each line
+                String line = CSV.nextLine();
+                String[] values = line.split(",");
+        
+            // set the properties of the Article object with the values from the CSV line
+                for (int i = 0; i < numberOfIndex && i < values.length; i++) {
+                    if(index[i].equalsIgnoreCase("body")){
+                        toLibrary.fullSetter(values[i], "bodyText"); 
+                    }else if(index[i].equalsIgnoreCase("Identifier")){
+                        toLibrary.fullSetter(values[i], "id"); 
+                    }else if(index[i].equalsIgnoreCase("URL")){
+                        toLibrary.fullSetter(values[i], "webUrl"); 
+                    }else if(index[i].equalsIgnoreCase("Date")){
+                        LocalDateTime dateTime = LocalDateTime.parse(values[i], DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
+                        toLibrary.setWebPublicationDate(dateTime); 
+                    }else{
+
+                        toLibrary.fullSetter(values[i], index[i]);
+                    }
+                }
+                loadedLibrary.addArticle(toLibrary);
+            }
+        } else {
+            CSV.close();
+            throw new IOException("CSV not valid");
         }
-        reader.close();
+        CSV.close();
     }  
 
-    private void loadJSON() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
-        FileReader fileReader = new FileReader(file);
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(fileReader);
-        JSONObject response = (JSONObject) obj;
-        JSONObject responseFields = (JSONObject) response.get("response");
-        JSONArray results = (JSONArray) responseFields.get("results");
+    //Another implementation harder to read and to understand
+    private void loadJSON() throws FileNotFoundException, IOException {
+        Scanner JSON = new Scanner(file);
     
-        Iterator<JSONObject> iteratorArticles = results.iterator();
+        String index = null;
+        String value = null;
+        Article toLibrary = null;
     
-        while (iteratorArticles.hasNext()) {
-            Article toLibrary = new Article();
-            JSONObject article = iteratorArticles.next();
-            JSONObject articleFields = (JSONObject) article.get("fields");
-            Iterator<?> articleFieldsIterator = articleFields.entrySet().iterator();
-            while (articleFieldsIterator.hasNext()) {
-                Map.Entry<String, String> pair = (Map.Entry) articleFieldsIterator.next();
-                String key = (String) pair.getKey();
-                String value = (String) pair.getValue();
-                try{
-                    toLibrary.fullSetter(value, key);
-                }catch(IOException e){}
+        while(JSON.hasNextLine()) {
+            String line = JSON.nextLine();
+            
+            indexing:
+            while (line.indexOf("\"") != -1) {
+                index = line.substring(line.indexOf("\"")+1, line.length());
+                System.out.println(index);
+                Boolean indexNotFounded = true;
+                while (indexNotFounded) {
+                    if (index.indexOf("\"") != -1) {
+                        line = index.substring(index.indexOf("\"")+1, index.length());
+                        index = index.substring(0, index.indexOf("\""));
+                        indexNotFounded = false;
+                    } else {
+                        index += JSON.nextLine();
+                    }
+                }
+
+                if (index.equalsIgnoreCase("id")) {
+                    if (toLibrary != null && !toLibrary.getId().equalsIgnoreCase("")) {
+                        loadedLibrary.addArticle(toLibrary);
+                    }
+                    toLibrary = new Article();
+                }
+                if(line.indexOf("\"") != -1){
+                    value = line.substring(line.indexOf("\"")+1, line.length());
+                    Boolean valueNotFounded = true;
+                    System.out.println("index: "+index);
+                    System.out.println("value: "+value);
+                    System.out.println(" ");
+                    while (valueNotFounded) {
+                        if (value.indexOf("\"") != -1) {
+                            value = value.substring(0, value.indexOf("\""));
+                            valueNotFounded = false;
+                            System.out.println("index: "+index);
+                            System.out.println("value: "+value);
+                            System.out.println(" ");
+                        } else if (value.indexOf(",") != -1) {
+                            line = value.substring(value.indexOf(",") + 1, value.length());
+                            continue indexing;
+                        } else if (value.indexOf("{") != -1) {
+                            line = value.substring(value.indexOf("{"), value.length());
+                            continue indexing;
+                        } else if (value.indexOf("[") != -1) {
+                            line = value.substring(value.indexOf("["), value.length());
+                            continue indexing;
+                        } else {
+                            value += JSON.nextLine();
+                        }
+                    }    
+                }
+                System.out.println("index: "+index);
+                System.out.println("value: "+value);
+                System.out.println(" ");
+                if (toLibrary != null) {
+                    try{
+                        toLibrary.fullSetter(value, index);
+                    }catch(IOException e){}
+                }
             }
-            loadedLibrary.addArticle(toLibrary);
+            if (toLibrary != null && !toLibrary.getId().equalsIgnoreCase("")) {
+                loadedLibrary.addArticle(toLibrary);
+            }
         }
+    
+        JSON.close();
     }
 
-    public Library getLoadedLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException, CsvValidationException{
+    public Library getLoadedLibrary() throws FileNotFoundException, IOException{
         loadLibrary();
         return loadedLibrary;
     }
