@@ -2,15 +2,15 @@
 This toDO contain all the things that we need to do.
 
 ## Article
-Comment
-Check Variable Name
-More test
+Test ALL SETTERS
+Test ALL GETTERS
+Test ALL Constructor
+Test TWO FULLSETTER IMPLEMENTATION
+
 Optional: Sort variables by type
 
 ## Library
-Comment
-More test
-Check Variable Name
+ENDED
 
 ## Outputter
 Comment
@@ -22,14 +22,14 @@ More test
 Optional: Some speed improvement
 
 ## ArticleLoader
-!!!!!DONT WORK!!!!!
+??Remove external lib??
 Comment
-Test
+More test
 Optional: legibility
 
 ## Elaborator
 Comment
-Test (We need to fix ArticleLoader frist)
+More test
 
 ## argparser
 Comment
@@ -41,10 +41,18 @@ Comment
 More test
 toEnd (Problem with Article Loader)
 
-## module-info
-ALL
+## /TEST
+Create and add all test (Integrated with MAVEN)
 
-## ALL INTERFACE
-## DIRECTORY
+## Documentantion
 
 ## UPDATE UML
+
+
+# FINAL CHECK
+## Documento requisiti
+## Domain Model
+## Design Model
+## Codice
+## Test
+## Manuale
