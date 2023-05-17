@@ -1,24 +1,22 @@
 package com.ArticleAnalyzer.DataManagement;
 
-import java.io.File;
-
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
+import java.io.IOException;
+import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
-import java.io.IOException;
 import java.text.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class ArticleLoader {
+
     private File file;
     private Library loadedLibrary;
 
@@ -63,6 +61,9 @@ public class ArticleLoader {
                         //toLibrary.fullSetter(line[i], "webPublicationDate");
                     }else if(index[i].equalsIgnoreCase("Source Set")){
                         toLibrary.fullSetter(line[i], "SourceSet");
+                    }else if(index[i].equalsIgnoreCase("Fulltext")){
+                        toLibrary.fullSetter(line[i], "BodyText");
+                        toLibrary.fullSetter(line[i], index[i]);
                     }else{
                         toLibrary.fullSetter(line[i], index[i]);
                     }
@@ -91,7 +92,7 @@ public class ArticleLoader {
             JSONObject articleFields = (JSONObject) article.get("fields");
             Iterator<?> articleFieldsIterator = articleFields.entrySet().iterator();
             while (articleFieldsIterator.hasNext()) {
-                Map.Entry pair = (Map.Entry) articleFieldsIterator.next();
+                Map.Entry<String, String> pair = (Map.Entry) articleFieldsIterator.next();
                 String key = (String) pair.getKey();
                 String value = (String) pair.getValue();
                 try{
