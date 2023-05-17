@@ -1,24 +1,11 @@
 package com.ArticleAnalyzer.Types;
 
-/* 
- * This is the basic type of our project, it implements an Article and contains, set with private status, all the variables that we believe may
- *      be useful in this or other projects that deal with the analysis or writing of articles.
- * Each variable then has a setter and a getter, the getter returns as type the type of the variable while for the setter there is an implementation
- *      for the type of the variable and for the String type (in the case of the date the valid format is yyyy- MM-dd'T'HH:mm:ss'Z').
- * There are also three constructors:
- * - Default constructor --> that takes no parameters and sets String with an empty string, int and float with -1 and all other objects to null
- * - Constructor with type --> that takes as parameters ALL the variables implemented in an article in the type in which they are implemented
- * - Constructor from string --> which requires as parameters ALL the variables implemented in an article given as String
- * It is not recommended to use constructors other than the default one, as it would significantly worsen the readability of the code, and it is rather advisable to use setters
- * There is also a fullSetter that accepts two parameters, respectively String toSet and String whereToSet, which allows you to set the variable called as the string whereToSet to toSet,
- *     if the string whereToSet does not contain a valid variable name an IOException is thrown
-*/
-
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-//import java.lang.reflect.Field; //used in an alternative fullSetter implementation (Line )
+import java.lang.reflect.Field; //used in an alternative fullSetter implementation
+
+//My suggestion using this class is to never use constructor, different from Article(), all costructor are created anc configured but if u dont have ALL the things it wont work so I think that is better to use default constructor and use set to set all the things that u need to set.
 
 public class Article {
     
@@ -76,7 +63,7 @@ public class Article {
 
     // Constructors
 
-    //Default constructor
+    //Default constructors
     public Article() {
         // Initialize default values for all fields
         this.id = "";
@@ -127,7 +114,7 @@ public class Article {
         this.showTableOfContents = null;
     }
 
-    // Constructor with type
+    // Constructor that takes input for all fields in right format
     public Article(String id, String type, String sectionID, LocalDateTime webPublicationDate, String webUrl, String apiUrl,
                    String trailText, String headline, Boolean showInRelatedContent, String body, LocalDateTime lastModified,
                    Boolean hasStoryPackage, float score, String standfirst, String shortUrl, String thumbnail, int wordcount,
@@ -184,7 +171,7 @@ public class Article {
         this.showTableOfContents = showTableOfContents;
     }
 
-    //Constructor from string
+    //Constructor with all field as String
     public Article(String id, String type, String sectionID, String webPublicationDate,
                String webUrl, String apiUrl, String trailText, String headline,
                String showInRelatedContent, String body, String lastModified,
@@ -709,8 +696,6 @@ public class Article {
         this.showTableOfContents = Boolean.parseBoolean(showTableOfContents);
     }
 
-
-    //fullSetter
     public void fullSetter(String toSet, String whereToSet) throws IOException{
         if(whereToSet.equalsIgnoreCase("id")){
             this.setId(toSet);

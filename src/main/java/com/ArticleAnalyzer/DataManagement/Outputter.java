@@ -19,29 +19,35 @@ public class Outputter {
         this.file = "";
     }
 
-    public Outputter(boolean toConsole, boolean toFile) throws IOException {
+    public Outputter(boolean toConsole, boolean toFile) {
         this.toConsole = toConsole;
         this.toFile = toFile;
         this.file = "";
     }
 
-    public Outputter(boolean toConsole, boolean toFile, String file) throws IOException {
+    public Outputter(boolean toConsole, boolean toFile, String file) {
         this(toConsole, toFile);
         this.file = file;
-        check();
+    }
+
+    public void setFile(String file){
+        this.file = file;
     }
 
     public String getFile(){
         return this.file;
     }
 
-    public boolean getToConsole(){
-        return this.toConsole;       
+    public void setToConsole(boolean toSet){
+        this.toConsole = toSet;
     }
 
-    public void setFile(String toSet) throws IOException{
-        this.file = toSet;   
-        check();    
+    public void setToFile(boolean toSet){
+        this.toFile = toSet;
+    }
+
+    public boolean getToConsole(){
+        return this.toConsole;       
     }
 
     public boolean getToFile(){
@@ -62,10 +68,15 @@ public class Outputter {
         System.out.println(toPrint);
     }
 
-    
     private void printToFile(String toPrint) throws IOException{
+        if(this.file==""){
+            throw new IOException("File were to print not setted");
+        }
         try {
             File file = new File(this.file);
+            if (file.exists()){
+                file.delete();
+            }
             file.createNewFile();
             FileWriter fileWriter = new FileWriter(this.file, true);
             fileWriter.write(toPrint);
@@ -162,19 +173,19 @@ public class Outputter {
             System.out.println("\"wordCount\" : " + toPrint.getWordcount() + ",\n");
         }
         if (toPrint.getWebPublicationDate() != null) {
-            print("\"webPublicationDate\": \"" + toPrint.getWebPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"webPublicationDate\": \"" + toPrint.getWebPublicationDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
         }
         if (toPrint.getLastModified() != null) {
-            print("\"lastModified\": \"" + toPrint.getLastModified().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"lastModified\": \"" + toPrint.getLastModified().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
         }
         if (toPrint.getCommentCloseDate() != null) {
-            print("\"commentCloseDate\": \"" + toPrint.getCommentCloseDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"commentCloseDate\": \"" + toPrint.getCommentCloseDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
         }
         if (toPrint.getFirstPublicationDate() != null) {
-            print("\"firstPublicationDate\": \"" + toPrint.getFirstPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"firstPublicationDate\": \"" + toPrint.getFirstPublicationDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
         }
         if (toPrint.getNewspaperEditionDate() != null) {
-            print("\"newspaperEditionDate\": \"" + toPrint.getNewspaperEditionDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"newspaperEditionDate\": \"" + toPrint.getNewspaperEditionDate().format(DateTimeFormatter.ISO_INSTANT) + "\"\n");
         }
         if (toPrint.getCommentable() != null) {
             print("\"commentable\": " + toPrint.getCommentable() + ",\n");
@@ -224,22 +235,10 @@ public class Outputter {
         }
     }
 
-    public void print(LinkedHashMap<String, Integer> toPrint) throws IOException{
+    public void print(LinkedHashMap<String, Integer> toPrint){
         for (String key : toPrint.keySet()) {
-            print(key + " " + toPrint.get(key)+"\n");
+            System.out.println(key + " " + toPrint.get(key));
         }
     }
 
-    private void check() throws IOException{
-        if(toFile){
-            if(this.file==""){
-                throw new IOException("File were to print not setted");
-            }
-            File file = new File(this.file);
-            if (file.exists()){
-                file.delete();
-            }
-            file.createNewFile();
-        }
-    }
 }

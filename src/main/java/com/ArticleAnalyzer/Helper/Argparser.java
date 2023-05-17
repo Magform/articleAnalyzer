@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.apache.commons.cli.*;
 
 //import com.ArticleAnalyzer.DataManagement.ArticleLoader;
-import com.ArticleAnalyzer.DataManagement.ArticleLoader;
+import com.ArticleAnalyzer.DataManagement.ArticleLoader_withLib;
 import com.ArticleAnalyzer.DataManagement.Downloader;
 import com.ArticleAnalyzer.DataManagement.Outputter;
 
@@ -14,7 +14,7 @@ public class Argparser {
 
     private Outputter outputter = null;
     //private ArticleLoader articleLoader = null;
-    private ArticleLoader articleLoader = null;
+    private ArticleLoader_withLib articleLoader = null;
 
     private Boolean dataFromFile = null;
     private Downloader downloader = null;
@@ -33,7 +33,7 @@ public class Argparser {
         return toShow;
     }
 
-    public ArticleLoader getArticleLoader(){
+    public ArticleLoader_withLib getArticleLoader(){
         return articleLoader;
     }
 
@@ -107,10 +107,10 @@ public class Argparser {
         if(dataFromFile && !cmd.hasOption("i")){
             throw new IllegalArgumentException("Argument inputFile is required if you are taking data from file");
         }else if(!dataFromFile && !cmd.hasOption("i")){
-            articleLoader = new ArticleLoader(downloader.getJSONoutput());
+            articleLoader = new ArticleLoader_withLib(downloader.getJSONoutput());
         }else{
             try{
-                articleLoader = new ArticleLoader(cmd.getOptionValue("i"));
+                articleLoader = new ArticleLoader_withLib(cmd.getOptionValue("i"));
             }catch(FileNotFoundException e){
                 throw new IllegalArgumentException("Invalid data input file");
             }
