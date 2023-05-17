@@ -7,7 +7,6 @@ This toDO contain all the things that we need to do.
 [] Test ALL GETTERS
 [] Test ALL Constructor
 [] Test TWO FULLSETTER IMPLEMENTATION
-
 ### Optional
 [] Sort variables by type
 
@@ -67,7 +66,7 @@ This toDO contain all the things that we need to do.
 [] Comment
 
 ## Documentantion
-[] main page
+[x] main page
 ### Class
 [] Article
 [] Library
@@ -77,15 +76,19 @@ This toDO contain all the things that we need to do.
 [] Downloader
 [] ArticleLoader
 ### How to use
-[] Prerequisite
-[] Installing
+[x] Prerequisite
+[x] Installing
 ### Test
-[] How run test
+[x] How run test
 ### Usage
+[] Configure downloader
 [] How to run
 ### Library used
+[x] main
 ### Author
+[] main
 ### Licence
+[x] main
 
 ## UPDATE UML
 [] Domain Model
