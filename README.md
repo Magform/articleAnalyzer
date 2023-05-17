@@ -6,12 +6,7 @@ A software capable of download (download) articles from online newspapers render
 ## toRun:
     java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar
 ## to deploy documentantion
+    mvn site
     mvn site:run
 
 Made for a university project
-
-# Leggete nel file WhatAntonioDid cosa ho fatto e guardate il codice nella cartella Antonio (tutti i file in una stessa cartella per facilitare tutto)
-
-<img width="1060" alt="Screenshot 2023-05-04 alle 12 00 48" src="https://user-images.githubusercontent.com/118459127/236173403-1a4968da-29c4-4963-a2b7-8f08647a00bc.png">
-
-@JSON... SAREBBE IL DESERIALIZZATORE: DA JSON --> CLASSE ARTICLE
