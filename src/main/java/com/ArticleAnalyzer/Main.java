@@ -1,7 +1,5 @@
 package com.ArticleAnalyzer;
 
-import java.util.LinkedHashMap;
-
 import com.ArticleAnalyzer.DataManagement.ArticleLoader;
 import com.ArticleAnalyzer.DataManagement.Outputter;
 import com.ArticleAnalyzer.DataProcesser.Elaborator;
