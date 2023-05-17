@@ -1,5 +1,10 @@
 package com.ArticleAnalyzer.DataManagement;
 
+/*
+ * 
+ * 
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,6 +15,7 @@ import java.net.URL;
 
 public class Downloader {
     private File configurationFile;
+    private String endpoint;
     private String link;
     private String APIkey;
     private String query;
@@ -17,6 +23,7 @@ public class Downloader {
     private String articleNumber;
 
     public Downloader(){
+        endpoint = null;
         configurationFile = null;
         link = null;
         query = null;
@@ -27,6 +34,7 @@ public class Downloader {
 
     public Downloader(String configurationFile) throws FileNotFoundException, IllegalArgumentException, IOException{
         this.configurationFile = new File(configurationFile);
+        endpoint = null;
         link = null;
         query = null;
         APIkey = null;
@@ -34,6 +42,7 @@ public class Downloader {
         articleNumber = null;
 
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
+        //Read the configuration file and set all the variable accordingly
         while(configurationFileScanner.hasNextLine()){
             String line = configurationFileScanner.nextLine();
             int splitter = line.indexOf(":");
@@ -52,7 +61,9 @@ public class Downloader {
             }
             if (key.equalsIgnoreCase("link")) {
                 link = value;
-            } else if (key.equalsIgnoreCase("query")) {
+            } else if (key.equalsIgnoreCase("endpoint")) {
+                endpoint = value;
+            }else if (key.equalsIgnoreCase("query")) {
                 query = value;
             } else if (key.equalsIgnoreCase("APIkey")) {
                 APIkey = value;
@@ -69,6 +80,9 @@ public class Downloader {
         if(link == null || link.equalsIgnoreCase("")){
             throw new IllegalArgumentException("link need to be configured");
         }
+        if(endpoint == null || endpoint.equalsIgnoreCase("")){
+            throw new IllegalArgumentException("link need to be configured");
+        }
         download();
  
     }
@@ -78,8 +92,17 @@ public class Downloader {
     }
 
     private void download() throws IOException{
+        if(endpoint.equalsIgnoreCase("TheGuardian")){
+            downloadFromTheGuardian();
+        }else{
+            throw new IllegalArgumentException(endpoint+" is an invalid endpoint");
+        }
+    }
+
+    private void downloadFromTheGuardian() throws IOException{
         String urlString = "";
         try {
+            //Merge all variable to the URL
             urlString = link + "?show-fields=all";
             if(articleNumber != null){
                 urlString = urlString + "&page-size="+articleNumber;
@@ -91,24 +114,25 @@ public class Downloader {
                 urlString = urlString+"&q="+query.replace(" ", "+");
             }
 
+            //Start URL connection and elaborate response
             URL url = new URL(urlString);
-
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
         
-            //String builder is more efficent than this, but I dont like it ;)
+            // We could have used a stringBuilder here but I'm not very confident with that
             Scanner scanner = new Scanner(connection.getInputStream());
             String result = "";
             while (scanner.hasNextLine()) {
                 result = result +scanner.nextLine()+"\n";
             }
 
-            // print response
+            // print response to JSONOutput
             Outputter toJSON = new Outputter(false, true, JSONoutput);
             toJSON.print(result);
             
             connection.disconnect();
+
         }catch(MalformedURLException e){
             throw new IOException(urlString+" is an invalid link");
         }catch(IOException e){
