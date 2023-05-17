@@ -5,7 +5,8 @@ A software capable of download (download) articles from online newspapers render
     mvn install
 ## toRun:
     java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar
-
+## to deploy documentantion
+    mvn site:run
 
 Made for a university project
 
