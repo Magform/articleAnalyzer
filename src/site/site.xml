@@ -8,9 +8,9 @@
 
         <menu name="Menu">
             <item name="Homepage" href="index.html"/>
-            <item name="Creare il progetto" href="prj_create.html"/>
-            <item name="Run the project" href="prj_exec.html"/>
+            <item name="Getting started" href="#getting-started"/>
+            <item name="Usage" href="#usage"/>
+            <item name="Class" href="class.html"/>
         </menu>
-
     </body>
 </project>

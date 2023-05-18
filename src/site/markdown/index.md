@@ -47,19 +47,36 @@ To execute the test and provide the results you need to follow these steps:
 Once you have all the prerequisites and installed the software you can proceed, if you want to download articles from The Guardian, by writing the Downloader configuration file or, if you want to use a file, you can skip the Downloader configuration part.
 
 ### Configure downloader
-To configure downloader you need to create a new file and insert:
-
-- endpoint: chose the endpoint from [this](endpoint.html) list
-- link: link for the API
-- APIkey: insert your API key (If needed)
-- query: Choose a query (If needed) 
-- articleNumber: Choose number of article to load (If needed)
-- JSONoutput: Chose the file where the outputter is going to save the results (If not setted it use the default one)
-
+To configure downloader you need to create a new file, choose the endpoint that you want to use, and insert all the data needed for requested endpoint.    
+You can find a list with all endpoint and the configuration needed for every endpoint at [this](endpoint.html) link
 
 ### Run
+If you have correctly performed the installation you should have obtained, in the main project folder, a "target" folder containing, among other folders, a file named "articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies. jar".          
+If so then the installation was successful and we can proceed to use our software.    
+To run the program, simply do::
+1. Open a terminal
+2. Navigate to the directory of the project
+3. Run the following command:
+   
+  java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar <flag>
+
+To start we suggest the use of the -h flag, which allows you to view all the available flags and their respective functions.     
+For more information on the various flags and some examples go [here](run.html)
 
 ## Class
+In this section we will explain all the classes.
+In particular we have 7 classes and the main:
+- Main -> Merges all classes and allows the user to interact
+- Argparser -> Reads command-line arguments and processes them
+- Downloader -> download data from a specified endpoint based on a configuration file
+- ArticleLoader -> Transforms data stored on a file into an instance of the Library class
+- Elaborator -> Process a Library to get what is requested
+- Outputter -> Transform objects into output (to file or command line)
+- Article -> It implements an Article with all the variables
+- Library -> Collection of Article objects
+
+
+To go into more detail on how they interact with each other and how they work go [here](class.html) 
 
 ## Library used
 For the development of this project we have used:
