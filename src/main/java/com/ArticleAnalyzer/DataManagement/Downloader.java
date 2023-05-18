@@ -48,7 +48,7 @@ public class Downloader {
         link = null;
         query = null;
         APIkey = null;
-        JSONoutput = null;
+        JSONoutput = "downloaded.json";
         articleNumber = null;
 
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
@@ -87,15 +87,6 @@ public class Downloader {
             }
         }
         configurationFileScanner.close();
-        if(link == null || link.equalsIgnoreCase("")){
-            throw new IllegalArgumentException("link need to be configured");
-        }
-        if(endpoint == null || endpoint.equalsIgnoreCase("")){
-            throw new IllegalArgumentException("endpoint need to be configured");
-        }
-        if(APIkey == null || APIkey.equalsIgnoreCase("")){
-            throw new IllegalArgumentException("APIkey need to be configured");
-        }
         download();
  
     }
@@ -114,9 +105,21 @@ public class Downloader {
 
     private void downloadFromTheGuardian() throws IOException{
         String urlString = "";
+
+        //Check if anything is configured incorrectly
+        if(link == null || link.equalsIgnoreCase("")){
+            throw new IllegalArgumentException("link need to be configured");
+        }
+        if(endpoint == null || endpoint.equalsIgnoreCase("")){
+            throw new IllegalArgumentException("endpoint need to be configured");
+        }
+        if(APIkey == null || APIkey.equalsIgnoreCase("")){
+            throw new IllegalArgumentException("APIkey need to be configured");
+        }
+
         try {
             //Merge all variable to the URL
-            urlString = link + "?show-fields=all";
+            urlString = link + "&show-fields=all";
             if(articleNumber != null){
                 urlString = urlString + "&page-size="+articleNumber;
             }
