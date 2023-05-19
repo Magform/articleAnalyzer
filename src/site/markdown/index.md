@@ -17,6 +17,7 @@ The main aim of this project is to develop software capable of download, or load
   - [Author](#author)
   - [License](#license)
 
+
 ## Getting started
 These instructions will help you set up and run the project on your local machine.
 
@@ -28,52 +29,54 @@ Before using this application, ensure you meet the following prerequisites:
 - CSV files from [new york times](https://www.nytimes.com/), if you want to test loading articles from a CSV.     
 
 ### Installing
-To build the project and install the necessary dependance you need to follow these steps:
-1. Open a terminal
-2. Navigate to the directory of the project
-3. Run the following command:
+To build the project and install the necessary dependance you need to follow these steps:    
+1. Open a terminal     
+2. Navigate to the directory of the project     
+3. Run the following command:     
 
     mvn install
    
 ### Running the tests
-To execute the test and provide the results you need to follow these steps:
-1. Open a terminal
-2. Navigate to the directory of the project
-3. Run the following command:
+To execute the test and provide the results you need to follow these steps:      
+1. Open a terminal      
+2. Navigate to the directory of the project     
+3. Run the following command:     
 
     mvn test
 
 ## Usage
-Once you have all the prerequisites and installed the software you can proceed, if you want to download articles from The Guardian, by writing the Downloader configuration file or, if you want to use a file, you can skip the Downloader configuration part.
+Once you have all the prerequisites and installed the software you can proceed, if you want to download articles from The Guardian, by writing the Downloader configuration file or, if you want to use a file, you can skip the Downloader configuration part.    
 
 ### Configure downloader
-To configure downloader you need to create a new file, choose the endpoint that you want to use, and insert all the data needed for requested endpoint.    
-You can find a list with all endpoint and the configuration needed for every endpoint at [this](endpoint.html) link
+To configure downloader you need to create a new file, choose the endpoint that you want to use, and insert all the data needed for requested endpoint.         
+You can find a list with all endpoint and the configuration needed for every endpoint at [this](endpoint.html) link.     
 
 ### Run
-If you have correctly performed the installation you should have obtained, in the main project folder, a "target" folder containing, among other folders, a file named "articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies. jar".          
+If you have correctly performed the installation you should have obtained, in the main project folder, a "target" folder containing, among other folders, a file named "articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies. jar".           
 If so then the installation was successful and we can proceed to use our software.    
-To run the program, simply do::
-1. Open a terminal
-2. Navigate to the directory of the project
-3. Run the following command:
+To run the program, simply do:     
+1. Open a terminal     
+2. Navigate to the directory of the project      
+3. Run the following command:      
    
-  java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar <flag>
+    java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar <flag>
 
-To start we suggest the use of the -h flag, which allows you to view all the available flags and their respective functions.     
-For more information on the various flags and some examples go [here](run.html)
+To start we suggest the use of the `-h` flag, which allows you to view all the available flags and their respective functions.        
+For more information on the various flags and some examples go [here](run.html).     
+
 
 ## Class
-In this section we will explain all the classes.
-In particular we have 7 classes and the main:
-- Main -> Merges all classes and allows the user to interact
-- Argparser -> Reads command-line arguments and processes them
-- Downloader -> download data from a specified endpoint based on a configuration file
-- ArticleLoader -> Transforms data stored on a file into an instance of the Library class
-- Elaborator -> Process a Library to get what is requested
-- Outputter -> Transform objects into output (to file or command line)
-- Article -> It implements an Article with all the variables
-- Library -> Collection of Article objects
+In this section we will explain all the classes.      
+In particular we have 7 classes and the main:     
+
+- Main -> Merges all classes and allows the user to interact     
+- Argparser -> Reads command-line arguments and processes them     
+- Downloader -> download data from a specified endpoint based on a configuration file     
+- ArticleLoader -> Transforms data stored on a file into an instance of the Library class    
+- Elaborator -> Process a Library to get what is requested    
+- Outputter -> Transform objects into output (to file or command line)     
+- Article -> It implements an Article with all the variables    
+- Library -> Collection of Article objects    
 
 
 To go into more detail on how they interact with each other and how they work go [here](class.html) 

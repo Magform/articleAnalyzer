@@ -21,7 +21,7 @@ This toDO contain all the things that we need to do.
 ## Outputter
 [] Comment
 ### Add test to tester
-[] toCosole
+[] toConsole
     [] String
     [] Article
     [] Library
@@ -82,7 +82,8 @@ This toDO contain all the things that we need to do.
 [x] How run test
 ### Usage
 [x] Configure downloader
-[] How to run
+[x] How to run
+    []example
 ### Library used
 [x] main
 ### Author
