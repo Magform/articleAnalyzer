@@ -2,6 +2,7 @@
 This toDO contain all the things that we need to do.
 
 ## Article
+[] javaDoc
 ### Add test to tester
 [] Test ALL SETTERS
 [] Test ALL GETTERS
@@ -11,31 +12,34 @@ This toDO contain all the things that we need to do.
 [] Sort variables by type
 
 ## Library
-[x] ENDED
+[x] javaDoc
 
 ## Downloader
-[x] ENDED
+[x] javaDoc
 ### Optional
 [] Improve test with autosetting path
 
 ## Outputter
-[] Comment
+[x] Comment
+[x] javaDoc
 ### Add test to tester
-[] toConsole
-    [] String
-    [] Article
-    [] Library
-    [] LinkedHashMap<String, Integer>
-[] toFile
-    [] String
-    [] Article
-    [] Library
-    [] LinkedHashMap<String, Integer>
-[] getters
-[] setters
+[x] constructor
+[x] toConsole
+    [x] String
+    [x] Article
+    [x] Library
+    [x] LinkedHashMap<String, Integer>
+[x] toFile
+    [x] String
+    [x] Article
+    [x] Library
+    [x] LinkedHashMap<String, Integer>
+[x] getters
+[x] setters
 
 ## ArticleLoader
 [] Comment
+[] javaDoc
 ### Add test to tester
 [] constructor
 [] LoadLibrary
@@ -46,6 +50,7 @@ This toDO contain all the things that we need to do.
 
 ## Elaborator
 [] Comment
+[] javaDoc
 ### Add test to tester
 [] analyze
 [] orderMap
@@ -57,7 +62,7 @@ This toDO contain all the things that we need to do.
 
 ## argparser
 [] Comment
-[] different function (modularity)
+[] javaDoc
 ### Add test to tester
 [] missing
     [] all the things
@@ -68,13 +73,15 @@ This toDO contain all the things that we need to do.
 ## Documentantion
 [x] main page
 ### Class
-[] Article
-[] Library
-[] Argparser
-[] Elaborator
-[] Outputter
-[] Downloader
-[] ArticleLoader
+[] Summary
+    [] Article
+    [] Library
+    [] Argparser
+    [] Elaborator
+    [] Outputter
+    [] Downloader
+    [] ArticleLoader
+[]javaDoc
 ### How to use
 [x] Prerequisite
 [x] Installing
