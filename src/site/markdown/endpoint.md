@@ -7,7 +7,7 @@ This endpoint allows you to obtain articles directly from TheGuardian's website 
 - link: "https://content.guardianapis.com/search?"
 - APIkey: your API key
 - query: search queries [OPTIONAL]
-- articleNumber: number of article you want to load, for this endpoint the maximum is 100 [OPTIONAL]
+- articleNumber: number of article you want to load, for this endpoint the maximum is 200 [OPTIONAL]
 - JSONoutput: location where the results are saved, if not entered a default output file is expected (downloaded.json) [OPTIONAL]
 
 ### Example
