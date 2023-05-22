@@ -21,9 +21,9 @@ package com.ArticleAnalyzer.DataManagement;
  * - print(LinkedHashMap<String, Integer> toPrint): Prints the contents of a LinkedHashMap object to the console or file, based on the output options.
  * 
  * Private Methods:
- * printToConsole(String toPrint): Prints a string to the console.
- * printToFile(String toPrint): Prints a string to a file specified by the file path.
- * check(): Checks the validity of the file path for outputting to a file.
+ * - printToConsole(String toPrint): Prints a string to the console.
+ * - printToFile(String toPrint): Prints a string to a file specified by the file path.
+ * - check(): Checks the validity of the file path for outputting to a file.
 */
 
 import java.io.FileWriter;
