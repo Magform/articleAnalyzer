@@ -32,6 +32,9 @@ public class Downloader {
     private String JSONoutput;
     private String articleNumber;
 
+    /**
+     * Constructs a Downloader object with all variables set to null, making it inactive.
+     */
     public Downloader(){
         endpoint = null;
         configurationFile = null;
@@ -42,6 +45,15 @@ public class Downloader {
         articleNumber = null;
     }
 
+    /**
+     * Constructs a Downloader object with the specified configuration file.
+     * The configuration file specifies the necessary parameters for the download process.
+     *
+     * @param configurationFile The path to the configuration file.
+     * @throws FileNotFoundException If the configuration file is not found.
+     * @throws IllegalArgumentException If the configuration file has invalid contents.
+     * @throws IOException If an I/O error occurs during the download process.
+     */
     public Downloader(String configurationFile) throws FileNotFoundException, IllegalArgumentException, IOException{
         this.configurationFile = new File(configurationFile);
         endpoint = null;
@@ -91,10 +103,22 @@ public class Downloader {
  
     }
 
+    /**
+     * Returns the file path of the saved response data.
+     *
+     * @return The file path of the saved response data.
+     */
     public String getJSONoutput(){
         return JSONoutput;
     }
 
+    /**
+     * Initiates the download process based on the specified endpoint.
+     * If the endpoint is "TheGuardian", it calls the downloadFromTheGuardian() method.
+     * Otherwise, it throws an IllegalArgumentException indicating an invalid endpoint.
+     *
+     * @throws IOException If an I/O error occurs during the download process.
+     */
     private void download() throws IOException{
         if(endpoint.equalsIgnoreCase("TheGuardian")){
             downloadFromTheGuardian();
@@ -103,6 +127,15 @@ public class Downloader {
         }
     }
 
+    /**
+     * Downloads data from TheGuardian endpoint and saves the response data in a file.
+     * It checks if the necessary configuration is set correctly and constructs a URL
+     * with the specified parameters. It then establishes a connection, retrieves the
+     * response data, and saves it to the specified output file. Finally, it disconnects
+     * the connection.
+     *
+     * @throws IOException If an I/O error occurs during the download process.
+     */
     private void downloadFromTheGuardian() throws IOException{
         String urlString = "";
 
