@@ -38,8 +38,8 @@ This toDO contain all the things that we need to do.
 [x] setters
 
 ## ArticleLoader
-[] Comment
-[] javaDoc
+[x] Comment
+[x] javaDoc
 ### Add test to tester
 [] constructor
 [] LoadLibrary
