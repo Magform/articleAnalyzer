@@ -164,146 +164,146 @@ public class Outputter {
      * @throws IOException if an error occurs while printing
      */
     public void print(Article toPrint) throws IOException{
-        print("{\n");
+        print("{");
         if(!toPrint.getId().equals("")){
-            print("\"id\" : \"" + toPrint.getId() + "\",\n");
+            print("\"id\" : \"" + toPrint.getId() + "\",");
         }
         if(!toPrint.getType().equals("")){
-            print("\"type\" : \"" + toPrint.getType() + "\",\n");
+            print("\"type\" : \"" + toPrint.getType() + "\",");
         }
         if (!toPrint.getSectionID().equals("")) {
-            print("\"sectionID\" : \"" + toPrint.getSectionID() + "\",\n");
+            print("\"sectionID\" : \"" + toPrint.getSectionID() + "\",");
         }
         if (!toPrint.getWebUrl().equals("")) {
-            print("\"webUrl\" : \"" + toPrint.getWebUrl() + "\",\n");
+            print("\"webUrl\" : \"" + toPrint.getWebUrl() + "\",");
         }
         if (!toPrint.getApiUrl().equals("")) {
-            print("\"apiUrl\" : \"" + toPrint.getApiUrl() + "\",\n");
+            print("\"apiUrl\" : \"" + toPrint.getApiUrl() + "\",");
         }
         if (!toPrint.getTrailText().equals("")) {
-            print("\"trailText\" : \"" + toPrint.getTrailText() + "\",\n");
+            print("\"trailText\" : \"" + toPrint.getTrailText() + "\",");
         }
         if (!toPrint.getHeadline().equals("")) {
-            print("\"headline\" : \"" + toPrint.getHeadline() + "\",\n");
+            print("\"headline\" : \"" + toPrint.getHeadline() + "\",");
         }
         if (!toPrint.getByline().equals("")) {
-            print("\"byline\" : \"" + toPrint.getByline() + "\",\n");
+            print("\"byline\" : \"" + toPrint.getByline() + "\",");
         }
         if (!toPrint.getPublication().equals("")) {
-            print("\"publication\" : \"" + toPrint.getPublication() + "\",\n");
+            print("\"publication\" : \"" + toPrint.getPublication() + "\",");
         }
         if (!toPrint.getInternalPageCode().equals("")) {
-            print("\"internalPageCode\" : \"" + toPrint.getInternalPageCode() + "\",\n");
+            print("\"internalPageCode\" : \"" + toPrint.getInternalPageCode() + "\",");
         }
         if (!toPrint.getProductionOffice().equals("")) {
-            print("\"productionOffice\" : \"" + toPrint.getProductionOffice() + "\",\n");
+            print("\"productionOffice\" : \"" + toPrint.getProductionOffice() + "\",");
         }
         if (!toPrint.getBody().equals("")) {
-            print("\"body\" : \"" + toPrint.getBody() + "\",\n");
+            print("\"body\" : \"" + toPrint.getBody() + "\",");
         }
         if (!toPrint.getStandfirst().equals("")) {
-            print("\"standfirst\" : \"" + toPrint.getStandfirst() + "\",\n");
+            print("\"standfirst\" : \"" + toPrint.getStandfirst() + "\",");
         }
         if (!toPrint.getShortUrl().equals("")) {
-            print("\"shortUrl\" : \"" + toPrint.getShortUrl() + "\",\n");
+            print("\"shortUrl\" : \"" + toPrint.getShortUrl() + "\",");
         }
         if (!toPrint.getThumbnail().equals("")) {
-            print("\"thumbnail\" : \"" + toPrint.getThumbnail() + "\",\n");
+            print("\"thumbnail\" : \"" + toPrint.getThumbnail() + "\",");
         }
         if (!toPrint.getTitle().equals("")) {
-            print("\"title\" : \"" + toPrint.getTitle() + "\",\n");
+            print("\"title\" : \"" + toPrint.getTitle() + "\",");
         }
         if (!toPrint.getFullText().equals("")) {
-            print("\"fulltext\" : \"" + toPrint.getFullText() + "\",\n");
+            print("\"fulltext\" : \"" + toPrint.getFullText() + "\",");
         }
         if(!toPrint.getSourceSet().equals("")) {
-            print("\"source_set\" : \"" + toPrint.getSourceSet() + "\",\n");
+            print("\"source_set\" : \"" + toPrint.getSourceSet() + "\",");
         }
         if(!toPrint.getSource().equals("")) {
-            print("\"source\" : \"" + toPrint.getSource() + "\",\n");
+            print("\"source\" : \"" + toPrint.getSource() + "\",");
         }
         if(!toPrint.getMain().equals("")) {
-            print("\"main\" : \"" + toPrint.getMain() + "\",\n");
+            print("\"main\" : \"" + toPrint.getMain() + "\",");
         }
         if(!toPrint.getBylineHtml().equals("")) {
-            print("\"byline_html\" : \"" + toPrint.getBylineHtml() + "\",\n");
+            print("\"byline_html\" : \"" + toPrint.getBylineHtml() + "\",");
         }
         if(!toPrint.getBodyText().equals("")) {
-            print("\"body_text\" : \"" + toPrint.getBodyText() + "\",\n");
+            print("\"body_text\" : \"" + toPrint.getBodyText() + "\",");
         }
         if(!toPrint.getLang().equals("")) {
-            print("\"lang\" : \"" + toPrint.getLang() + "\",\n");
+            print("\"lang\" : \"" + toPrint.getLang() + "\",");
         }  
         if (toPrint.getScore() != -1.0f) {
-            print("\"starRating\" : " + toPrint.getScore() + ",\n");
+            print("\"starRating\" : " + toPrint.getScore() + ",");
         }
         if (toPrint.getStarRating() != -1) {
-            print("\"starRating\" : " + toPrint.getStarRating() + ",\n");
+            print("\"starRating\" : " + toPrint.getStarRating() + ",");
         }
         if (toPrint.getNewspaperPageNumber() != -1) {
-            print("\"newspaperPageNumber\" : " + toPrint.getNewspaperPageNumber() + ",\n");
+            print("\"newspaperPageNumber\" : " + toPrint.getNewspaperPageNumber() + ",");
         }
         if (toPrint.getCharCount() != -1) {
-            print("\"charCount\" : " + toPrint.getCharCount() + ",\n");
+            print("\"charCount\" : " + toPrint.getCharCount() + ",");
         }
         if (toPrint.getWordcount() != -1) {
-            print("\"wordCount\" : " + toPrint.getWordcount() + ",\n");
+            print("\"wordCount\" : " + toPrint.getWordcount() + ",");
         }
         if (toPrint.getWebPublicationDate() != null) {
-            print("\"webPublicationDate\": \"" + toPrint.getWebPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"webPublicationDate\": \"" + toPrint.getWebPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"");
         }
         if (toPrint.getLastModified() != null) {
-            print("\"lastModified\": \"" + toPrint.getLastModified().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"lastModified\": \"" + toPrint.getLastModified().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"");
         }
         if (toPrint.getCommentCloseDate() != null) {
-            print("\"commentCloseDate\": \"" + toPrint.getCommentCloseDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"commentCloseDate\": \"" + toPrint.getCommentCloseDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"");
         }
         if (toPrint.getFirstPublicationDate() != null) {
-            print("\"firstPublicationDate\": \"" + toPrint.getFirstPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"firstPublicationDate\": \"" + toPrint.getFirstPublicationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"");
         }
         if (toPrint.getNewspaperEditionDate() != null) {
-            print("\"newspaperEditionDate\": \"" + toPrint.getNewspaperEditionDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"\n");
+            print("\"newspaperEditionDate\": \"" + toPrint.getNewspaperEditionDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")) + "\"");
         }
         if (toPrint.getCommentable() != null) {
-            print("\"commentable\": " + toPrint.getCommentable() + ",\n");
+            print("\"commentable\": " + toPrint.getCommentable() + ",");
         }
         if (toPrint.getPremoderated() != null) {
-            print("\"premoderated\": " + toPrint.getPremoderated() + ",\n");
+            print("\"premoderated\": " + toPrint.getPremoderated() + ",");
         }
         if (toPrint.getAllowUGc() != null) {
-            print("\"allowUGc\": " + toPrint.getAllowUGc() + ",\n");
+            print("\"allowUGc\": " + toPrint.getAllowUGc() + ",");
         }
         if (toPrint.getShouldHideAdverts() != null) {
-            print("\"shouldHideAdverts\": " + toPrint.getShouldHideAdverts() + ",\n");
+            print("\"shouldHideAdverts\": " + toPrint.getShouldHideAdverts() + ",");
         }
         if (toPrint.getLiveBloggingNow() != null) {
-            print("\"liveBloggingNow\": " + toPrint.getLiveBloggingNow() + ",\n");
+            print("\"liveBloggingNow\": " + toPrint.getLiveBloggingNow() + ",");
         }
         if (toPrint.getHasStoryPackage() != null) {
-            print("\"hasStoryPackage\": " + toPrint.getHasStoryPackage() + ",\n");
+            print("\"hasStoryPackage\": " + toPrint.getHasStoryPackage() + ",");
         }
         if (toPrint.getShowInRelatedContent() != null) {
-            print("\"showInRelatedContent\": " + toPrint.getShowInRelatedContent() + ",\n");
+            print("\"showInRelatedContent\": " + toPrint.getShowInRelatedContent() + ",");
         }
         if (toPrint.getLegallySensitive() != null) {
-            print("\"legallySensitive\": " + toPrint.getLegallySensitive() + ",\n");
+            print("\"legallySensitive\": " + toPrint.getLegallySensitive() + ",");
         }
         if (toPrint.getIsLive() != null) {
-            print("\"isLive\": " + toPrint.getIsLive() + ",\n");
+            print("\"isLive\": " + toPrint.getIsLive() + ",");
         }
         if (toPrint.getIsInappropriateForSponsorShip() != null) {
-            print("\"isInappropriateForSponsorship\": " + toPrint.getIsInappropriateForSponsorShip() + ",\n");
+            print("\"isInappropriateForSponsorship\": " + toPrint.getIsInappropriateForSponsorShip() + ",");
         }
         if (toPrint.getShouldHideReaderRevenue() != null) {
-            print("\"shouldHideReaderRevenue\": " + toPrint.getShouldHideReaderRevenue() + ",\n");
+            print("\"shouldHideReaderRevenue\": " + toPrint.getShouldHideReaderRevenue() + ",");
         }  
         if (toPrint.getShowAffiliateLinks() != null) {
-            print("\"showAffiliateLinks\": " + toPrint.getShowAffiliateLinks() + ",\n");
+            print("\"showAffiliateLinks\": " + toPrint.getShowAffiliateLinks() + ",");
         }
         if (toPrint.getShowTableOfContents() != null) {
-            print("\"showTableOfContents\": " + toPrint.getShowTableOfContents() + ",\n");
+            print("\"showTableOfContents\": " + toPrint.getShowTableOfContents() + ",");
         }
-        print("}\n");
+        print("}");
     }
 
     /**
