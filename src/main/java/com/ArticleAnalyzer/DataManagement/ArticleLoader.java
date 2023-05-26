@@ -1,175 +1,139 @@
 package com.ArticleAnalyzer.DataManagement;
 
-/**
- * The ArticleLoader class is responsible for loading articles from different file formats, such as CSV and JSON, into an Article Library. 
- * It provides methods to load the articles and retrieve the loaded library.
- * If the file has an unrecognized extension or no extension at all, it assumes the file is formatted as JSON.
- * 
- * Public Constructors:
- * - ArticleLoader(String file): Constructs an ArticleLoader object with the specified file path. It throws a FileNotFoundException if the file is not found.
- *
- * Public Methods:
- * - getLoadedLibrary(): Loads the articles from the file into the library and returns the loaded Library object.
- *                      It throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException and CsvValidationException 
- *                      if any errors occur during the loading process.
- * 
- * Private Methods:
- * - loadLibrary(): Determines the file format based on the file extension and calls the corresponding load method (loadCSV or loadJSON) to load the articles into the library.
- * - loadCSV(): Loads articles from a CSV file into the library. It uses the opencsv library to parse the CSV file.
- *               It throws FileNotFoundException, IOException, and CsvValidationException if any errors occur during the loading process.
- * - loadJSON(): Loads articles from a JSON file into the library. It uses the json-simple library to parse the JSON file. 
- *              It throws FileNotFoundException, IOException, ParseException, and org.json.simple.parser.ParseException if any errors occur during the loading process.
- *
- * Note: The ArticleLoader assumes that the CSV file has a header row with column names and each subsequent row contains the corresponding values for each column.
- *       The JSON file should have a "response" object containing a "results" array, where each element in the array represents an article with its fields.
-*/
-
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
+
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.File;
 import java.util.Iterator;
-import java.util.Map;
-import java.text.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+/**
+  * The ArticleLoader class is responsible for loading articles from different file formats, such as CSV and JSON, into an Library object.
+  * It permits to load the articles and retrieve the loaded Library object.
+*/
 public class ArticleLoader {
+  private File file;
+  private Library library;
 
-    private File file;
-    private Library loadedLibrary;
-
-     /**
-     * Constructs an ArticleLoader object with the specified file.
-     *
-     * @param file the file path of the article data
-     * @throws FileNotFoundException if the file is not found
-     */
-    public ArticleLoader(String file) throws FileNotFoundException {
-        loadedLibrary = new Library();
-        this.file = new File(file);
-        if (!this.file.exists()) {
-          throw new FileNotFoundException("File not found");
-        }
+/**
+  * Create the Library object and the file path with the given path
+  * @param fn the file path
+  * @throws FileNotFoundException if the file does not exist
+*/
+  public ArticleLoader(String fileName) throws FileNotFoundException {
+    file = new File(fileName);
+    library = new Library();
+    if (!file.exists()) {
+      throw new FileNotFoundException("File non trovato");
     }
+  }
 
-    /**
-     * Loads the article library from the specified file.
-     *
-     * @throws FileNotFoundException            if the file is not found
-     * @throws IOException                      if an I/O error occurs while reading the file
-     * @throws ParseException                   if an error occurs while parsing the file
-     * @throws org.json.simple.parser.ParseException if an error occurs while parsing a JSON file
-     * @throws CsvValidationException            if an error occurs while validating a CSV file
-     */
-    private void loadLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException, CsvValidationException{
-        String extension = file.getName().substring(file.getName().lastIndexOf("."));
-        if(extension.equalsIgnoreCase(".csv")){
-            loadCSV();
-        }else if(extension.equalsIgnoreCase(".json")){
-            loadJSON();
-        }else{
-            //I've decided that if there is no extension or extension is not csv or JSON we suppose that the file was build with Outputter (and it is formatted as JSON)
-            loadJSON();
-            //throw new IOException("Extension of file not setted");
-        }
+/**
+  * Load, according to the file extension, the articles to the Library object
+  * @see loadCSV()
+  * @see loadJSON()
+  * @throws IOException if the file extension is not specified or there are errors during the reading of the file
+  * @throws CsvValidationException if there are errors during the reading of CSV file
+  * @throws ParseException if there are errors during the reading of the JSON file
+*/
+  private void loadLibrary() throws IOException, CsvValidationException, ParseException {
+    String extension = file.getName().substring(file.getName().lastIndexOf("."));
+    if (extension.equalsIgnoreCase(".csv")) {
+      loadCSV();
     }
-
-    /**
-     * Loads articles from a CSV file into the article library.
-     *
-     * @throws FileNotFoundException    if the file is not found
-     * @throws IOException              if an I/O error occurs while reading the file
-     * @throws CsvValidationException   if an error occurs while validating the CSV file
-     */
-    private void loadCSV() throws FileNotFoundException, IOException, CsvValidationException{
-        FileReader fileReader = new FileReader(file);
-
-        CSVReader reader = new CSVReader(fileReader);
-        String[] index = reader.readNext();
-        index[0] = index[0].replace("ï»¿", "");
-        String[] line;
-        while ((line = reader.readNext()) != null) {
-            Article toLibrary = new Article();
-            for (int i = 0; i<index.length; i++) {
-                try{
-                    if(index[i].equalsIgnoreCase("Identifier")){
-                        toLibrary.fullSetter(line[i], "id");
-                    }else if(index[i].equalsIgnoreCase("URL")){
-                        toLibrary.fullSetter(line[i], "webURL");
-                    }else if(index[i].equalsIgnoreCase("Date")){
-                        //Skip this since date is not an important date and it is in a different format
-                        //toLibrary.fullSetter(line[i], "webPublicationDate");
-                    }else if(index[i].equalsIgnoreCase("Source Set")){
-                        toLibrary.fullSetter(line[i], "SourceSet");
-                    }else if(index[i].equalsIgnoreCase("Fulltext")){
-                        toLibrary.fullSetter(line[i], "BodyText");
-                        toLibrary.fullSetter(line[i], index[i]);
-                    }else{
-                        toLibrary.fullSetter(line[i], index[i]);
-                    }
-                }catch(IOException e){
-                    System.out.println(e);
-                }
-            }
-            loadedLibrary.addArticle(toLibrary);
-        }
-        reader.close();
-    }  
-
-    /**
-     * Loads articles from a JSON file into the article library.
-     *
-     * @throws FileNotFoundException    if the file is not found
-     * @throws IOException              if an I/O error occurs while reading the file
-     * @throws ParseException           if an error occurs while parsing the file
-     * @throws org.json.simple.parser.ParseException if an error occurs while parsing the JSON file
-     */
-    private void loadJSON() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
-        FileReader fileReader = new FileReader(file);
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(fileReader);
-        JSONObject response = (JSONObject) obj;
-        JSONObject responseFields = (JSONObject) response.get("response");
-        JSONArray results = (JSONArray) responseFields.get("results");
-    
-        Iterator<JSONObject> iteratorArticles = results.iterator();
-    
-        while (iteratorArticles.hasNext()) {
-            Article toLibrary = new Article();
-            JSONObject article = iteratorArticles.next();
-            JSONObject articleFields = (JSONObject) article.get("fields");
-            Iterator<?> articleFieldsIterator = articleFields.entrySet().iterator();
-            while (articleFieldsIterator.hasNext()) {
-                Map.Entry<String, String> pair = (Map.Entry) articleFieldsIterator.next();
-                String key = (String) pair.getKey();
-                String value = (String) pair.getValue();
-                try{
-                    toLibrary.fullSetter(value, key);
-                }catch(IOException e){}
-            }
-            loadedLibrary.addArticle(toLibrary);
-        }
+    else if (extension.equalsIgnoreCase(".json")) {
+      loadJSON();
     }
-
-    /**
-     * Gets the loaded library of articles.
-     *
-     * @return the loaded Library object
-     * @throws FileNotFoundException            if the file is not found
-     * @throws IOException                      if an I/O error occurs while reading the file
-     * @throws ParseException                   if an error occurs while parsing the file
-     * @throws org.json.simple.parser.ParseException if an error occurs while parsing a JSON file
-     * @throws CsvValidationException            if an error occurs while validating a CSV file
-     */
-    public Library getLoadedLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException, CsvValidationException{
-        loadLibrary();
-        return loadedLibrary;
+    else {
+      throw new IOException("Estensione del file non specificata");
     }
+  }
 
+/**
+  * Load to the Library object the articles contained in the CSV file
+  * @throws IOException if the file extension is not specified or there are errors during the reading of the file
+  * @throws CsvValidationException if there are errors during the reading of CSV file
+*/
+  private void loadCSV() throws IOException, CsvValidationException {
+    FileReader fileReader = new FileReader(file);
+    CSVReader reader = new CSVReader(fileReader);
+    String[] index = reader.readNext();
+    index[0] = index[0].replace("ï»¿", "");
+    String[] line;
+    while ((line = reader.readNext()) != null) {
+      Article articleToAdd = new Article();
+      for (int i = 0; i < index.length; i++) {
+        if (index[i].equalsIgnoreCase("Identifier")) {
+          articleToAdd.setId(line[i]);
+        }
+        else if (index[i].equalsIgnoreCase("URL")) {
+          articleToAdd.setUrl(line[i]);
+        }
+        else if (index[i].equalsIgnoreCase("Source Set")) {
+          articleToAdd.setSource(line[i]);
+        }
+        else if (index[i].equalsIgnoreCase("Date")) {
+          articleToAdd.setDate(line[i]);
+        }
+        else if (index[i].equalsIgnoreCase("Title")) {
+          articleToAdd.setTitle(line[i]);
+        }
+        else if (index[i].equalsIgnoreCase("Body")) {
+          articleToAdd.setBody(line[i]);
+        }
+      }
+      library.addArticle(articleToAdd);
+    }
+    reader.close();
+    fileReader.close();
+  }
+
+/**
+  * Load to the Library object the articles contained in the JSON file
+  * @throws IOException if the file extension is not specified or there are errors during the reading of the file
+  * @throws ParseException if there are errors during the reading of the JSON file
+*/
+  private void loadJSON() throws IOException, ParseException {
+    FileReader fileReader = new FileReader(file);
+    JSONParser parser = new JSONParser();
+    Object obj = parser.parse(fileReader);
+    JSONObject response = (JSONObject)obj;
+    JSONObject responseFields = (JSONObject)response.get("response");
+    JSONArray results = (JSONArray)responseFields.get("results");
+    Iterator<JSONObject> iteratorArticles = results.iterator();
+    while (iteratorArticles.hasNext()) {
+      JSONObject article = iteratorArticles.next();
+      String articleId = (String)article.get("id");
+      String articleUrl = (String)article.get("webUrl");
+      JSONObject articleFields = (JSONObject)article.get("fields");
+      String articleSource = (String)articleFields.get("publication");
+      String articleDate = (String)articleFields.get("firstPublicationDate");
+      String articleTitle = (String)articleFields.get("headline") + " " + (String)articleFields.get("trailText"); //it also contains the trail text
+      String articleBody = (String)articleFields.get("bodyText");
+      Article articleToAdd = new Article(articleId, articleUrl, articleSource, articleDate, articleTitle, articleBody);
+      library.addArticle(articleToAdd);
+    }
+    fileReader.close();
+  }
+
+/**
+  * Returns the Library object after it has been loaded with the articles contained in the file
+  * @see loadLibrary()
+  * @throws IOException if the file extension is not specified or there are errors during the reading of the file
+  * @throws CsvValidationException if there are errors during the reading of CSV file
+  * @throws ParseException if there are errors during the reading of the JSON file
+  * @return the Library object after it has been loaded with the articles contained in the file
+*/
+  public Library getLibrary() throws IOException, CsvValidationException, ParseException {
+    loadLibrary();
+    return library;
+  }
 }
