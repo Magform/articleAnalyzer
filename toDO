@@ -2,7 +2,7 @@
 This toDO contain all the things that we need to do.
 
 ## Article
-[] javaDoc
+[x] javaDoc
 ### Add test to tester
 [] Test ALL SETTERS
 [] Test ALL GETTERS
@@ -49,8 +49,8 @@ This toDO contain all the things that we need to do.
 [] Remove use of external lib
 
 ## Elaborator
-[] Comment
-[] javaDoc
+[x] Comment
+[x] javaDoc
 ### Add test to tester
 [] analyze
 [] orderMap
@@ -61,8 +61,8 @@ This toDO contain all the things that we need to do.
     [] String[] toExclude, int n
 
 ## argparser
-[] Comment
-[] javaDoc
+[x] Comment
+[x] javaDoc
 ### Add test to tester
 [] missing
     [] all the things
