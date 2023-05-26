@@ -1,10 +1,12 @@
 # articleAnalyzer
 A software capable of download (download) articles from online newspapers rendered available from various sources and to extract and visualize terms most "important" in the set of downloaded articles.
 
-## toBuild:
+## toBuild
     mvn install
-## toRun:
+## toRun
     java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar
+## to deploy javadoc
+    mvn javadoc:javadoc
 ## to deploy documentantion
     mvn site
     mvn site:run
