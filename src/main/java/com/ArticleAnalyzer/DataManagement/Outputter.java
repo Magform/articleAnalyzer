@@ -76,7 +76,7 @@ public class Outputter {
 
 /**
   * Initializes the file path with the given value
-  * @param the file path with the given value
+  * @param fn the file path with the given value
   * @throws IOException if the option to print to a file is active and the file path is not specified
 */
   public void setFileName(String fn) throws IOException {
@@ -121,7 +121,7 @@ public class Outputter {
       fileWriter.close();
     }
     catch (IOException e) {
-      throw new IOException("Errore nella scrittura del file: " + fileName);
+      throw new IOException("Error during the writing of the file: " + fileName);
     }
   }
 
@@ -184,7 +184,7 @@ public class Outputter {
   private void check() throws IOException {
     if (toFile) {
       if (fileName == "") {
-        throw new IOException("Nome del file non inserito");
+        throw new IOException("File name must be specified");
       }
       File file = new File(fileName);
       if (file.exists()) {

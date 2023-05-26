@@ -130,7 +130,7 @@ public class Article {
 
   /**
     * Initializes the article body
-    * @param t the article body
+    * @param b the article body
   */
   public void setBody(String b) {
     body = b;

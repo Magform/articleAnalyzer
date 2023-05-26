@@ -25,14 +25,14 @@ public class ArticleLoader {
 
 /**
   * Create the Library object and the file path with the given path
-  * @param fn the file path
+  * @param fileName the file path
   * @throws FileNotFoundException if the file does not exist
 */
   public ArticleLoader(String fileName) throws FileNotFoundException {
     file = new File(fileName);
     library = new Library();
     if (!file.exists()) {
-      throw new FileNotFoundException("File non trovato");
+      throw new FileNotFoundException("File not found");
     }
   }
 
@@ -53,7 +53,7 @@ public class ArticleLoader {
       loadJSON();
     }
     else {
-      throw new IOException("Estensione del file non specificata");
+      throw new IOException("File extension must be specified");
     }
   }
 

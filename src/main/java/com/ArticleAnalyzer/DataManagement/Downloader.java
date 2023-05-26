@@ -57,7 +57,7 @@ public class Downloader {
       int splitter = line.indexOf(":");
       if (splitter == -1) {
         configurationFileScanner.close();
-        throw new IllegalArgumentException("File di configurazione non valido");
+        throw new IllegalArgumentException("Configuration file invalid");
       }
       String key = line.substring(0, splitter);
       String value = line.substring(splitter + 1, line.length());
@@ -67,7 +67,7 @@ public class Downloader {
       }
       catch (IndexOutOfBoundsException e) {
         configurationFileScanner.close();
-        throw new IllegalArgumentException("Argomento invalido nel file di configurazione");
+        throw new IllegalArgumentException("Invalid argument in the configuration file");
       }
       if (key.equalsIgnoreCase("link")) {
         link = value;
@@ -89,7 +89,7 @@ public class Downloader {
       }
       else {
         configurationFileScanner.close();
-        throw new IllegalArgumentException(key + " è una chiave invalida nel file di configurazione");
+        throw new IllegalArgumentException(key + " is an invalid key in the configuration file");
       }
     }
     configurationFileScanner.close();
@@ -114,7 +114,7 @@ public class Downloader {
       downloadFromTheGuardian();
     }
     else {
-      throw new IllegalArgumentException(endpoint + " è un endpoint non valido");
+      throw new IllegalArgumentException(endpoint + " is an invalid endpoint");
     }
   }
 
@@ -127,13 +127,13 @@ public class Downloader {
     String urlString = "";
     //checks if the necessary configuration is set correctly
     if (link.equalsIgnoreCase("")) {
-      throw new IllegalArgumentException("Il link deve essere inserito");
+      throw new IllegalArgumentException("Link must be specified");
     }
     if (endpoint.equalsIgnoreCase("")) {
-      throw new IllegalArgumentException("L'endpoint deve essere inserito");
+      throw new IllegalArgumentException("Endpoint must be specified");
     }
     if (APIkey.equalsIgnoreCase("")) {
-      throw new IllegalArgumentException("L'APIkey deve essere inserita");
+      throw new IllegalArgumentException("APIkey must be specified");
     }
     try {
       //Create the url with the specified parameters
@@ -160,10 +160,10 @@ public class Downloader {
       connection.disconnect(); //disconnect the connection
     }
     catch (MalformedURLException e) {
-      throw new IOException(urlString + " è un link non valido");
+      throw new IOException(urlString + " is an invalid url");
     }
     catch (IOException e) {
-      throw new IOException("Errore nella connessione con la API del The Guardian: " + urlString);
+      throw new IOException("Error during the connection with The Guardian API: " + urlString);
     }
   }
 }

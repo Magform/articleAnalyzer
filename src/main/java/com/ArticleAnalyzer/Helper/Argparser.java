@@ -81,14 +81,14 @@ public class Argparser {
 */
   public Argparser(String[] args) throws FileNotFoundException, IllegalArgumentException, IOException {
     Options options = new Options();
-    options.addOption("h", "help", false, "Azioni possibili");
-    options.addOption("d", "data", true, "Metodo di ottenimento degli articoli (valori ammessi: file, download)");
-    options.addOption("c", "configurationFile", true, "File che contiene la configurazione del download");
-    options.addOption("om", "outputMethod", true, "Metodo di stampa dell'output (valori ammessi: C (console), F (file), CF (console e file)");
-    options.addOption("i", "inputFile", true, "Path del file di input");
-    options.addOption("o", "outputFile", true, "Path del file di output");
-    options.addOption("e", "toExclude", true, "Parole da escludere (esempio: \"an, have, the\")");
-    options.addOption("s", "show", true, "Numero di risultati da mostrare");
+    options.addOption("h", "help", false, "Possible actions");
+    options.addOption("d", "data", true, "Method of obtaining articles (values admitted: file, download)");
+    options.addOption("i", "inputFile", true, "File path which contains articles");
+    options.addOption("c", "configurationFile", true, "File path which contains the download configuration");
+    options.addOption("om", "outputMethod", true, "Method of printing the output (values admitted: C (console), F (file), CF (console e file)");
+    options.addOption("o", "outputFile", true, "Output file path");
+    options.addOption("e", "toExclude", true, "Words to exclude (example: \"an, have, the\")");
+    options.addOption("s", "show", true, "Number of results to show");
 
     CommandLineParser parser = new DefaultParser();
     try {
@@ -100,7 +100,7 @@ public class Argparser {
         System.exit(0);
       }
       if (!cmd.hasOption("d")) {
-        throw new IllegalArgumentException("L'argomento data è richiesto");
+        throw new IllegalArgumentException("Data argument is required");
       }
       else {
         if (cmd.getOptionValue("d").equalsIgnoreCase("file")) {
@@ -110,12 +110,12 @@ public class Argparser {
           dataFromFile = false;
         }
         else {
-          throw new IllegalArgumentException("Argomento data invalido. Valori ammessi: file, download");
+          throw new IllegalArgumentException("Data argument invalid. Values admitted: file, download");
         }
       }
 
       if (!dataFromFile && !cmd.hasOption("c")) {
-        throw new IllegalArgumentException("L'argomento configurationFile è richiesto per il download del file");
+        throw new IllegalArgumentException("ConfigurationFile argument is required in order to download articles");
       }
       else if (!dataFromFile) {
         downloader = new Downloader(cmd.getOptionValue("c"));
@@ -123,7 +123,7 @@ public class Argparser {
 
 
       if (!cmd.hasOption("om")) {
-        throw new IllegalArgumentException("L'argomento outputMethod è richiesto");
+        throw new IllegalArgumentException("Output argument is required");
       }
       else {
         if (cmd.getOptionValue("om").equalsIgnoreCase("C")) {
@@ -136,13 +136,13 @@ public class Argparser {
           outputter = new Outputter(true, true);
         }
         else {
-          throw new IllegalArgumentException("Argomento outputMethod invalido. Valori ammessi: C, F, CF");
+          throw new IllegalArgumentException("Output argument invalid. Values admitted: C, F, CF");
         }
       }
 
 
       if (dataFromFile && !cmd.hasOption("i")) {
-        throw new IllegalArgumentException("L'argomento inputFile è richiesto required se si vogliono prendere gli articoli da file presenti");
+        throw new IllegalArgumentException("InputFile argument is required if you want to work with articles saved in a file");
       }
       else if (!dataFromFile && !cmd.hasOption("i")) {
         articleLoader = new ArticleLoader(downloader.getJSONoutput());
@@ -152,12 +152,12 @@ public class Argparser {
           articleLoader = new ArticleLoader(cmd.getOptionValue("i"));
         }
         catch (FileNotFoundException e) {
-          throw new IllegalArgumentException("Argomento inputFile invalido, file non trovato");
+          throw new IllegalArgumentException("InputFile argument invalid. File not found");
         }
       }
 
       if (outputter.getToFile() && !cmd.hasOption("o")) {
-        throw new IllegalArgumentException("L'argomento outputFile è richiesto se vuoi stampare l'output su file");
+        throw new IllegalArgumentException("OutputFile is required if you want to print the output to a file");
       }
       else {
         outputter.setFileName(cmd.getOptionValue("o"));
@@ -168,7 +168,7 @@ public class Argparser {
           toShow = Integer.parseInt(cmd.getOptionValue("s"));
         }
         catch (NumberFormatException e) {
-          throw new IllegalArgumentException("L'argomento show necessita di un numero intero");
+          throw new IllegalArgumentException("Show argument requires and integer number");
         }
       }
 

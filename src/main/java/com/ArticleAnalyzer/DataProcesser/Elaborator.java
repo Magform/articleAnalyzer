@@ -20,6 +20,7 @@ public class Elaborator {
 
 /**
   * Initializes the Library object with the given Library object and create an empty LinkedHashMap object.
+  * @param l the Library object
   * It also retrieves from the specified Library object the articles words and their occurences (counted once in each article) and save them in the LinkedHashMap object
   * @see analyze()
 */
@@ -121,7 +122,7 @@ public class Elaborator {
       return getWords();
     }
     if (n < -1) {
-      throw new IllegalArgumentException("Richiedi un numero valido di risultati");
+      throw new IllegalArgumentException("Request a valid number of results");
     }
     for (int i = 0; i < n; i++) {
       try {
@@ -130,7 +131,7 @@ public class Elaborator {
       }
       catch (NoSuchElementException e) {
         if (toReturn.isEmpty()) {
-          throw new IllegalArgumentException("Nessuna parola presente");
+          throw new IllegalArgumentException("No words found");
         }
         else {
           return toReturn;
@@ -153,7 +154,7 @@ public class Elaborator {
       return getWords(toExclude);
     }
     if (n < -1) {
-      throw new IllegalArgumentException("Richiedi un numero valido di risultati");
+      throw new IllegalArgumentException("Request a valid number of results");
     }
     int entryToLoad = 0;
     for (int i = 0; i < n; i++) {
@@ -175,7 +176,7 @@ public class Elaborator {
       }
       catch (NoSuchElementException e) {
         if (toReturn.isEmpty()) {
-          throw new IllegalArgumentException("Nessuna parola presente");
+          throw new IllegalArgumentException("No words found");
         }
         else {
           return toReturn;

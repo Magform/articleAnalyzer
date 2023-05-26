@@ -60,7 +60,7 @@ public class Library {
 */
   public Article getArticle(int articleNumber) throws IllegalArgumentException {
     if (articleNumber < 0 || articleNumber >= totalArticlesNumber) {
-      throw new IllegalArgumentException("Numero dell'articolo invalido");
+      throw new IllegalArgumentException("Article number invalid");
     }
     return collection[articleNumber];
   }
