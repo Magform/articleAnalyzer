@@ -95,7 +95,6 @@ public class Outputter {
       printToConsole(s);
     }
     if (toFile) {
-      check();
       printToFile(s);
     }
   }
@@ -116,9 +115,6 @@ public class Outputter {
   private void printToFile(String s) throws IOException {
     try {
       File file = new File(fileName);
-      if (file.exists()) {
-        file.delete();
-      }
       file.createNewFile();
       FileWriter fileWriter = new FileWriter(file, true);
       fileWriter.write(s);
@@ -186,8 +182,15 @@ public class Outputter {
   * @throws IOException if the option to print to a file is active and the file path is not specified
 */
   private void check() throws IOException {
-    if (toFile && fileName == "") {
-      throw new IOException("Nome del file non inserito");
+    if (toFile) {
+      if (fileName == "") {
+        throw new IOException("Nome del file non inserito");
+      }
+      File file = new File(fileName);
+      if (file.exists()) {
+        file.delete();
+      }
+      file.createNewFile();
     }
   }
 }
