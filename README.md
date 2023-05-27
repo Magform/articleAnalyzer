@@ -1,5 +1,5 @@
 # articleAnalyzer
-A software capable of download (download) articles from online newspapers rendered available from various sources and to extract and visualize terms most "important" in the set of downloaded articles.
+A software capable of downloading articles from online newspapers available from various sources and to extract and visualize the most important terms in the set of downloaded articles.
 
 ## to build
     mvn install
