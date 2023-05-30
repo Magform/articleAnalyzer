@@ -1,0 +1,17 @@
+{
+    "article" :
+    [
+        {
+            "id": "testID",
+            "BodyText": "testBodyText",
+            "headline": "other text, with, comma",
+            "webUrl": "other test",
+        },
+        {
+            "id": "testID2",
+            "BodyText": "testBodyText2",
+            "headline": "other2 text2, with2, comma2",
+            "webUrl": "other2 test2",
+        }
+    ]
+}

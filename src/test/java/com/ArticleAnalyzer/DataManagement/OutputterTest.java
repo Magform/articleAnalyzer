@@ -124,7 +124,7 @@ public class OutputterTest {
         System.setOut(originalOut);
         String printedOutput = outputStream.toString().trim();
 
-        String expected = "{\"id\":\"test1\",}{\"id\":\"test2\",}";
+        String expected = "{\"article\":[{\"id\":\"test1\",},{\"id\":\"test2\",}]}";
         expected = expected.replaceAll("\\s+", "");
         printedOutput = printedOutput.replaceAll("\\s+", "");
 
@@ -240,7 +240,7 @@ public class OutputterTest {
         }
 
         String printedOutput = content.toString();
-        String expected = "{\"id\":\"test1\",}{\"id\":\"test2\",}";
+        String expected = "{\"article\":[{\"id\":\"test1\",},{\"id\":\"test2\",}]}";
         expected = expected.replaceAll("\\s+", "");
         printedOutput = printedOutput.replaceAll("\\s+", "");
 

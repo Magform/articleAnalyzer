@@ -313,9 +313,17 @@ public class Outputter {
      * @throws IOException if an error occurs while printing
      */
     public void print(Library toPrint) throws IOException{
+        print("{\n");
+        print("\"article\":\n");
+        print("[\n");
         for(int i = 1; i <= toPrint.getTotalArticleNumber(); i++){
             print(toPrint.getArticle(i));
+            if(i!=toPrint.getTotalArticleNumber()){
+                print(",");
+            }
         }
+        print("]");
+        print("}");
     }
 
     /**
