@@ -73,14 +73,14 @@ This toDO contain all the things that we need to do.
 ## Documentantion
 [x] main page
 ### Class
-[] Summary
-    [] Article
-    [] Library
+[x] Summary
+    [x] Article
+    [x] Library
     [] Argparser
     [] Elaborator
     [] Outputter
     [] Downloader
-    [] ArticleLoader
+    [x] ArticleLoader
 []javaDoc
 ### How to use
 [x] Prerequisite
