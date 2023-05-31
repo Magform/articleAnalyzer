@@ -125,36 +125,54 @@ public class ArticleLoader {
     /**
      * Loads articles from a JSON file into the article library.
      *
-     * @throws FileNotFoundException    if the file is not found
      * @throws IOException              if an I/O error occurs while reading the file
      * @throws ParseException           if an error occurs while parsing the file
      * @throws org.json.simple.parser.ParseException if an error occurs while parsing the JSON file
      */
-    private void loadJSON() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException {
+    private void loadJSON() throws IOException, ParseException, org.json.simple.parser.ParseException{
         FileReader fileReader = new FileReader(file);
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(fileReader);
         JSONObject response = (JSONObject) obj;
-        JSONObject responseFields = (JSONObject) response.get("response");
-        JSONArray results = (JSONArray) responseFields.get("results");
-    
+        JSONArray results = null;
+        if(response.containsKey("response")){
+            JSONObject responseFields = (JSONObject) response.get("response");
+            results = (JSONArray) responseFields.get("results"); 
+        }else{
+            results = (JSONArray) response.get("article");
+        }
+
         Iterator<JSONObject> iteratorArticles = results.iterator();
-    
+
         while (iteratorArticles.hasNext()) {
             Article toLibrary = new Article();
             JSONObject article = iteratorArticles.next();
-            JSONObject articleFields = (JSONObject) article.get("fields");
-            Iterator<?> articleFieldsIterator = articleFields.entrySet().iterator();
-            while (articleFieldsIterator.hasNext()) {
-                Map.Entry<String, String> pair = (Map.Entry) articleFieldsIterator.next();
-                String key = (String) pair.getKey();
-                String value = (String) pair.getValue();
+            Iterator<?> articleIterator = article.entrySet().iterator();
+            while (articleIterator.hasNext()) {
+                Map.Entry<?, ?> pair = (Map.Entry<?, ?>) articleIterator.next();
+                String key = pair.getKey().toString();
+                String value = pair.getValue().toString();
                 try{
                     toLibrary.fullSetter(value, key);
                 }catch(IOException e){}
+
+                //Iterate inside fields
+                if(key.equalsIgnoreCase("fields")){
+                    JSONObject articleFields = (JSONObject) article.get("fields");
+                    Iterator<?> articleFieldsIterator = articleFields.entrySet().iterator();
+                    while (articleFieldsIterator.hasNext()) {
+                        Map.Entry<?, ?> pairInside = (Map.Entry<?, ?>) articleFieldsIterator.next();
+                        String keyInside = pairInside.getKey().toString();
+                        String valueInside = pairInside.getValue().toString();
+                        try{
+                            toLibrary.fullSetter(valueInside, keyInside);
+                        }catch(IOException e){}
+                    }
+                }
             }
             loadedLibrary.addArticle(toLibrary);
         }
+    
     }
 
     /**

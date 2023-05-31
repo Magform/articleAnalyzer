@@ -94,7 +94,8 @@ public class Elaborator {
         }
         for(int i = 0; i < n; i++){
             try{
-                Map.Entry<String, Integer> entry = getNthEntry(i, words);
+                Map.Entry<String, Integer> entry = getNthEntry(i);
+
                 toReturn.put(entry.getKey(), entry.getValue());
             }catch(NoSuchElementException e){
                 if(toReturn.isEmpty()){
@@ -115,12 +116,13 @@ public class Elaborator {
         if(n < -1){
             throw new IllegalArgumentException("Request an invalid number of results");
         }
+
         int EntryToLoad=0;
         for(int i = 0; i < n; i++){
             try{
                 Boolean good = false;
                 while(!good){
-                    Map.Entry<String, Integer> entry = getNthEntry(EntryToLoad, words);
+                    Map.Entry<String, Integer> entry = getNthEntry(EntryToLoad);
                     good = true;
                     for (String str : toExclude) {
                         if (str.equals(entry.getKey())) {
@@ -132,7 +134,7 @@ public class Elaborator {
                     }
                     EntryToLoad++;
                 }
-            }catch(NoSuchElementException e){
+            }catch(NullPointerException e){
                 if(toReturn.isEmpty()){
                     throw new IllegalArgumentException("Not enough entry");
                 }else{
@@ -143,11 +145,12 @@ public class Elaborator {
         return toReturn;
     }
 
-    private Map.Entry<String, Integer> getNthEntry(int n, LinkedHashMap<String, Integer> map){
+    private Map.Entry<String, Integer> getNthEntry(int n) throws NullPointerException{
         Map.Entry<String, Integer> nthEntry = null;
-        if (n >= 0 && n < map.size()) {
+
+        if (n >= 0 && n < words.size()) {
             int i = 0;
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            for (Map.Entry<String, Integer> entry : words.entrySet()) {
                 if (i == n) {
                     nthEntry = entry;
                     break;
