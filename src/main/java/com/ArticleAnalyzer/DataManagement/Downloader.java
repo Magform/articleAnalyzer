@@ -62,7 +62,6 @@ public class Downloader {
         APIkey = null;
         JSONoutput = "downloaded.json";
         articleNumber = null;
-
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
         //Read the configuration file and set all the variable accordingly
         while(configurationFileScanner.hasNextLine()){
@@ -99,8 +98,7 @@ public class Downloader {
             }
         }
         configurationFileScanner.close();
-        download();
- 
+        download();  
     }
 
     /**
@@ -120,6 +118,9 @@ public class Downloader {
      * @throws IOException If an I/O error occurs during the download process.
      */
     private void download() throws IOException{
+        if(endpoint == null){
+            throw new IllegalArgumentException("Endpoint need to be defined");
+        }
         if(endpoint.equalsIgnoreCase("TheGuardian")){
             downloadFromTheGuardian();
         }else{
@@ -138,7 +139,6 @@ public class Downloader {
      */
     private void downloadFromTheGuardian() throws IOException{
         String urlString = "";
-
         //Check if anything is configured incorrectly
         if(link == null || link.equalsIgnoreCase("")){
             throw new IllegalArgumentException("link need to be configured");
