@@ -115,7 +115,6 @@ public class Outputter {
   private void printToFile(String s) throws IOException {
     try {
       File file = new File(fileName);
-      file.createNewFile();
       FileWriter fileWriter = new FileWriter(file, true);
       fileWriter.write(s);
       fileWriter.close();
