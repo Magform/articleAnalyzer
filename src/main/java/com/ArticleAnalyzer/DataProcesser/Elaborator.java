@@ -190,7 +190,7 @@ public class Elaborator {
   * Returns the given entry of the given LinkedHashMap object
   * @param n the entry to return
   * @param map the LinkedHashMap object where to find the entry to return
-  * @return the given entry of the given LinkedHashMap objects
+  * @return the given entry of the given LinkedHashMap object
 */
   private Map.Entry<String, Integer> getNthEntry(int n, LinkedHashMap<String, Integer> map) {
     Map.Entry<String, Integer> nthEntry = null;
