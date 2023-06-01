@@ -87,6 +87,12 @@ For the development of this project we have used:
 - [junit](https://junit.org/junit5/): testing environment management
 
 ## Authors
+This is a project created by four students who are attending the second year of Computer Engineering at the University of Padua, Italy.
+Here their names:
+- Antonio Gastaldi
+- Daniele Casson
+- Nicolas Ferraresso
+- Sara Calzavara
 
 ## License
 This project is licensed under the Affero General Public License (A-GPL) version 3.0. 
