@@ -27,9 +27,7 @@ The Article class provides:
 - setters for each attribute
 
 ## Library
-The Library class represents a collection of Article objects, implemented with an array.
-Initially, the collection contains 10 Article objects initialized with the default constructor,
-but there are two internal indexes which allow to work on the entire collection and, eventually, resize it:
+The Library class represents a collection of [Article](#article) objects, implemented with an array. Initially, the collection contains 10 [Article](#article) objects initialized with the default constructor, but there are two internal indexes which allow to work on the entire collection and, eventually, resize it:
 
 - totalArticlesNumber: the number of effective articles contained in the collection
 - scannedArticles: allows the collection to be scanned in order from start to finish
@@ -37,33 +35,33 @@ but there are two internal indexes which allow to work on the entire collection 
 The Library class provides:
 
 - default constructor: initializes all the attributes of the class to their default values (the two indexes are initialized to 0)
-- constructor with an Article object as a parameter: add an Article object given as a parameter to the first position of the collection
-- addArticle: add an Article object given as a parameter to the position pointed by the interna index totalArticlesNumber
+- constructor with an [Article](#article) object as a parameter: add the given [Article](#article) object to the first position of the collection
+- addArticle: add the given [Article](#article) object to the position pointed by the interna index totalArticlesNumber
 - getTotalArticleNumber: returns the number of effective articles contained in the collection
-- getArticle: returns the Article object contained in the position given as a parameter. If the position given in invalid, an [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html) exception is thrown
-- getNextArticle: returns the next Article object scanned by the internal index scannedArticles. If there are not Article objects in the collection, it returns null
+- getArticle: returns the [Article](#article) object contained in the position given. If the position given in invalid, an [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html) exception is thrown
+- getNextArticle: returns the next [Article](#article) object scanned by the internal index scannedArticles. If there are not [Article](#article) objects in the collection, it returns null
 - resetScannedArticle: reset the internal index scannedArticles to 0 in order to allow the method getNextArticle to scan the collection from the start again
 
 ## ArticleLoader
-The ArticleLoader class loads articles contained in different file extensions, such as CSV and JSON, in a Library object. Each ArticleLoader object created is composed of:
+The ArticleLoader class loads articles contained in different file extensions, such as CSV and JSON, in a [Library](#library) object. Each ArticleLoader object created is composed of:
 
 - file: the [java.io.File](https://docs.oracle.com/javase/8/docs/api/java/io/File.html) object which allows to open the file that contains the articles
-- library: the Library object in which the articles will be loaded
+- library: the [Library](#library) object in which the articles will be loaded
 
 The ArticleLoader class provides:
 
-- constructor with the file path of the file to open as a parameter: opens the file having the file path given as a parameter and create the Library object with the default constructor. If the file does not exist, an [java.io.FileNotFoundException](https://docs.oracle.com/javase/8/docs/api/java/io/FileNotFoundException.html) exception is thrown
-- loadLibrary: according to the file extension, the Library object is loaded with the articles contained in the file. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+- constructor with the file path of the file to open as a parameter: opens the file having the given file path and create the [Library](#library) object with the default constructor. If the file does not exist, an [java.io.FileNotFoundException](https://docs.oracle.com/javase/8/docs/api/java/io/FileNotFoundException.html) exception is thrown
+- loadLibrary: according to the file extension, the [Library](#library) object is loaded with the articles contained in the file. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
   - [com.opencsv.exceptions.CsvValidationException](https://opencsv.sourceforge.net/apidocs/com/opencsv/exceptions/CsvValidationException.html): if there are errors during the reading of CSV file
   - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
-- loadCSV: load to the Library object the articles contained in the CSV file (from The New York Times file format). Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+- loadCSV: load to the [Library](#library) object the articles contained in the CSV file (from The New York Times file format). Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
   - [com.opencsv.exceptions.CsvValidationException](https://opencsv.sourceforge.net/apidocs/com/opencsv/exceptions/CsvValidationException.html): if there are errors during the reading of CSV file
-- loadJSON: load to the Library object the articles contained in the JSON file (from The Guardian file format). Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+- loadJSON: load to the [Library](#library) object the articles contained in the JSON file (from The Guardian file format). Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
   - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
-- getLibrary: returns the Library object after it has been loaded with the articles contained in the file. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+- getLibrary: returns the [Library](#library) object after it has been loaded with the articles contained in the file. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
   - [com.opencsv.exceptions.CsvValidationException](https://opencsv.sourceforge.net/apidocs/com/opencsv/exceptions/CsvValidationException.html): if there are errors during the reading of CSV file
   - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
@@ -82,7 +80,7 @@ The Downloader class allows to download articles from online newspapers (current
 The Downloader class provides:
 
 - default constructor: initializes all the attributes of the class to their default values (the [java.io.File](https://docs.oracle.com/javase/8/docs/api/java/io/File.html) object is initialized to null; all the other attributes, which are [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects, are initialized with "")
-- constructor with the file path of the file to open as a parameter: opens the download configuration file having the name given as a parameter, verify if settings given in it are valid and download the articles. Different exceptions are thrown, basing on the errors occurred during the execution of the constructor:
+- constructor with the file path of the file to open as a parameter: opens the download configuration file having the given name, verify if settings given in it are valid and download the articles. Different exceptions are thrown, basing on the errors occurred during the execution of the constructor:
   - [java.io.FileNotFoundException](https://docs.oracle.com/javase/8/docs/api/java/io/FileNotFoundException.html): if the configuration file does not exist
   - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if the configuration file has invalid contents
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
@@ -101,8 +99,7 @@ The Downloader class provides:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
 
 ## Outputter
-
-The Outputter class is responsible for printing String objects, Article objects, Library objects and LinkedHashMap objects to the console or to a file. Each Outputter object is composed of:
+The Outputter class is responsible for printing [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects, [Article](#article) objects, [Library](#library) objects and [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) objects to the console or to a file. Each Outputter object created is composed of:
 - toConsole: a boolean value which specify if the printing is happening to console
 - toFile: a boolean value which specify if the printing is happening to a file
 - fileName: the file path of the file where to save the data
@@ -115,12 +112,16 @@ The Outputter class provides:
 - getToConsole: returns if the printing is happening to console
 - getToFile: returns if the printing is happening to a file
 - getFileName: returns the file path of the file where to save the data
-- setFileName: initializes the file path with the given path and checks if the given path is valid. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
+- setFileName: initializes the file path with the given path and checks if it is valid. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
 - print: prints the given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object to console or to file, depending on how the two boolean attributes are set
 - printToConsole: prints the given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object to console
 - printToFile: prints the given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object to a file. At every call of this method, the writing of the file is appended to the rest of the content that was saved before.
-- print with an Article object as a parameter: prints the Article object given as a parameter to JSON format
-- print with a Library object as a parameter: prints the Article contained in the Library object given as parameter to JSON format
-- print with a LinkedHashMap object with key-value pairs of type String-Integer as a parameter: prints each key-value pair of the LinkedHashMap object given as a parameter
+- print with an [Article](#article) object as a parameter: prints the given [Article](#article) object to JSON format
+- print with a [Library](#library) object as a parameter: prints the [Article](#article) contained in the given [Library](#library) object to JSON format
+- print with a [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object with key-value pairs of type String-Integer as a parameter: prints each key-value pair of the given [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
 - check: checks if the given path is valid. If the file already exists, the method deletes it and creates a new one. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
 - All the overloaded print methods throw a [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception is thrown if there are errors during the writing of the file when the printing to a file is enabled
+
+## Elaborator
+The Elaborator class elaborates the [Article](#article) objects contained in a [Library](#library) object and for each article retrieves the words, from its title and body, and their occurrences (counted once in each article) and save them in a [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object. Each Elaborator object created is composed of:
+
