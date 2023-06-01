@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
-  * The Elaborator class retrieves from a Library object which contains Article objects the articles words and their occurences (counted once in each article) and save them in a LinkedHashMap object.
+  * The Elaborator class retrieves from a Library object which contains Article objects the articles words and their occurrences (counted once in each article) and save them in a LinkedHashMap object.
 */
 public class Elaborator {
   private LinkedHashMap <String, Integer> words;
@@ -21,7 +21,7 @@ public class Elaborator {
 /**
   * Initializes the Library object with the given Library object and create an empty LinkedHashMap object.
   * @param l the Library object
-  * It also retrieves from the specified Library object the articles words and their occurences (counted once in each article) and save them in the LinkedHashMap object
+  * It also retrieves from the specified Library object the articles words and their occurrences (counted once in each article) and save them in the LinkedHashMap object
   * @see analyze()
 */
   public Elaborator(Library l) {
@@ -31,8 +31,8 @@ public class Elaborator {
   }
 
 /**
-  * Retrieves from the Library object the articles words and their occurences (counted once in each article) and save them in the LinkedHashMap object.
-  * It also orders the LinkedHashMap object based on which word contains more occurences
+  * Retrieves from the Library object the articles words and their occurrences (counted once in each article) and save them in the LinkedHashMap object.
+  * It also orders the LinkedHashMap object based on which word contains more occurrences
   * @see orderMap()
 */
   private void analyze() {
@@ -55,7 +55,7 @@ public class Elaborator {
   }
 
 /**
-  * Orders the LinkedHashMap object based on which word contains more occurences
+  * Orders the LinkedHashMap object based on which word contains more occurrences
 */
   private void orderMap() {
     LinkedHashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
@@ -80,17 +80,17 @@ public class Elaborator {
   }
 
 /**
-  * Returns the LinkedHashMap object which contains the words and their occurences
-  * @return the LinkedHashMap object which contains the words and their occurences
+  * Returns the LinkedHashMap object which contains the words and their occurrences
+  * @return the LinkedHashMap object which contains the words and their occurrences
 */
   public LinkedHashMap<String, Integer> getWords() {
     return words;
   }
 
 /**
-  * Returns a new LinkedHashMap object which contains the words which are not included in the given array of strings and their occurences
+  * Returns a new LinkedHashMap object which contains the words which are not included in the given array of strings and their occurrences
   * @param toExclude the array of strings to exclude
-  * @return the LinkedHashMap object which contains the words which are not included in the given array of strings and their occurences
+  * @return the LinkedHashMap object which contains the words which are not included in the given array of strings and their occurrences
 */
   public LinkedHashMap<String, Integer> getWords(String[] toExclude) {
     LinkedHashMap<String, Integer> toReturn = new LinkedHashMap<String, Integer>();
@@ -111,9 +111,9 @@ public class Elaborator {
   }
 
 /**
-  * Returns a new LinkedHashMap object which contains a given number of words and their occurences
-  * @param n the numbers of words and their occurences to return
-  * @return the LinkedHashMap object which contains a given number of words and their occurences
+  * Returns a new LinkedHashMap object which contains a given number of words and their occurrences
+  * @param n the numbers of words and their occurrences to return
+  * @return the LinkedHashMap object which contains a given number of words and their occurrences
   * @throws IllegalArgumentException if the number of results to show is invalid
 */
   public LinkedHashMap<String, Integer> getWords(int n) throws IllegalArgumentException {
@@ -142,10 +142,10 @@ public class Elaborator {
   }
 
 /**
-  * Returns a new LinkedHashMap object which contains a given number of words which are not included in the given array of strings and their occurences
+  * Returns a new LinkedHashMap object which contains a given number of words which are not included in the given array of strings and their occurrences
   * @param toExclude the array of strings to exclude
-  * @param n the numbers of words and their occurences to return
-  * @return the LinkedHashMap object which contains a given number of words which are not included in the given array of strings and their occurences
+  * @param n the numbers of words and their occurrences to return
+  * @return the LinkedHashMap object which contains a given number of words which are not included in the given array of strings and their occurrences
   * @throws IllegalArgumentException if the number of results to show is invalid
 */
   public LinkedHashMap<String, Integer> getWords(String[] toExclude, int n) throws IllegalArgumentException {
