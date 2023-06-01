@@ -81,7 +81,7 @@ This toDO contain all the things that we need to do.
     [x] Outputter
     [x] Downloader
     [x] ArticleLoader
-[]javaDoc
+[x]javaDoc
 ### How to use
 [x] Prerequisite
 [x] Installing
@@ -94,7 +94,7 @@ This toDO contain all the things that we need to do.
 ### Library used
 [x] main
 ### Author
-[] main
+[x] main
 ### Licence
 [x] main
 
