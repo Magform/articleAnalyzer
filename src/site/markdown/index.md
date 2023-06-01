@@ -69,17 +69,17 @@ For more information on the various flags and some examples go [here](run.html).
 In this section we will explain all the classes.      
 In particular we have 7 classes and the main:     
 
-- Main -> Merges all classes and allows the user to interact     
-- Argparser -> Reads command-line arguments and processes them     
-- Downloader -> download data from a specified endpoint based on a configuration file     
-- ArticleLoader -> Transforms data stored on a file into an instance of the Library class    
-- Elaborator -> Process a Library to get what is requested    
-- Outputter -> Transform objects into output (to file or command line)     
-- Article -> It implements an Article with all the variables    
-- Library -> Collection of Article objects    
+- Main: merges all classes and allows the user to interact     
+- Article: implements an Article with all the variables    
+- Library: implements a collection of Article objects     
+- ArticleLoader: transforms data stored on a file into an instance of the Library class  
+- Downloader: download data from a specified endpoint basing on a configuration file   
+- Outputter: transforms objects into output (to file or command line) 
+- Elaborator: processes a Library to get what is requested     
+- Argparser: reads command-line arguments and processes them           
 
 
-To go into more detail on how they interact with each other and how they work go [here](class.html) 
+To go into more detail on how they interact with each other and how they work go [here](classes.html) 
 
 ## Library used
 For the development of this project we have used:
