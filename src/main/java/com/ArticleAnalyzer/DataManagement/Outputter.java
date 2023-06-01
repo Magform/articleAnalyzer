@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 
 /**
-  * The Outputter class provides functionality for printing Article objects, Library objects and LinkedHashMap objects.
+  * The Outputter class provides functionality for printing String objects, Article objects, Library objects and LinkedHashMap objects.
   * It offers options to print the output to the console or to a file.
 */
 public class Outputter {
