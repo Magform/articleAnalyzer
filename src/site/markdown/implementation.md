@@ -206,7 +206,7 @@ For each class described before, Javadoc comments have been written in every con
 
 After all the Javadoc comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical Java API documentation. To create it, run on the command line:
 
-`mvn mvn javadoc:javadoc`
+`mvn javadoc:javadoc`
 
 and open the file index.html present in the path target/site/apidocs.
 
