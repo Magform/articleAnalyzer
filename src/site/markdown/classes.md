@@ -1,4 +1,5 @@
 # Classes
+Here a panoramic of all the Java classes which allow the ArticleAnalyzer project to download articles from different online newspapers and to extract and visualize the words and their occurrences which appear more in the set of downloaded articles.
 
 ## Summary
 - [Article](#article)
