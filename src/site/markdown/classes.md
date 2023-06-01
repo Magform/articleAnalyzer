@@ -10,7 +10,9 @@
 - [Argparser](#argparser)
 
 ## Article
-The Article class describes an article from an online newspaper. Each article is composed of:
+The Article class describes an article from an online newspaper.
+
+Each Article object created is composed of:
 
 - id: the unique article id
 - url: the web url of the page which contains the article
@@ -27,7 +29,9 @@ The Article class provides:
 - setters for each attribute
 
 ## Library
-The Library class represents a collection of [Article](#article) objects, implemented with an array. Initially, the collection contains 10 [Article](#article) objects initialized with the default constructor, but there are two internal indexes which allow to work on the entire collection and, eventually, resize it:
+The Library class represents a collection of [Article](#article) objects, implemented with an array.
+
+Initially, the collection contains 10 [Article](#article) objects initialized with the default constructor, but there are two internal indexes which allow to work on the entire collection and, eventually, resize it:
 
 - totalArticlesNumber: the number of effective articles contained in the collection
 - scannedArticles: allows the collection to be scanned in order from start to finish
@@ -43,7 +47,9 @@ The Library class provides:
 - resetScannedArticle: reset the internal index scannedArticles to 0 in order to allow the method getNextArticle to scan the collection from the start again
 
 ## ArticleLoader
-The ArticleLoader class loads articles contained in different file extensions, such as CSV and JSON, in a [Library](#library) object. Each ArticleLoader object created is composed of:
+The ArticleLoader class loads articles contained in different file extensions, such as CSV and JSON, in a [Library](#library) object.
+
+Each ArticleLoader object created is composed of:
 
 - file: the [java.io.File](https://docs.oracle.com/javase/8/docs/api/java/io/File.html) object which allows to open the file that contains the articles
 - library: the [Library](#library) object in which the articles will be loaded
@@ -67,7 +73,9 @@ The ArticleLoader class provides:
   - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
 
 ## Downloader
-The Downloader class allows to download articles from online newspapers (currently only The Guardian), basing on a configuration file created before. Each Downloader object created is composed of:
+The Downloader class allows to download articles from online newspapers (currently only The Guardian), basing on a configuration file created before.
+
+Each Downloader object created is composed of:
 
 - configurationFile: the [java.io.File](https://docs.oracle.com/javase/8/docs/api/java/io/File.html) object which allows to open the file that contains the configuration settings for the download
 - endpoint: the name which uniquely identify the online newspaper from where the articles will be downloaded
@@ -100,7 +108,10 @@ The Downloader class provides:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
 
 ## Outputter
-The Outputter class is responsible for printing [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects, [Article](#article) objects, [Library](#library) objects and [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) objects to the console or to a file. Each Outputter object created is composed of:
+The Outputter class is responsible for printing [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects, [Article](#article) objects, [Library](#library) objects and [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/java.util.LinkedHashMap.html) objects to the console or to a file.
+
+Each Outputter object created is composed of:
+
 - toConsole: a boolean value which specify if the printing is happening to console
 - toFile: a boolean value which specify if the printing is happening to a file
 - fileName: the file path of the file where to save the data
@@ -119,10 +130,26 @@ The Outputter class provides:
 - printToFile: prints the given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object to a file. At every call of this method, the writing of the file is appended to the rest of the content that was saved before.
 - print with an [Article](#article) object as a parameter: prints the given [Article](#article) object to JSON format
 - print with a [Library](#library) object as a parameter: prints the [Article](#article) contained in the given [Library](#library) object to JSON format
-- print with a [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object with key-value pairs of type String-Integer as a parameter: prints each key-value pair of the given [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
+- print with a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object with key-value pairs of type String-Integer as a parameter: prints each key-value pair of the given [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
 - check: checks if the given path is valid. If the file already exists, the method deletes it and creates a new one. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
 - All the overloaded print methods throw a [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception is thrown if there are errors during the writing of the file when the printing to a file is enabled
 
 ## Elaborator
-The Elaborator class elaborates the [Article](#article) objects contained in a [Library](#library) object and for each article retrieves the words, from its title and body, and their occurrences (counted once in each article) and save them in a [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object. Each Elaborator object created is composed of:
+The Elaborator class elaborates the [Article](#article) objects contained in a [Library](#library) object and for each article retrieves the words, from its title and body, and their occurrences, counted once in each article, and save them in a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object.
+
+Each Elaborator object created is composed of:
+
+- words: a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/java.util.LinkedHashMap.html) object where to save the words and their occurrences
+- library: a [Library](#library) object which contains the [Article](#article) objects
+
+The Elaborator class provides:
+
+- constructor with a [Library](#library) object: initializes the [Library](#library) with the respective given object and create an empty [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
+- analyze: retrieves from the Library object the articles words, from its title and body, and their occurrences, counted once in each article, and save them in the [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
+- orderMap: orders the [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object basing on which word contains more occurrences
+- getWords: returns the [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object which contains the words and their occurrences
+- getWords with an array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects as a parameter: returns a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object which contains the words which are not included in the given array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects and their occurrences
+- getWords with an int as a parameter: returns a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object which contains the given number of words and their occurrences
+- getWords with an array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects and an int as parameters: returns a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object which contains the given number of words which are not included in the given array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects
+- getNthEntry: returns the given entry of the given [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
 
