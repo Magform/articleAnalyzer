@@ -145,7 +145,7 @@ public class Argparser {
         throw new IllegalArgumentException("InputFile argument is required if you want to work with articles saved in a file");
       }
       else if (!dataFromFile && !cmd.hasOption("i")) {
-        articleLoader = new ArticleLoader(downloader.getJSONoutput());
+        articleLoader = new ArticleLoader(downloader.getJSONOutput());
       }
       else {
         try {
