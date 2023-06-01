@@ -1,5 +1,5 @@
 # Implementation
-The implementation side of the ArticleAnalyzer project, from all the Java classes which allow to realize its aim, to the Javadoc comments, in order to create a graphic description of all the program.
+The implementation side of the ArticleAnalyzer project, from all the [Java](https://docs.oracle.com/javase/8/docs/api/) classes which allow to realize its aim, to the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments, in order to create a graphic description of all the program.
 
 ## Table of contents
 - [Classes](#classes)
@@ -17,7 +17,7 @@ The implementation side of the ArticleAnalyzer project, from all the Java classe
 - [Javadoc](#javadoc)
 
 ## Classes
-Here a panoramic of all the Java classes which allow the ArticleAnalyzer project to download articles from different online newspapers and to extract and visualize the words and their occurrences which appear more in the set of downloaded articles. Each class has its own package, the same directory tree created with the effective Java files.
+Here a panoramic of all the [Java](https://docs.oracle.com/javase/8/docs/api/) classes which allow the ArticleAnalyzer project to download articles from different online newspapers and to extract and visualize the words and their occurrences which appear more in the set of downloaded articles. Each class has its own package, the same directory tree created with the effective Java files.
 
 ### Types
 
@@ -74,17 +74,17 @@ The ArticleLoader class provides:
 - loadLibrary: according to the file extension, the [Library](#library) object is loaded with the articles contained in the file. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
   - [com.opencsv.exceptions.CsvValidationException](https://opencsv.sourceforge.net/apidocs/com/opencsv/exceptions/CsvValidationException.html): if there are errors during the reading of CSV file
-  - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
+  - [org.json.simple.parser.ParseException](https://code.google.com/archive/p/json-simple/): if there are errors during the reading of the JSON file
 - loadCSV: load to the [Library](#library) object the articles contained in the CSV file (from The New York Times file format). Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
   - [com.opencsv.exceptions.CsvValidationException](https://opencsv.sourceforge.net/apidocs/com/opencsv/exceptions/CsvValidationException.html): if there are errors during the reading of CSV file
 - loadJSON: load to the [Library](#library) object the articles contained in the JSON file (from The Guardian file format). Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
-  - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
+  - [org.json.simple.parser.ParseException](https://code.google.com/archive/p/json-simple/): if there are errors during the reading of the JSON file
 - getLibrary: returns the [Library](#library) object after it has been loaded with the articles contained in the file. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the file extension is not specified or there are errors during the reading of the file
   - [com.opencsv.exceptions.CsvValidationException](https://opencsv.sourceforge.net/apidocs/com/opencsv/exceptions/CsvValidationException.html): if there are errors during the reading of CSV file
-  - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
+  - [org.json.simple.parser.ParseException](https://code.google.com/archive/p/json-simple/): if there are errors during the reading of the JSON file
 
 #### Downloader
 The Downloader class allows to download articles from online newspapers (currently only The Guardian), basing on a configuration file created before.
@@ -197,14 +197,14 @@ The Argparser class provides:
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the parsing of the arguments
 
 ## Javadoc
-For each class described before, Javadoc comments have been written in every constructor, method and as an introduction to the class. Each Javadoc comment might contain these information:
+For each class described before, [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments have been written in every constructor, method and as an introduction to the class. Each [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comment might contain these information:
 - a brief description of what each constructor, method or class do
 - the @param option, which allow to specify a parameter in the constructor or the method
 - the @return option, which allow to specify what a method returns after its execution
 - the @see option, which allow to redirect to another constructor or method used in the current constructor or method
 - the @throws option, which allow to specify which exception may be thrown during the execution of the constructor or the method
 
-After all the Javadoc comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical Java API documentation. To create it, run on the command line:
+After all the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical Java API documentation. To create it, run on the command line:
 
 `mvn javadoc:javadoc`
 
