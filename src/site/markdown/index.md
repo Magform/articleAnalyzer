@@ -30,13 +30,17 @@ Before using this application, ensure you meet the following prerequisites:
 To build the project and install the necessary dependance you need to follow these steps:    
 1. Open a terminal     
 2. Navigate to the directory of the project     
-3. Run the following command: `mvn install`
+3. Run the following command: 
+
+   `mvn install`
    
 ### Running the tests
 To execute the test and provide the results you need to follow these steps:      
 1. Open a terminal      
 2. Navigate to the directory of the project     
-3. Run the following command: `mvn test`
+3. Run the following command:
+   
+   `mvn test`
 
 ## Usage
 Once you have all the prerequisites and installed the software you can proceed, if you want to download articles from The Guardian, by writing the Downloader configuration file or, if you want to use a file, you can skip the Downloader configuration part.    
@@ -51,7 +55,9 @@ If so then the installation was successful and we can proceed to use our softwar
 To run the program, simply do:     
 1. Open a terminal     
 2. Navigate to the directory of the project      
-3. Run the following command: `java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar <options>`
+3. Run the following command:
+
+   `java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar <options>`
 
 To start we suggest the use of the `-h` flag, which allows you to view all the available flags and their respective functions.        
 For more information on the various flags and some examples go [here](run.html).     
