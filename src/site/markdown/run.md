@@ -1,5 +1,5 @@
 # Run
-To run the program, simply do::
+To run the program, simply do:
 1. Open a terminal
 2. Navigate to the directory of the project
 3. Run the following command:
