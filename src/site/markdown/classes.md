@@ -93,9 +93,7 @@ The Downloader class provides:
     - the api-key
     - show-fields=all, which allows to receive the title and the body of each article
     - the number of articles to download
-    - the query
-
-It establishes the HTTP connection with the GET request method and opens the connection with The Guardian API. In the end, it closes the connection and saves the response in a file using an [Outputter](#outputter) object. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+    - the query     It establishes the HTTP connection with the GET request method and opens the connection with The Guardian API. In the end, it closes the connection and saves the response in a file using an [Outputter](#outputter) object. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
   - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if different contents in the configuration file are invalid
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
 
