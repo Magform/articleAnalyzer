@@ -76,10 +76,10 @@ This toDO contain all the things that we need to do.
 [x] Summary
     [x] Article
     [x] Library
-    [] Argparser
-    [] Elaborator
-    [] Outputter
-    [] Downloader
+    [x] Argparser
+    [x] Elaborator
+    [x] Outputter
+    [x] Downloader
     [x] ArticleLoader
 []javaDoc
 ### How to use
