@@ -73,7 +73,7 @@ public class Argparser {
   }
 
 /**
-  * Create an Argparser object providing various command line options and checking if the given arguments are valid or not
+  * Creates an Argparser object providing various command line options and checking if the given arguments are valid or not
   * @param args the command line arguments
   * @throws FileNotFoundException if the files required are not specified
   * @throws IllegalArgumentException if the given arguments are not valid for different reasons
