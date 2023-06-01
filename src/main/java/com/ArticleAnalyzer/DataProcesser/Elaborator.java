@@ -32,7 +32,7 @@ public class Elaborator {
 
 /**
   * Retrieves from the Library object the articles words and their occurrences (counted once in each article) and save them in the LinkedHashMap object.
-  * It also orders the LinkedHashMap object based on which word contains more occurrences
+  * It also orders the LinkedHashMap object basing on which word contains more occurrences
   * @see orderMap()
 */
   private void analyze() {
@@ -55,7 +55,7 @@ public class Elaborator {
   }
 
 /**
-  * Orders the LinkedHashMap object based on which word contains more occurrences
+  * Orders the LinkedHashMap object basing on which word contains more occurrences
 */
   private void orderMap() {
     LinkedHashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
