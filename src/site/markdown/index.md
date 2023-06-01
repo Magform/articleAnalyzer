@@ -3,19 +3,17 @@
 The main aim of this project is to develop software capable of download, or load from file, articles from online newspapers rendered available from various sources and to extract and visualize terms most presents in the set of downloaded articles.
 
 ## Table Of Content
-- [Article analyzer](#article-analyzer)
-  - [Table Of Content](#table-of-content)
-  - [Getting started](#getting-started)
-    - [Prerequisites](#prerequisites)
+- [Getting started](#getting-started)
+  - [Prerequisites](#prerequisites)
     - [Installing](#installing)
     - [Running the tests](#running-the-tests)
-  - [Usage](#usage)
+- [Usage](#usage)
     - [Configure downloader](#configure-downloader)
     - [Run](#run)
-  - [Class](#class)
-  - [Library used](#library-used)
-  - [Author](#author)
-  - [License](#license)
+- [Class](#class)
+- [Library used](#library-used)
+- [Author](#author)
+- [License](#license)
 
 
 ## Getting started
