@@ -105,7 +105,7 @@ public class Downloader {
   }
 
 /**
-  * Start the download process based on a specified endpoint
+  * Start the download process basing on a specified endpoint
   * @throws IllegalArgumentException if the specified endpoint is invalid
   * @throws IOException if there are errors during the download process
 */
