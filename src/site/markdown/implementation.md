@@ -208,5 +208,5 @@ After all the Javadoc comments are written, it is possible to create a graphic d
 
 `mvn mvn javadoc:javadoc`
 
-and open the file index.html present in the path target/site/apidocs
+and open the file index.html present in the path target/site/apidocs.
 
