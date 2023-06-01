@@ -14,7 +14,7 @@ This endpoint allows you to obtain articles directly from TheGuardian's website 
 A couple of examples of valid configuration files will be provided:
 
 #### Example 1
-in this example they request the default number of results (10) without a specific query or output file (the API key is omitted for obvious security reasons).
+In this example they request the default number of results (10) without a specific query or output file (the API key is omitted for obvious security reasons).
 
     endpoint: "TheGuardian"
     link: "https://content.guardianapis.com/search?"
