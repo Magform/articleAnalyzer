@@ -2,18 +2,18 @@
 
 The main aim of this project is to develop a software capable of download, or load from file, articles from different online newspapers and to extract and visualize words, from their titles and bodies, and occurrences (counted once in each article) which appear more in the set of downloaded articles.
 
-## Table Of Content
-- [Getting started](#getting-started)
-  - [Prerequisites](#prerequisites)
-    - [Installing](#installing)
-    - [Running the tests](#running-the-tests)
-- [Usage](#usage)
-    - [Configure downloader](#configure-downloader)
-    - [Run](#run)
-- [Classes](#classes)
-- [Libraries used](#libraries-used)
-- [Authors](#authors)
-- [License](#license)
+## Table of contents
+- [Getting started](#Getting_started)
+  - [Prerequisites](#Prerequisites)
+    - [Installing](#Installing)
+    - [Running the tests](#Running_the_tests)
+- [Usage](#Usage)
+    - [Configure downloader](#Configure_downloader)
+    - [Run](#Run)
+- [Classes](#Classes)
+- [Libraries used](#Libraries+used)
+- [Authors](#Authors)
+- [License](#License)
 
 
 ## Getting started
@@ -30,16 +30,16 @@ Before using this application, ensure you meet the following prerequisites:
 To build the project and install the necessary dependance you need to follow these steps:    
 1. Open a terminal     
 2. Navigate to the directory of the project     
-3. Run the following command: 
+3. Run the following command:
 
    `mvn install`
-   
+
 ### Running the tests
 To execute the test and provide the results you need to follow these steps:      
 1. Open a terminal      
 2. Navigate to the directory of the project     
 3. Run the following command:
-   
+
    `mvn test`
 
 ## Usage
@@ -71,11 +71,11 @@ In particular we have 7 classes and the main:
 - Library: implements a collection of Article objects     
 - ArticleLoader: transforms data stored on a file into an instance of the Library class  
 - Downloader: download data from a specified endpoint basing on a configuration file   
-- Outputter: transforms objects into output (to file or command line) 
+- Outputter: transforms objects into output (to file or command line)
 - Elaborator: processes a Library to get what is requested     
 - Argparser: reads command-line arguments and processes them           
 
-To go into more detail on how they interact with each other and how they work go [here](classes.html) 
+To go into more detail on how they interact with each other and how they work go [here](implementation.html)
 
 ## Libraries used
 For the development of this project we have used:
@@ -95,7 +95,7 @@ Here their names:
 - Antonio Gastaldi
 
 ## License
-This project is licensed under the Affero General Public License (A-GPL) version 3.0. 
+This project is licensed under the Affero General Public License (A-GPL) version 3.0.
 
 The A-GPL is a copyleft license that requires anyone who uses, modifies, or distributes the code to make their source code available under the same license. This means that any changes or improvements made to the code must be released under the A-GPL.
 

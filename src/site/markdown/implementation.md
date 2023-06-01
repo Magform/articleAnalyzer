@@ -2,19 +2,19 @@
 The implementation side of the ArticleAnalyzer project, from all the [Java](https://docs.oracle.com/javase/8/docs/api/) classes which allow to realize its aim, to the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments, in order to create a graphic description of all the program.
 
 ## Table of contents
-- [Classes](#classes)
-  - [Types](#types)
-    - [Article](#article)
-    - [Library](#library)
-  - [DataManagement](#data-management)
-    - [ArticleLoader](#articleloader)
-    - [Downloader](#downloader)
-    - [Outputter](#outputter)
-  - [DataProcesser](#data-processer)
-    - [Elaborator](#elaborator)
-  - [Helper](#helper)
-    - [Argparser](#argparser)
-- [Javadoc](#javadoc)
+- [Classes](#Classes)
+  - [Types](#Types)
+    - [Article](#Article)
+    - [Library](#Library)
+  - [Data Management](#Data_Management)
+    - [ArticleLoader](#ArticleLoader)
+    - [Downloader](#Downloader)
+    - [Outputter](#Outputter)
+  - [Data Processer](#Data_Processer)
+    - [Elaborator](#Elaborator)
+  - [Helper](#Helper)
+    - [Argparser](#Argparser)
+- [Javadoc](#Javadoc)
 
 ## Classes
 Here a panoramic of all the [Java](https://docs.oracle.com/javase/8/docs/api/) classes which allow the ArticleAnalyzer project to download articles from different online newspapers and to extract and visualize the words and their occurrences which appear more in the set of downloaded articles. Each class has its own package, the same directory tree created with the effective Java files.
@@ -58,7 +58,7 @@ The Library class provides:
 - getNextArticle: returns the next [Article](#article) object scanned by the internal index scannedArticles. If there are not [Article](#article) objects in the collection, it returns null
 - resetScannedArticle: reset the internal index scannedArticles to 0 in order to allow the method getNextArticle to scan the collection from the start again
 
-### DataManagement
+### Data Management
 
 #### ArticleLoader
 The ArticleLoader class loads articles contained in different file extensions, such as CSV and JSON, in a [Library](#library) object.
@@ -148,7 +148,7 @@ The Outputter class provides:
 - check: checks if the given path is valid. If the file already exists, the method deletes it and creates a new one. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
 - All the overloaded print methods throw a [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception is thrown if there are errors during the writing of the file when the printing to a file is enabled
 
-### DataProcesser
+### Data Processer
 
 #### Elaborator
 The Elaborator class elaborates the [Article](#article) objects contained in a [Library](#library) object and for each article retrieves the words, from its title and body, and their occurrences, counted once in each article, and save them in a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object with key-value pairs of type String-Integer (key-value of the same type also returned in the class methods which return a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object).
@@ -172,7 +172,7 @@ The Elaborator class provides:
 ### Helper
 
 #### Argparser
-The Argparser class provides different command line argument options in order to execute the ArticleAnalyzer project. For more information about these options, go [here](run.md).
+The Argparser class provides different command line argument options in order to execute the ArticleAnalyzer project. For more information about these options, go [here](run.html).
 
 Each Argparser object created is composed of:
 
@@ -209,4 +209,3 @@ After all the [Javadoc](https://www.oracle.com/it/technical-resources/articles/j
 `mvn javadoc:javadoc`
 
 and open the file index.html present in the path target/site/apidocs.
-

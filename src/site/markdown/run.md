@@ -3,10 +3,10 @@ To run the program, simply do:
 1. Open a terminal
 2. Navigate to the directory of the project
 3. Run the following command:
-   
-  java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar <flag>
 
-To start we suggest the use of the `-h` flag, which allows you to view all the available flags and their respective functions. 
+  `java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar <options>`
+
+To start we suggest the use of the `-h` flag, which allows you to view all the available flags and their respective functions.
 In particular the `-h` flag should show you something like this:
 
 `-h,--help`                      Print option list
@@ -19,7 +19,7 @@ In particular the `-h` flag should show you something like this:
 `-s,--show <arg>`                Choose the number of results to show
 
 ## Load data
-We therefore have that with the -d flag we can choose the method of obtaining data we can use `-d file` to load the data from a file specificated with `-i <fileWithData>`, or we can use `-d download` to download data from a webAPI, for do this but we need to specify the downloader configuration file with `-c <downloaderConfigurationFile>`. 
+We therefore have that with the -d flag we can choose the method of obtaining data we can use `-d file` to load the data from a file specificated with `-i <fileWithData>`, or we can use `-d download` to download data from a webAPI, for do this but we need to specify the downloader configuration file with `-c <downloaderConfigurationFile>`.
 ## Output      
 As output instead we can choose, thanks to the `-om` flag whether to have it on the console with `-om C`, on a file with `-om F` or on both with `-om CF`, if we are outputting through a file we need also to choose the file with `-o <outputFile>`.   
 ## Other flag    
