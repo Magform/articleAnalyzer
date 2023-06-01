@@ -154,7 +154,7 @@ The Elaborator class provides:
 - getNthEntry: returns the given entry of the given [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
 
 ## Argparser
-The Argparser class provides different command line argument options in order to execute the ArticleAnalyzer project. For more information about these options, go [here]("run.md").
+The Argparser class provides different command line argument options in order to execute the ArticleAnalyzer project. For more information about these options, go [here](run.md).
 
 Each Argparser object created is composed of:
 
