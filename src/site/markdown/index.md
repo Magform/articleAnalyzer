@@ -24,7 +24,7 @@ Before using this application, ensure you meet the following prerequisites:
 
 - [maven](https://maven.apache.org/) installed: Maven is a build and dependency management tool used for this project. Make sure you have Maven installed on your system.
 - Developer key from [The Guardian Api](https://open-platform.theguardian.com/) site, if you want to download and load the article from the respective api.      
-- CSV files from [new york times](https://www.nytimes.com/), if you want to test loading articles from a CSV.     
+- CSV files from [New York Times](https://www.nytimes.com/), if you want to test loading articles from a CSV.     
 
 ### Installing
 To build the project and install the necessary dependance you need to follow these steps:    
