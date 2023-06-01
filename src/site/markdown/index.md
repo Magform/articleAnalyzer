@@ -32,7 +32,7 @@ To build the project and install the necessary dependance you need to follow the
 2. Navigate to the directory of the project     
 3. Run the following command:     
 
-    mvn install
+   `mvn install`
    
 ### Running the tests
 To execute the test and provide the results you need to follow these steps:      
