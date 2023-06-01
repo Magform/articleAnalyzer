@@ -1,16 +1,21 @@
-# Classes
+# Implementation
+The implementation side of the ArticleAnalyzer project, from all the Java classes which allow to realize its aim, to the Javadoc comments, in order to create a graphic description of all the program.
+
+## Table of contents
+- [Classes](#classes)
+  - [Article](#article)
+  - [Library](#library)
+  - [ArticleLoader](#articleloader)
+  - [Downloader](#downloader)
+  - [Outputter](#outputter)
+  - [Elaborator](#elaborator)
+  - [Argparser](#argparser)
+- [Javadoc](#javadoc)
+
+## Classes
 Here a panoramic of all the Java classes which allow the ArticleAnalyzer project to download articles from different online newspapers and to extract and visualize the words and their occurrences which appear more in the set of downloaded articles.
 
-## Summary
-- [Article](#article)
-- [Library](#library)
-- [ArticleLoader](#articleloader)
-- [Downloader](#downloader)
-- [Outputter](#outputter)
-- [Elaborator](#elaborator)
-- [Argparser](#argparser)
-
-## Article
+### Article
 The Article class describes an article from an online newspaper.
 
 Each Article object created is composed of:
@@ -29,7 +34,7 @@ The Article class provides:
 - getters for each attribute
 - setters for each attribute
 
-## Library
+### Library
 The Library class represents a collection of [Article](#article) objects, implemented with an array.
 
 Initially, the collection contains 10 [Article](#article) objects initialized with the default constructor, but there are two internal indexes which allow to work on the entire collection and, eventually, resize it:
@@ -47,7 +52,7 @@ The Library class provides:
 - getNextArticle: returns the next [Article](#article) object scanned by the internal index scannedArticles. If there are not [Article](#article) objects in the collection, it returns null
 - resetScannedArticle: reset the internal index scannedArticles to 0 in order to allow the method getNextArticle to scan the collection from the start again
 
-## ArticleLoader
+### ArticleLoader
 The ArticleLoader class loads articles contained in different file extensions, such as CSV and JSON, in a [Library](#library) object.
 
 Each ArticleLoader object created is composed of:
@@ -73,7 +78,7 @@ The ArticleLoader class provides:
   - [com.opencsv.exceptions.CsvValidationException](https://opencsv.sourceforge.net/apidocs/com/opencsv/exceptions/CsvValidationException.html): if there are errors during the reading of CSV file
   - [org.json.simple.parser.ParseException](https://javadoc.io/static/com.googlecode.json-simple/json-simple/1.1.1/org/json/simple/parser/ParseException.html): if there are errors during the reading of the JSON file
 
-## Downloader
+### Downloader
 The Downloader class allows to download articles from online newspapers (currently only The Guardian), basing on a configuration file created before.
 
 Each Downloader object created is composed of:
@@ -108,7 +113,7 @@ The Downloader class provides:
   - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if different contents in the configuration file are invalid
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
 
-## Outputter
+### Outputter
 The Outputter class is responsible for printing [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects, [Article](#article) objects, [Library](#library) objects and [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/java.util.LinkedHashMap.html) objects to the console or to a file.
 
 Each Outputter object created is composed of:
@@ -135,7 +140,7 @@ The Outputter class provides:
 - check: checks if the given path is valid. If the file already exists, the method deletes it and creates a new one. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
 - All the overloaded print methods throw a [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception is thrown if there are errors during the writing of the file when the printing to a file is enabled
 
-## Elaborator
+### Elaborator
 The Elaborator class elaborates the [Article](#article) objects contained in a [Library](#library) object and for each article retrieves the words, from its title and body, and their occurrences, counted once in each article, and save them in a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object with key-value pairs of type String-Integer (key-value of the same type also returned in the class methods which return a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object).
 
 Each Elaborator object created is composed of:
@@ -154,7 +159,7 @@ The Elaborator class provides:
 - getWords with an array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects and an int as parameters: returns a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object which contains the given number of words which are not included in the given array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects. This method throws a [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html) exception if the given number of words to return is invalid
 - getNthEntry: returns the given entry of the given [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
 
-## Argparser
+### Argparser
 The Argparser class provides different command line argument options in order to execute the ArticleAnalyzer project. For more information about these options, go [here](run.md).
 
 Each Argparser object created is composed of:
