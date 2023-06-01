@@ -1,6 +1,6 @@
 # Article analyzer
 
-The main aim of this project is to develop software capable of download, or load from file, articles from online newspapers rendered available from various sources and to extract and visualize terms most presents in the set of downloaded articles.
+The main aim of this project is to develop a software capable of download, or load from file, articles from different online newspapers and to extract and visualize words, from their titles and bodies, and occurrences (counted once in each article) which appear more in the set of downloaded articles.
 
 ## Table Of Content
 - [Getting started](#getting-started)
