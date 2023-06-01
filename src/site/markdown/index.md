@@ -10,9 +10,9 @@ The main aim of this project is to develop software capable of download, or load
 - [Usage](#usage)
     - [Configure downloader](#configure-downloader)
     - [Run](#run)
-- [Class](#class)
-- [Library used](#library-used)
-- [Author](#author)
+- [Classes](#classes)
+- [Libraries used](#libraries-used)
+- [Authors](#authors)
 - [License](#license)
 
 
@@ -62,8 +62,7 @@ To run the program, simply do:
 To start we suggest the use of the `-h` flag, which allows you to view all the available flags and their respective functions.        
 For more information on the various flags and some examples go [here](run.html).     
 
-
-## Class
+## Classes
 In this section we will explain all the classes.      
 In particular we have 7 classes and the main:     
 
@@ -76,10 +75,9 @@ In particular we have 7 classes and the main:
 - Elaborator: processes a Library to get what is requested     
 - Argparser: reads command-line arguments and processes them           
 
-
 To go into more detail on how they interact with each other and how they work go [here](classes.html) 
 
-## Library used
+## Libraries used
 For the development of this project we have used:
 
 - [Maven](https://maven.apache.org/): development environment management
@@ -88,7 +86,7 @@ For the development of this project we have used:
 - [commons-cli](https://commons.apache.org/proper/commons-cli/): command-line argument handling
 - [junit](https://junit.org/junit5/): testing environment management
 
-## Author
+## Authors
 
 ## License
 This project is licensed under the Affero General Public License (A-GPL) version 3.0. 
