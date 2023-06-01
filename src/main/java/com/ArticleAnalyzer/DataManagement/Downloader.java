@@ -100,7 +100,7 @@ public class Downloader {
   * Returns the file path of the saved response data
   * @return the file path of the saved response data
 */
-  public String getJSONoutput() {
+  public String getJSONOutput() {
     return JSONOutput;
   }
 
