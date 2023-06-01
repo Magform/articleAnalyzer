@@ -135,7 +135,7 @@ The Outputter class provides:
 - All the overloaded print methods throw a [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception is thrown if there are errors during the writing of the file when the printing to a file is enabled
 
 ## Elaborator
-The Elaborator class elaborates the [Article](#article) objects contained in a [Library](#library) object and for each article retrieves the words, from its title and body, and their occurrences, counted once in each article, and save them in a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object.
+The Elaborator class elaborates the [Article](#article) objects contained in a [Library](#library) object and for each article retrieves the words, from its title and body, and their occurrences, counted once in each article, and save them in a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object with key-value pairs of type String-Integer (key-value of the same type also returned in the class methods which return a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object).
 
 Each Elaborator object created is composed of:
 
@@ -152,4 +152,29 @@ The Elaborator class provides:
 - getWords with an int as a parameter: returns a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object which contains the given number of words and their occurrences. This method throws a [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html) exception if the given number of words to return is invalid
 - getWords with an array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects and an int as parameters: returns a [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object which contains the given number of words which are not included in the given array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects. This method throws a [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html) exception if the given number of words to return is invalid
 - getNthEntry: returns the given entry of the given [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) object
+
+## Argparser
+The Argparser class provides different command line argument options in order to execute the ArticleAnalyzer project. For more information about these options, go [here]("run.md").
+
+Each Argparser object created is composed of:
+
+- outputter: the [Outputter](#outputter) object
+- articleLoader: the [ArticleLoader](#articleloader) object
+- dataFromFile: a boolean value which specify if the articles are retrieved from file
+- downloader: the [Downloader](#downloader) object
+- toExclude: the array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects to exclude from the printing of the occurrences
+- toShow: the number of words and their occurrences to show
+
+The Argparser class provides:
+
+- getOutputter: returns the [Outputter](#outputter) object
+- getToExclude: returns the array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects to exclude from the printing of the occurrences
+- getToShow: returns the number of words and their occurrences to show
+- getArticleLoader: returns the [ArticleLoader](#articleloader) object
+- getDownloader: returns the [Downloader](#downloader) object
+- getDataFromFile: returns if the articles are retrieved from file
+- constructor with an array of [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects: creates an Argparser object providing various command line argument options and checking if the given arguments are valid or not. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+  - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if the files required are not specified
+  - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if the given command line arguments are invalid for different reasons
+  - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the parsing of the arguments
 
