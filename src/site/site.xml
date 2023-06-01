@@ -8,9 +8,9 @@
 
         <menu name="Menu">
             <item name="Homepage" href="index.html"/>
-            <item name="Getting started" href="#getting-started"/>
-            <item name="Usage" href="#usage"/>
-            <item name="Class" href="class.html"/>
+            <item name="Getting started" href="#index.html#getting-started"/>
+            <item name="Usage" href="index.html#usage"/>
+            <item name="Implementation" href="implementation.html"/>
         </menu>
     </body>
 </project>
