@@ -50,7 +50,7 @@ To configure downloader you need to create a new file, choose the endpoint that 
 You can find a list with all endpoint and the configuration needed for every endpoint at [this](endpoint.html) link.     
 
 ### Run
-If you have correctly performed the installation you should have obtained, in the main project folder, a "target" folder containing, among other folders, a file named "articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies. jar".           
+If you have correctly performed the installation you should have obtained, in the main project folder, a "target" folder containing, among other folders, a file named "articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar".           
 If so then the installation was successful and we can proceed to use our software.    
 To run the program, simply do:     
 1. Open a terminal     
