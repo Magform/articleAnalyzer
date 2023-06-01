@@ -196,3 +196,17 @@ The Argparser class provides:
   - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if the given command line arguments are invalid for different reasons
   - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the parsing of the arguments
 
+## Javadoc
+For each class described before, Javadoc comments have been written in every constructor, method and as an introduction to the class. Each Javadoc comment might contain these information:
+- a brief description of what each constructor, method or class do
+- the @param option, which allow to specify a parameter in the constructor or the method
+- the @return option, which allow to specify what a method returns after its execution
+- the @see option, which allow to redirect to another constructor or method
+- the @throws option, which allow to specify which exception may be thrown during the execution of the constructor or the method
+
+After all the Javadoc comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical Java API documentation. To create it, run on the command line:
+
+`mvn mvn javadoc:javadoc`
+
+and open the file index.html present in the path target/site/apidocs
+
