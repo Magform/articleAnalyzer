@@ -40,7 +40,7 @@ To execute the test and provide the results you need to follow these steps:
 2. Navigate to the directory of the project     
 3. Run the following command:     
 
-    mvn test
+    `mvn test`
 
 ## Usage
 Once you have all the prerequisites and installed the software you can proceed, if you want to download articles from The Guardian, by writing the Downloader configuration file or, if you want to use a file, you can skip the Downloader configuration part.    
