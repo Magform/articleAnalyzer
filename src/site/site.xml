@@ -4,11 +4,11 @@
     <links>
       <item name = "Apache" href = "http://www.apache.org/"/>
     </links>
-    <menu name="Menu">
+    <menu name = "Menu">
       <item name = "Homepage" href = "index.html"/>
       <item name = "Endpoints" href = "endpoints.html"/>
       <item name = "Run" href = "run.html"/>
-      <item name="Implementation" href="implementation.html"/>
+      <item name = "Implementation" href = "implementation.html"/>
     </menu>
   </body>
 </project>
