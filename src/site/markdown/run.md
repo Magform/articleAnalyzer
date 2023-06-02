@@ -70,14 +70,14 @@ Here some examples on how to use the command line options. Remember that these o
 ### Example 1
 This example shows that the articles are downloaded from the web basing on the file downlaodConfiguration.txt and all the words and occurrences (counted once in each article) contained in the articles are printed to console ordered by the words which appears more.
 
-    `-d download -c downlaodConfiguration.txt -om C`
+    -d download -c downlaodConfiguration.txt -om C
 
 ### Example 2
 This example shows that the articles are loaded from the file articles.csv and all the words and occurrences (counted once in each article) contained in the articles are printed to the file occurrences.txt ordered by the words which appears more.
 
-    `-d file -i articles.csv -om F -o occurrences.txt`
+    -d file -i articles.csv -om F -o occurrences.txt
 
 ### Example 3
 This example is more advanced than the previous ones as the articles are obtained by the file articles.json and the 50 words with more occurrences (counted once in each article and order by the words which appear more) which are not a, an, the, or, be are printed both to console and the file occurrences.txt. In this example, the options are specified by their full names using the `--` clause.
 
-    `--data file --inputFile articles.json --outoutMethod CF --outputFile occurrences.txt --toExclude "a, an, the, or, be" --show 50`
+    --data file --inputFile articles.json --outoutMethod CF --outputFile occurrences.txt --toExclude "a, an, the, or, be" --show 50
