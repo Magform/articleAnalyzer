@@ -85,7 +85,7 @@ public class Argparser {
     options.addOption("d", "data", true, "Method of obtaining articles (values admitted: file, download)");
     options.addOption("i", "inputFile", true, "File path which contains articles");
     options.addOption("c", "configurationFile", true, "File path which contains the download configuration");
-    options.addOption("om", "outputMethod", true, "Method of printing the output (values admitted: C (console), F (file), CF (console e file)");
+    options.addOption("om", "outputMethod", true, "Method of printing the output (values admitted: C (console), F (file), CF (console e file))");
     options.addOption("o", "outputFile", true, "Output file path");
     options.addOption("e", "toExclude", true, "Words to exclude (example: \"an, have, the\")");
     options.addOption("s", "show", true, "Number of results to show");
@@ -96,7 +96,7 @@ public class Argparser {
       if (cmd.hasOption("h")) {
         HelpFormatter formatter = new HelpFormatter();
         formatter.setOptionComparator(null); //options in the order they were declared
-        formatter.printHelp(120, "Article Analyzer", "", options, "");
+        formatter.printHelp(150, "Article Analyzer", "", options, "");
         System.exit(0);
       }
       if (!cmd.hasOption("d")) {
@@ -182,7 +182,7 @@ public class Argparser {
     catch (ParseException e) {
       HelpFormatter formatter = new HelpFormatter();
       formatter.setOptionComparator(null); //options in the order they were declared
-      formatter.printHelp(120, "Article Analyzer", "", options, "");
+      formatter.printHelp(150, "Article Analyzer", "", options, "");
       System.exit(1);
     }
   }
