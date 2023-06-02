@@ -78,6 +78,6 @@ This example shows that the articles are loaded from the file articles.csv and a
     `-d file -i articles.csv -om F -o occurrences.txt`
 
 ### Example 3
-This example is more advanced than the previous ones as the articles are obtained by the file articles.json and the 50 words with more occurrences (counted once in each article and order by the words which appear more) which are not a, an, the, or, be are are printed both to console and the file occurrences.txt. In this example, the options are specified by their full name using the `--` clause.
+This example is more advanced than the previous ones as the articles are obtained by the file articles.json and the 50 words with more occurrences (counted once in each article and order by the words which appear more) which are not a, an, the, or, be are printed both to console and the file occurrences.txt. In this example, the options are specified by their full names using the `--` clause.
 
     `--data file --inputFile articles.json --outoutMethod CF --outputFile occurrences.txt --toExclude "a, an, the, or, be" --show 50`
