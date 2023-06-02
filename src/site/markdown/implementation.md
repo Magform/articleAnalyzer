@@ -118,7 +118,7 @@ The Downloader class provides:
     - the number of articles to download
     - the query
 
-    It establishes the HTTP connection with the GET request method using a [java.net.HttpURLConnection](https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html) and opens the connection with The Guardian API. In the end, it closes the connection and saves the response in a file using an [Outputter](#Outputter) object. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+    It establishes the HTTP connection with the GET request method using a [java.net.HttpURLConnection](https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html) object and opens the connection with The Guardian API. In the end, it closes the connection and saves the response in a file using an [Outputter](#Outputter) object. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
 
       - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if different contents in the configuration file are invalid
       - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
