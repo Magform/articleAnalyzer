@@ -109,7 +109,7 @@ public class Outputter {
   }
 
 /**
-  * Print the given string to a file
+  * Prints the given string to a file
   * @param s the string to print to a file
   * @throws IOException if there are errors during the writing of the file
 */
@@ -126,7 +126,7 @@ public class Outputter {
   }
 
 /**
-  * Print the given Article object to JSON format
+  * Prints the given Article object to JSON format
   * @see print(String s)
   * @param a the Article object to be printed
   * @throws IOException if there are errors during the writing of the file
@@ -155,7 +155,7 @@ public class Outputter {
   }
 
 /**
-  * Print the Article object contained in the given Library object to JSON format
+  * Prints the Article object contained in the given Library object to JSON format
   * @see print(Article a)
   * @param l the Library object which contains the Article objects to be printed
   * @throws IOException if there are errors during the writing of the file
@@ -167,7 +167,7 @@ public class Outputter {
   }
 
 /**
-  * Print the given LinkedHashMap object with key-value pairs
+  * Prints the given LinkedHashMap object with key-value pairs
   * @param hashMap the LinkedHashMap object with key-value pairs to be printed
   * @throws IOException if there are errors during the writing of the file
 */
@@ -178,7 +178,7 @@ public class Outputter {
   }
 
 /**
-  * Check and throw the IOException exception if the option to print to a file is active and the file path is not specified
+  * Checks and throws the IOException exception if the option to print to a file is active and the file path is not specified
   * @throws IOException if the option to print to a file is active and the file path is not specified
 */
   private void check() throws IOException {
