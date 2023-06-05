@@ -19,6 +19,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,6 +35,8 @@ public class Downloader {
     private String query;
     private String JSONoutput;
     private String articleNumber;
+    private int initialPage;
+    private int totalPageNumber;
 
     /**
      * Constructs a Downloader object with all variables set to null, making it inactive.
@@ -43,6 +49,8 @@ public class Downloader {
         APIkey = null;
         JSONoutput = null;
         articleNumber = null;
+        initialPage = -1;
+        totalPageNumber = -1;
     }
 
     /**
@@ -62,6 +70,8 @@ public class Downloader {
         APIkey = null;
         JSONoutput = "downloaded.json";
         articleNumber = null;
+        initialPage = 1;
+        totalPageNumber = 1;
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
         //Read the configuration file and set all the variable accordingly
         while(configurationFileScanner.hasNextLine()){
@@ -71,6 +81,7 @@ public class Downloader {
                 configurationFileScanner.close();
                 throw new IllegalArgumentException("Invalid configuration file");
             }
+
             String key = line.substring(0, splitter);
             String value = line.substring(splitter+1, line.length());
             try{
@@ -80,6 +91,7 @@ public class Downloader {
                 configurationFileScanner.close();
                 throw new IllegalArgumentException("Invalid argument in configuration file");
             }
+
             if (key.equalsIgnoreCase("link")) {
                 link = value;
             } else if (key.equalsIgnoreCase("endpoint")) {
@@ -92,6 +104,20 @@ public class Downloader {
                 JSONoutput = value;
             }else if (key.equalsIgnoreCase("articleNumber")) {
                 articleNumber = value;
+            }else if (key.equalsIgnoreCase("initialPage")) {
+                try{
+                    initialPage = Integer.parseInt(value);
+                }catch(NumberFormatException e){
+                    configurationFileScanner.close();
+                    throw new IllegalArgumentException("initialPage contain a non-int value");
+                }
+            }else if (key.equalsIgnoreCase("totalPageNumber")) {
+                try{
+                    totalPageNumber = Integer.parseInt(value);
+                }catch(NumberFormatException e){
+                    configurationFileScanner.close();
+                    throw new IllegalArgumentException("totalPageNumber contain a non-int value");
+                }
             }else{
                 configurationFileScanner.close();
                 throw new IllegalArgumentException(key +" is an invalid key but it is in the configuration file");
@@ -151,42 +177,83 @@ public class Downloader {
         }
 
         try {
-            //Merge all variable to the URL
-            urlString = link + "&show-fields=all";
-            if(articleNumber != null){
-                urlString = urlString + "&page-size="+articleNumber;
-            }
-            if(APIkey != null){
-                urlString = urlString + "&api-key="+APIkey;
-            }
-            if(query != null){
-                urlString = urlString+"&q="+query.replace(" ", "+");
-            }
-
-            //Start URL connection and elaborate response
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-        
-            // We could have used a stringBuilder here but I'm not very confident with that
-            Scanner scanner = new Scanner(connection.getInputStream());
-            String result = "";
-            while (scanner.hasNextLine()) {
-                result = result +scanner.nextLine()+"\n";
-            }
-
-            // print response to JSONOutput
+            String mergedResults = "";
             Outputter toJSON = new Outputter(false, true, JSONoutput);
-            toJSON.print(result);
+            for(int i=0; i<totalPageNumber; i++){
+                //Merge all variable to the URL
+                urlString = link + "&show-fields=all";
+                urlString = urlString + "&page="+initialPage;
+                initialPage++;
+                if(articleNumber != null){
+                    urlString = urlString + "&page-size="+articleNumber;
+                }
+                if(APIkey != null){
+                    urlString = urlString + "&api-key="+APIkey;
+                }
+                if(query != null){
+                    urlString = urlString+"&q="+query.replace(" ", "+");
+                }
+
+                //Start URL connection and elaborate response
+                URL url = new URL(urlString);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.connect();
             
-            connection.disconnect();
+                // We could have used a stringBuilder here but I'm not very confident with that
+                Scanner scanner = new Scanner(connection.getInputStream());
+                String result = "";
+                while (scanner.hasNextLine()) {
+                    result = result + scanner.nextLine()+"\n";
+                }
+
+                mergedResults = theGuardianMerge(mergedResults, result);
+
+                connection.disconnect();
+            }
+
+            toJSON.print(mergedResults);
 
         }catch(MalformedURLException e){
             throw new IOException(urlString+" is an invalid link");
         }catch(IOException e){
             throw new IOException("Error with connection to the API with URL: "+ urlString);
         }
+    }
+
+    private String theGuardianMerge(String fristJSON, String secondJSON){
+        if(fristJSON==""){
+            return secondJSON;
+        }
+        if(secondJSON==""){
+            return fristJSON;
+        }
+        JSONObject results = new JSONObject();
+        JSONObject content = new JSONObject();
+        JSONObject  frist = (JSONObject) new JSONObject(fristJSON).get("response");
+        JSONObject  second = (JSONObject) new JSONObject(secondJSON).get("response");
+        
+        content.put("status", frist.getString("status"));
+        content.put("userTier", frist.getString("userTier"));
+        content.put("total", frist.getInt("total")+second.getInt("total"));
+        content.put("pageSize", frist.getInt("pageSize"));
+        content.put("pages", frist.getInt("pages")+second.getInt("pages"));
+        content.put("orderBy", frist.getString("orderBy"));
+
+        JSONArray articles = new JSONArray();
+        JSONArray fristArticles = (JSONArray) frist.get("results");
+        JSONArray secondArticles = (JSONArray) second.get("results");
+
+        articles = fristArticles;
+        
+        for (int i = 0; i < secondArticles.length(); i++) {
+            articles.put(secondArticles.getJSONObject(i));
+        }
+
+        content.put("results", articles);
+
+        results.put("response", content);
+        return results.toString();
     }
 
 }
