@@ -18,7 +18,7 @@ This endpoint allows you to obtain articles directly from The Guardian's website
 - link: "https://content.guardianapis.com/search?"
 - APIkey: your API key
 - query: search queries [OPTIONAL]
-- articleNumber: number of articles you want to load for page, (for this endpoint the maximum is 200). If not entered, the default number of results is 10 [OPTIONAL]
+- articlesPerPage: number of articles you want to load for page, (for this endpoint the maximum is 200). If not entered, the default number of results is 10 [OPTIONAL]
 - initialPage: number of the first page to download [OPTIONAL]
 - totalPageNumber: total number of pages to download [OPTIONAL]
 - JSONOutput: location where the results will be saved, if not entered a default output file is expected (downloaded.json) [OPTIONAL]
@@ -40,17 +40,17 @@ In this example the request is 100 results with the query "nuclear power". The r
     link: "https://content.guardianapis.com/search?"
     APIkey: "APIkey"
     query: "nuclear power"
-    articleNumber: "100"
+    articlesPerPage: "100"
     JSONOutput: "outputter_results.json"
 
 #### Example 3
-In this example the request is 400 results, in particular we will ask for pages 2 to 5 with 100 results per page, with the query "nuclear power". The results will be saved into downloader_results.json.
+In this example we request 400 results, in particular we will ask for pages 2 to 5 with 100 results per page, with the query "nuclear power". The results will be saved into downloader_results.json.
 
     endpoint: "TheGuardian"
     link: "https://content.guardianapis.com/search?"
     APIkey: "APIkey"
     query: "nuclear power"
-    articleNumber: "100"
+    articlesPerPage: "100"
     initalPage: "2"
     totalPageNumber: "4"
     JSONOutput: "outputter_results.json"
@@ -62,5 +62,5 @@ This example is more advanced than the previous ones as a non-default parameter 
     link: "https://content.guardianapis.com/search?tag=technology/apple"
     APIkey: "APIkey"
     query: "nuclear power"
-    articleNumber: "100"
+    articlesPerPage: "100"
     JSONOutput: "outputter_results.json"

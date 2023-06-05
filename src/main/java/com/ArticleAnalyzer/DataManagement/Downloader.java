@@ -34,7 +34,7 @@ public class Downloader {
     private String APIkey;
     private String query;
     private String JSONoutput;
-    private String articleNumber;
+    private int articlesPerPage;
     private int initialPage;
     private int totalPageNumber;
 
@@ -48,7 +48,7 @@ public class Downloader {
         query = null;
         APIkey = null;
         JSONoutput = null;
-        articleNumber = null;
+        articlesPerPage = -1;
         initialPage = -1;
         totalPageNumber = -1;
     }
@@ -69,7 +69,7 @@ public class Downloader {
         query = null;
         APIkey = null;
         JSONoutput = "downloaded.json";
-        articleNumber = null;
+        articlesPerPage = -1;
         initialPage = 1;
         totalPageNumber = 1;
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
@@ -102,8 +102,13 @@ public class Downloader {
                 APIkey = value;
             } else if (key.equalsIgnoreCase("JSONoutput")) {
                 JSONoutput = value;
-            }else if (key.equalsIgnoreCase("articleNumber")) {
-                articleNumber = value;
+            }else if (key.equalsIgnoreCase("articlesPerPage")) {
+                try{
+                    articlesPerPage = Integer.parseInt(value);
+                }catch(NumberFormatException e){
+                    configurationFileScanner.close();
+                    throw new IllegalArgumentException("articlesPerPage contain a non-int value");
+                }
             }else if (key.equalsIgnoreCase("initialPage")) {
                 try{
                     initialPage = Integer.parseInt(value);
@@ -175,6 +180,9 @@ public class Downloader {
         if(APIkey == null || APIkey.equalsIgnoreCase("")){
             throw new IllegalArgumentException("APIkey need to be configured");
         }
+        if(articlesPerPage > 200 || articlesPerPage < -1){
+            throw new IllegalArgumentException("articlesPerPage value is invalid (it must be an int between 0 and 200 included)");
+        }
 
         try {
             String mergedResults = "";
@@ -184,8 +192,8 @@ public class Downloader {
                 urlString = link + "&show-fields=all";
                 urlString = urlString + "&page="+initialPage;
                 initialPage++;
-                if(articleNumber != null){
-                    urlString = urlString + "&page-size="+articleNumber;
+                if(articlesPerPage != -1){
+                    urlString = urlString + "&page-size="+articlesPerPage;
                 }
                 if(APIkey != null){
                     urlString = urlString + "&api-key="+APIkey;
@@ -245,7 +253,7 @@ public class Downloader {
         JSONArray secondArticles = (JSONArray) second.get("results");
 
         articles = fristArticles;
-        
+
         for (int i = 0; i < secondArticles.length(); i++) {
             articles.put(secondArticles.getJSONObject(i));
         }
