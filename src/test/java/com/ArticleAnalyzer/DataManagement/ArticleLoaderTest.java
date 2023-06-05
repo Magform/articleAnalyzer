@@ -33,7 +33,7 @@ public class ArticleLoaderTest {
     //test loader
     @Test
     public void TestLoadCSV() throws CsvValidationException, IOException, ParseException, org.json.simple.parser.ParseException{
-        ArticleLoader test = new ArticleLoader(PATH+"/ValidCSV.csv");
+        ArticleLoader test = new ArticleLoader(PATH+"/validCSV.csv");
         Library testLibrary = test.getLoadedLibrary();
         assertEquals("testID", testLibrary.getArticle(1).getId());
         assertEquals("testBodyText", testLibrary.getArticle(1).getBodyText());
@@ -48,7 +48,7 @@ public class ArticleLoaderTest {
 
     @Test
     public void TestLoadJSON() throws CsvValidationException, IOException, ParseException, org.json.simple.parser.ParseException{
-        ArticleLoader test = new ArticleLoader(PATH+"/ValidJSON.json");
+        ArticleLoader test = new ArticleLoader(PATH+"/validJSON.json");
         Library testLibrary = test.getLoadedLibrary();
 
         assertEquals("testID", testLibrary.getArticle(1).getId());
@@ -65,7 +65,7 @@ public class ArticleLoaderTest {
 
     @Test
     public void TestLoadJSON2() throws CsvValidationException, IOException, ParseException, org.json.simple.parser.ParseException{
-        ArticleLoader test = new ArticleLoader(PATH+"/ValidJSON2.json");
+        ArticleLoader test = new ArticleLoader(PATH+"/validJSON2.json");
         Library testLibrary = test.getLoadedLibrary();
 
         assertEquals("artanddesign/2023/may/03/luxury-and-power-review-bender-persians-greeks-british-museum", testLibrary.getArticle(1).getId());
@@ -80,7 +80,7 @@ public class ArticleLoaderTest {
 
     @Test
     public void TestLoadJSONWithProblem() throws FileNotFoundException{
-        ArticleLoader test = new ArticleLoader(PATH+"");
+        ArticleLoader test = new ArticleLoader(PATH+"/invalidJSON.json");
     }
     
 }
