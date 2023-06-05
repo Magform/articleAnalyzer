@@ -218,7 +218,7 @@ In order to deploy the [Javadoc](https://www.oracle.com/it/technical-resources/a
 - artifactId: maven-javadoc-plugin
 - version: 3.5.0
 - configuration
-    - show: private, which displays all the private attributes and methods of the classes
+    - show: private, which allows to display all the private attributes and methods of the classes
 
 After all the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical Java API documentation. To create it, run on the command line:
 
