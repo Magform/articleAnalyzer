@@ -212,6 +212,14 @@ For each class described before, [Javadoc](https://www.oracle.com/it/technical-r
 - the @see option, which allow to redirect to another constructor or method used in the current constructor or method
 - the @throws option, which allow to specify which exception may be thrown during the execution of the constructor or the method
 
+In order to deploy the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) documentation, in the file pom.xml there is the need to specify, on the plugins side, the plugin composed of these attributes:
+
+- groupId: org.apache.maven.plugins
+- artifactId: maven-javadoc-plugin
+- version: 3.5.0
+- configuration
+    - show: private, which displays all the private attributes and methods of the classes
+
 After all the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical Java API documentation. To create it, run on the command line:
 
 `mvn javadoc:javadoc`
