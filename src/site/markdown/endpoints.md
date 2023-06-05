@@ -56,6 +56,7 @@ In this example the request is 400 results, in particular to download pages from
 
 #### Example 4
 This example is more advanced than the previous ones as a non-default parameter is also inserted. In particular, we are going to obtain only the page with a specific tag. For all the possible queries, see the [official documentation](https://open-platform.theguardian.com/documentation/).
+
   endpoint: "TheGuardian"
   link: "https://content.guardianapis.com/search?tag=technology/apple"
   APIkey: "APIkey"
