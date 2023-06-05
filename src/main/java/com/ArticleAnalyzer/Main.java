@@ -22,7 +22,7 @@ public class Main {
       }
     }
     catch(Exception e) {
-      System.err.println("Errore: " + e);
+      System.err.println("Error: " + e);
       System.exit(1);
     }
   }
