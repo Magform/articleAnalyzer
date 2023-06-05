@@ -97,7 +97,9 @@ Each Downloader object created is composed of:
 - APIKey: the user api-key which specify that this user is allowed to download the articles
 - query: the keywords which allows to download articles regarding specific arguments
 - JSONOutput: the file name where to save the response received from the download
-- articleNumber: the number of articles to download
+- articlesPerPage: the number of articles you want to load per page
+- initialPage: the number of the first page to download
+- totalPageNumber: the total number of pages to download
 
 The Downloader class provides:
 
@@ -110,18 +112,21 @@ The Downloader class provides:
 - download: starts the download process based on a specific endpoint (currently the download is possible only for The Guardian newspaper). Different exceptions are thrown, basing on the errors occurred during the execution of the method:
     - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if the endpoint specified in the configuration file is invalid
     - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
-- downloadFromTheGuardian: download the articles from The Guardian newspaper (TheGuardian is the specified endpoint in order to download from this newspaper). The method creates the full web url including:
+- downloadFromTheGuardian: downloads the articles from The Guardian newspaper (TheGuardian is the specified endpoint in order to download from this newspaper) contained at the specified pages with the specified page size. The method creates the full web url including:
 
     - the base link
     - the api-key
     - show-fields=all, which allows to receive the title and the body of each article
-    - the number of articles to download
     - the query
+    - the page-size; if not specified, the default value is 10
+    - the page to download; if not specified, the default initial page value where to start the download is 1
 
-    It establishes the HTTP connection with the GET request method using a [java.net.HttpURLConnection](https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html) object and opens the connection with The Guardian API. In the end, it closes the connection and saves the response in a file using an [Outputter](#Outputter) object. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
+    It establishes the HTTP connection for each page to download with the GET request method using a [java.net.HttpURLConnection](https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html) object and opens the connection with The Guardian API. In the end, it closes the connection, merge the current response received with the others already merged, saves the response in a file using an [Outputter](#Outputter) object. Different exceptions are thrown, basing on the errors occurred during the execution of the method:
 
       - [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html): if different contents in the configuration file are invalid
       - [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html): if there are errors during the download process
+
+- mergeTheGuardianResponses: returns all the responses given by The Guardian merged in a unique JSON response with all the modified settings. Specifically, it takes the given response contained in a [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object and merges it in the other given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object which contains all the other part of the response already merged during a past call of this method, called by the downloadFromTheGuardian method
 
 #### Outputter
 The Outputter class is responsible for printing [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) objects, [Article](#Article) objects, [Library](#Library) objects and [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/java.util.LinkedHashMap.html) objects to the console or to a file.
