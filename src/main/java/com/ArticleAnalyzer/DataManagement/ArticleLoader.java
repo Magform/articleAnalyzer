@@ -24,7 +24,7 @@ public class ArticleLoader {
   private Library library;
 
 /**
-  * Create the Library object and the file path with the given path
+  * Creates the Library object and the file path with the given path
   * @param fileName the file path
   * @throws FileNotFoundException if the file does not exist
 */
@@ -37,7 +37,7 @@ public class ArticleLoader {
   }
 
 /**
-  * Load, according to the file extension, the articles to the Library object
+  * Loads, according to the file extension, the articles to the Library object
   * @see loadCSV()
   * @see loadJSON()
   * @throws IOException if the file extension is not specified or there are errors during the reading of the file
@@ -58,7 +58,7 @@ public class ArticleLoader {
   }
 
 /**
-  * Load to the Library object the articles contained in the CSV file
+  * Loads to the Library object the articles contained in the CSV file
   * @throws IOException if the file extension is not specified or there are errors during the reading of the file
   * @throws CsvValidationException if there are errors during the reading of CSV file
 */
@@ -97,7 +97,7 @@ public class ArticleLoader {
   }
 
 /**
-  * Load to the Library object the articles contained in the JSON file
+  * Loads to the Library object the articles contained in the JSON file
   * @throws IOException if the file extension is not specified or there are errors during the reading of the file
   * @throws ParseException if there are errors during the reading of the JSON file
 */

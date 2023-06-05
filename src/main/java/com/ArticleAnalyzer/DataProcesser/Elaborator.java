@@ -21,7 +21,6 @@ public class Elaborator {
 /**
   * Initializes the Library object with the given Library object and create an empty LinkedHashMap object.
   * @param l the Library object
-  * It also retrieves from the specified Library object the articles words and their occurrences (counted once in each article) and save them in the LinkedHashMap object
   * @see analyze()
 */
   public Elaborator(Library l) {
