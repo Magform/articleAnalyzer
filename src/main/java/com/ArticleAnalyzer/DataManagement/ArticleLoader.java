@@ -128,8 +128,9 @@ public class ArticleLoader {
      * @throws IOException              if an I/O error occurs while reading the file
      * @throws ParseException           if an error occurs while parsing the file
      * @throws org.json.simple.parser.ParseException if an error occurs while parsing the JSON file
+     * @throws ClassCastException if an error occure while casting something
      */
-    private void loadJSON() throws IOException, ParseException, org.json.simple.parser.ParseException{
+    private void loadJSON() throws IOException, ParseException, org.json.simple.parser.ParseException, ClassCastException{
         FileReader fileReader = new FileReader(file);
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(fileReader);
