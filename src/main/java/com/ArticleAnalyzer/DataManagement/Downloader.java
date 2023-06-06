@@ -44,7 +44,7 @@ public class Downloader {
   * Initializes the file path of the configuration file with given path, create a Download object with the specified settings in the configuration file and download the articles
   * @param cf the path to the configuration file
   * @throws FileNotFoundException if the configuration file does not exist
-  * @throws IllegalArgumentException if the configuration file has invalid contents
+  * @throws IllegalArgumentException if the configuration file contains invalid contents
   * @throws IOException if there are errors during the download process
 */
   public Downloader(String cf) throws FileNotFoundException, IllegalArgumentException, IOException {
@@ -154,7 +154,7 @@ public class Downloader {
 
 /**
   * Downloads data from TheGuardian endpoint and saves the response data in a file.
-  * It downloads a specified number of pages basing on the given page size and merge all the responses from each downloaded page
+  * It downloads a specified number of pages based on the given page size and merge all the responses from each downloaded page
   * @throws IllegalArgumentException if different contents in the configuration file are invalid
   * @throws IOException if there are errors during the download process
 */
@@ -174,7 +174,7 @@ public class Downloader {
       String mergedResults = "";
       Outputter toJSON = new Outputter(false, true, JSONOutput);
       for (int i = 0; i < totalPageNumber; i++) {
-        //Create the web url with the specified parameters for each page formed of the page-size given
+        //Create the web url with the specified parameters for each page formed oby the given page-size
         urlString = link + "&show-fields=all";
         urlString = urlString + "&page=" + initialPage;
         initialPage++;
@@ -186,7 +186,7 @@ public class Downloader {
           urlString = urlString + "&q=" + query.replace(" ", "+");
         }
 
-        //Establishes a connection, retrieves and elaborates the response
+        //Establishes a connection, processes and retrieves the response
         URL url = new URL(urlString);
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
         connection.setRequestMethod("GET");
@@ -198,10 +198,10 @@ public class Downloader {
           result = result + scanner.nextLine() + "\n";
         }
 
-        //Adds the response retrieved by the current download connection in the response merged before
+        //Adds the response retrieved from the current download connection into the previously merged response
         mergedResults = mergeTheGuardianResponses(mergedResults, result);
 
-        //Disconnects the connection
+        //Terminate the established connection
         connection.disconnect();
       }
       toJSON.print(mergedResults);
@@ -215,10 +215,10 @@ public class Downloader {
   }
 
 /**
-  * Returns all the responses given by The Guardian merged in a unique JSON response with all the modified settings
-  * @param merged the responses already merged
-  * @param toMerge the response to merge together with the others
-  * @return all the responses given by The Guardian merged in a unique JSON response
+  * Returns all responses provided by The Guardian merged into a unique JSON response with all the settings modified
+  * @param merged the responses that have already been merged
+  * @param toMerge the response that needs to be merged with the others
+  * @return all the responses provided by The Guardian merged into a unique JSON response
 */
   private String mergeTheGuardianResponses(String merged, String toMerge) {
     if (merged == "") {
@@ -229,12 +229,12 @@ public class Downloader {
     }
     JSONObject results = new JSONObject();
     JSONObject content = new JSONObject();
-    //Retrives the response already merged
+    //Retrieves the already merged response
     JSONObject added = (JSONObject)new JSONObject(merged).get("response");
-    //Retrives the response to merge
+    //Retrieves the response to merge
     JSONObject toAdd = (JSONObject)new JSONObject(toMerge).get("response");
 
-    //Create the new JSON response with all the merged results specifying the correct settings for the response
+    //Create the new JSON response with all the merged results and specifying the correct settings
     content.put("status", added.getString("status"));
     content.put("userTier", added.getString("userTier"));
     content.put("total", added.getInt("total") + toAdd.getInt("total"));
@@ -243,14 +243,14 @@ public class Downloader {
     content.put("orderBy", added.getString("orderBy"));
 
     JSONArray articles = new JSONArray();
-    //Retrives all the articles contained in the response already merged
+    //Retrieves all the articles contained in the response that have already been merged
     JSONArray articlesAdded = (JSONArray)added.get("results");
-    //Retrieves all the articles contained in the response to merge
+    //Retrieves all the articles contained in the response that need to be merged
     JSONArray articlesToAdd = (JSONArray)toAdd.get("results");
 
     articles = articlesAdded;
 
-    //Merge each article of the response to merge to the already merge articles
+    //Merges each article of the response to merge to the already merge articles
     for (int i = 0; i < articlesToAdd.length(); i++) {
       articles.put(articlesToAdd.getJSONObject(i));
     }
