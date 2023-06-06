@@ -26,8 +26,8 @@ public class Article {
   * Initializes all attributes of the class with the respective given values
   * @param i the article id
   * @param u the article url
-  * @param s the online newspaper the article comes from
-  * @param d the article first publication date
+  * @param s the online newspaper from which the article comes from
+  * @param d the date of first publication of the article
   * @param t the article title
   * @param b the article body
 */
@@ -57,16 +57,16 @@ public class Article {
   }
 
 /**
-  * Returns the online newspaper the article comes from
-  * @return the online newspaper the article comes from
+  * Returns the online newspaper from which the article comes from
+  * @return the online newspaper from which the article comes from
 */
   public String getSource() {
     return source;
   }
 
 /**
-  * Returns the article first publication date
-  * @return the article first publication date
+  * Returns the date of first publication of the article
+  * @return the date of first publication of the article
 */
   public String getDate() {
     return date;
@@ -105,16 +105,16 @@ public class Article {
   }
 
 /**
-  * Initializes the online newspaper the article comes from
-  * @param s the online newspaper the article comes from
+  * Initializes the online newspaper from which the article comes from
+  * @param s the online newspaper from which the article comes from
 */
   public void setSource(String s) {
     source = s;
   }
 
 /**
-  * Initializes the article first publication date
-  * @param d the article first publication date
+  * Initializes the date of first publication of the article
+  * @param d the date of first publication of the article
 */
   public void setDate(String d) {
     date = d;
