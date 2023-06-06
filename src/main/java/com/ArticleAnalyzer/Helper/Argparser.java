@@ -77,7 +77,7 @@ public class Argparser {
   * @param args the command line arguments
   * @throws FileNotFoundException if the files required are not specified
   * @throws IllegalArgumentException if the given arguments are not valid for different reasons
-  * @throws IOException if there are errors during the parsing of the arguments
+  * @throws IOException if there are errors when parsing the arguments
 */
   public Argparser(String[] args) throws FileNotFoundException, IllegalArgumentException, IOException {
     Options options = new Options();
@@ -139,7 +139,6 @@ public class Argparser {
           throw new IllegalArgumentException("Output argument invalid. Values admitted: C, F, CF");
         }
       }
-
 
       if (dataFromFile && !cmd.hasOption("i")) {
         throw new IllegalArgumentException("InputFile argument is required if you want to work with articles saved in a file");
