@@ -1,31 +1,5 @@
 package com.ArticleAnalyzer.DataManagement;
 
-/**
- *
- * The Outputter class provides functionality for printing Article objects, Library objects, and LinkedHashMap objects.
- * It offers options to print the output to the console or to a file. The class supports various print methods for different types of data.
- * 
- * Public Constructors:
- * - Outputter(): Constructs an Outputter object with default settings.
- * - Outputter(boolean toConsole, boolean toFile): Constructs an Outputter object with specified console and file output options.
- * - Outputter(boolean toConsole, boolean toFile, String file): Constructs an Outputter object with specified console and file output options, and sets the file path for printing to a file.
- * 
- * Public Methods:
- * - getFile(): Returns the file path for outputting to a file.
- * - getToConsole(): Returns a boolean indicating if outputting to the console is enabled.
- * - setFile(String toSet): Sets the file path for outputting to a file.
- * - getToFile(): Returns a boolean indicating if outputting to a file is enabled.
- * - print(String toPrint): Prints a string to the console or file, based on the output options.
- * - print(Article toPrint): Prints the details of an Article object to the console or file, based on the output options.
- * - print(Library toPrint): Prints the details of all Article objects in a Library object to the console or file, based on the output options.
- * - print(LinkedHashMap<String, Integer> toPrint): Prints the contents of a LinkedHashMap object to the console or file, based on the output options.
- * 
- * Private Methods:
- * - printToConsole(String toPrint): Prints a string to the console.
- * - printToFile(String toPrint): Prints a string to a file specified by the file path.
- * - check(): Checks the validity of the file path for outputting to a file.
-*/
-
 import java.io.FileWriter;
 import java.io.File;
 import java.util.LinkedHashMap;
@@ -34,14 +8,17 @@ import java.time.format.DateTimeFormatter;
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
 
+/**
+ * The Outputter class provides functionality for printing various objects such as strings, Article objects, Library objects, and LinkedHashMap objects.
+ *  It offers options to print the output to the console or to a file.
+ */
 public class Outputter {
     private boolean toConsole;
     private boolean toFile;
     private String file;
 
     /**
-     * Constructs an Outputter object with default settings.
-     * By default, printing to console and file is disabled.
+     * Initializes all attributes of the Outputter class to their default values.
      */
     public Outputter() {
         this.toConsole = false;
@@ -49,35 +26,34 @@ public class Outputter {
         this.file = "";
     }
 
-    /**
-     * Constructs an Outputter object with the specified settings.
-     *
-     * @param toConsole flag indicating whether to print to console
-     * @param toFile    flag indicating whether to print to a file
-     * @throws IOException if an I/O error occurs
-     */
-    public Outputter(boolean toConsole, boolean toFile) throws IOException {
-        this.toConsole = toConsole;
-        this.toFile = toFile;
-        this.file = "";
-    }
+  /**
+    * Initializes the options to print output to the console or to a file.
+    *
+    * @param tc the option to print the output to the console
+    * @param tf the option to print the output to a file
+    */
+  public Outputter(boolean tc, boolean tf) {
+    toConsole = tc;
+    toFile = tf;
+    file = "";
+  }
+
+  /**
+    * Initializes the file path with the given value
+    * 
+    * @see Outputter(boolean tc, boolean tf)
+    * @param tc the option to print the output to the console
+    * @param tf the option to print the output to a file
+    * @param fn the file path
+    * @throws IOException if the option to print to a file is active and the file path is not specified
+    */
+  public Outputter(boolean tc, boolean tf, String fileName) throws IOException {
+    this(tc, tf);
+    setFile(fileName);
+ }
 
     /**
-     * Constructs an Outputter object with the specified settings and file path.
-     *
-     * @param toConsole flag indicating whether to print to console
-     * @param toFile    flag indicating whether to print to a file
-     * @param file      the path of the file to print to
-     * @throws IOException if an I/O error occurs
-     */
-    public Outputter(boolean toConsole, boolean toFile, String file) throws IOException {
-        this(toConsole, toFile);
-        this.file = file;
-        check();
-    }
-
-    /**
-     * Returns the file path for printing.
+     * Returns the file path.
      *
      * @return the file path
      */
@@ -88,10 +64,19 @@ public class Outputter {
     /**
      * Returns whether printing to console is enabled.
      *
-     * @return true if printing to console is enabled, false otherwise
+     * @return true if printing to console is enabled, false otherwise.
      */
     public boolean getToConsole(){
         return this.toConsole;       
+    }
+
+    /**
+     * Returns whether printing to a file is enabled.
+     *
+     * @return true if printing to a file is enabled, false otherwise.
+     */
+    public boolean getToFile(){
+        return this.toFile;
     }
 
     /**
@@ -104,23 +89,15 @@ public class Outputter {
         this.file = toSet;   
         check();    
     }
-
-    /**
-     * Returns whether printing to a file is enabled.
-     *
-     * @return true if printing to a file is enabled, false otherwise
-     */
-    public boolean getToFile(){
-        return this.toFile;
-    }
-
     
     /**
-     * Prints a string to the console or file, based on the configured settings.
-     *
-     * @param toPrint the string to print
-     * @throws IOException if an I/O error occurs
-     */
+      * Prints the given string to the console or to a file, based on the values assumed by the class attributes
+      *
+      * @see printToConsole(String s)
+      * @see printToFile(String s)
+      * @param toPrint the string to print to the console or to a file, based on to the values assumed by the class attributes
+      * @throws IOException if there are errors while writing the file
+      */
     public void print(String toPrint) throws IOException{
         if(this.toConsole){
             this.printToConsole(toPrint);
@@ -131,12 +108,12 @@ public class Outputter {
     }
 
     /**
-     * Prints the given string to the console.
+     * Prints the given string to console.
      *
      * @param toPrint the string to be printed
      */
     private void printToConsole(String toPrint){
-        System.out.println(toPrint);
+        System.out.print(toPrint);
     }
 
     /**
@@ -159,7 +136,8 @@ public class Outputter {
 
     /**
      * Prints the properties of an Article object.
-     *
+     * 
+     * @see #print(Article)
      * @param toPrint the Article object to be printed
      * @throws IOException if an error occurs while printing
      */
@@ -307,8 +285,9 @@ public class Outputter {
     }
 
     /**
-     * Prints the articles in a Library object.
+     * Prints a Library object.
      *
+     * @see #print(Article)
      * @param toPrint the Library object containing articles to be printed
      * @throws IOException if an error occurs while printing
      */
@@ -327,9 +306,9 @@ public class Outputter {
     }
 
     /**
-     * Prints the key-value pairs in a LinkedHashMap.
+     * Prints the given LinkedHashMap object with key-value pairs.
      *
-     * @param toPrint the LinkedHashMap to be printed
+     * @param toPrint the LinkedHashMap object with key-value pairs to print
      * @throws IOException if an error occurs while printing
      */
     public void print(LinkedHashMap<String, Integer> toPrint) throws IOException{
@@ -339,10 +318,11 @@ public class Outputter {
     }
 
     /**
-     * Checks if the necessary conditions are met before printing to a file.
-     *
-     * @throws IOException if the file is not set or cannot be created
-     */
+      * Checks and throws the IOException exception if the option to print to a file is active and the file path is not specified.
+      * It also takes care of recreating the file if it already exists or simply creating it if it doesn't exist
+      *
+      * @throws IOException if the option to print to a file is active and the file path is not specified
+      */
     private void check() throws IOException{
         if(toFile){
             if(this.file==""){

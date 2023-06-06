@@ -1,25 +1,11 @@
 package com.ArticleAnalyzer.Types;
 
-/* 
- * This is the basic type of our project, it implements an Article and contains, set with private status, all the variables that we believe may
- *      be useful in this or other projects that deal with the analysis or writing of articles.
- * Each variable then has a setter and a getter, the getter returns as type the type of the variable while for the setter there is an implementation
- *      for the type of the variable and for the String type (in the case of the date the valid format is yyyy- MM-dd'T'HH:mm:ss'Z').
- * There are also three constructors:
- * - Default constructor --> that takes no parameters and sets String with an empty string, int and float with -1 and all other objects to null
- * - Constructor with type --> that takes as parameters ALL the variables implemented in an article in the type in which they are implemented
- * - Constructor from string --> which requires as parameters ALL the variables implemented in an article given as String
- * It is not recommended to use constructors other than the default one, as it would significantly worsen the readability of the code, and it is rather advisable to use setters
- * There is also a fullSetter that accepts two parameters, respectively String toSet and String whereToSet, which allows you to set the variable called as the string whereToSet to toSet,
- *     if the string whereToSet does not contain a valid variable name an IOException is thrown
-*/
-
-
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-//import java.lang.reflect.Field; //used in an alternative fullSetter implementation (Line )
 
+/**
+  * The Article class represents an article from an online newspaper.
+*/
 public class Article {
     
     //variable
@@ -74,11 +60,10 @@ public class Article {
 
 
 
-    // Constructors
-
-    //Default constructor
+    /**
+     * Initializes all attributes of the class to their default values
+     */
     public Article() {
-        // Initialize default values for all fields
         this.id = "";
         this.type = "";
         this.sectionID = "";
@@ -127,126 +112,8 @@ public class Article {
         this.showTableOfContents = null;
     }
 
-    // Constructor with type
-    public Article(String id, String type, String sectionID, LocalDateTime webPublicationDate, String webUrl, String apiUrl,
-                   String trailText, String headline, Boolean showInRelatedContent, String body, LocalDateTime lastModified,
-                   Boolean hasStoryPackage, float score, String standfirst, String shortUrl, String thumbnail, int wordcount,
-                   Boolean commentable, Boolean isPremoderated, Boolean allowUGc, String byline, String publication, String internalPageCode,
-                   String productionOffice, Boolean shouldHideAdverts, Boolean liveBloggingNow, LocalDateTime commentCloseDate, int starRating,
-                   String title, String fulltext, String SourceSet, String Source, String main, String bylineHtml, String BodyText, String lang, 
-                   int newspaperPageNumber, int charCount, LocalDateTime firstPublicationDate, LocalDateTime newspaperEditionDate, Boolean legallySensitive,
-                   Boolean isLive, Boolean isInappropriateForSponsorship, Boolean shouldHideReaderRevenue, Boolean showAffiliateLinks, Boolean showTableOfContents) {
-        this.id = id;
-        this.type = type;
-        this.sectionID = sectionID;
-        this.webPublicationDate = webPublicationDate;
-        this.webUrl = webUrl;
-        this.apiUrl = apiUrl;
-        this.trailText = trailText;
-        this.headline = headline;
-        this.showInRelatedContent = showInRelatedContent;
-        this.body = body;
-        this.lastModified = lastModified;
-        this.hasStoryPackage = hasStoryPackage;
-        this.score = score;
-        this.standfirst = standfirst;
-        this.shortUrl = shortUrl;
-        this.thumbnail = thumbnail;
-        this.wordcount = wordcount;
-        this.commentable = commentable;
-        this.isPremoderated = isPremoderated;
-        this.allowUGc = allowUGc;
-        this.byline = byline;
-        this.publication = publication;
-        this.internalPageCode = internalPageCode;
-        this.productionOffice = productionOffice;
-        this.shouldHideAdverts = shouldHideAdverts;
-        this.liveBloggingNow = liveBloggingNow;
-        this.commentCloseDate = commentCloseDate;
-        this.starRating = starRating;
-        this.title = title;
-        this.fulltext = fulltext;
-        this.SourceSet = SourceSet;
-        this.Source = Source;
-        this.main = main;
-        this.bylineHtml = bylineHtml;
-        this.BodyText = BodyText;
-        this.lang = lang;
-        this.newspaperPageNumber = newspaperPageNumber;
-        this.charCount = charCount;
-        this.firstPublicationDate = firstPublicationDate;
-        this.newspaperEditionDate = newspaperEditionDate;
-        this.legallySensitive = legallySensitive;
-        this.isLive = isLive;
-        this.isInappropriateForSponsorship = isInappropriateForSponsorship;
-        this.shouldHideReaderRevenue = shouldHideReaderRevenue;
-        this.showAffiliateLinks = showAffiliateLinks;
-        this.showTableOfContents = showTableOfContents;
-    }
-
-    //Constructor from string
-    public Article(String id, String type, String sectionID, String webPublicationDate,
-               String webUrl, String apiUrl, String trailText, String headline,
-               String showInRelatedContent, String body, String lastModified,
-               String hasStoryPackage, String score, String standfirst, String shortUrl,
-               String thumbnail, String wordcount, String commentable, String isPremoderated,
-               String allowUGc, String byline, String publication, String internalPageCode,
-               String productionOffice, String shouldHideAdverts, String liveBloggingNow,
-               String commentCloseDate, String starRating, String title, String fulltext, 
-               String SourceSet, String Source, String main, String bylineHtml, String BodyText,
-               String lang, String newspaperPageNumber, String charCount, String firstPublicationDate,
-               String newspaperEditionDate, String legallySensitive, String isLive,
-               String isInappropriateForSponsorship, String shouldHideReaderRevenue, 
-               String showAffiliateLinks, String showTableOfContents) {
-    
-    this.id = id;
-    this.type = type;
-    this.sectionID = sectionID;
-    this.webPublicationDate = LocalDateTime.parse(webPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    this.webUrl = webUrl;
-    this.apiUrl = apiUrl;
-    this.trailText = trailText;
-    this.headline = headline;
-    this.showInRelatedContent = Boolean.parseBoolean(showInRelatedContent);
-    this.body = body;
-    this.lastModified = LocalDateTime.parse(lastModified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    this.hasStoryPackage = Boolean.parseBoolean(hasStoryPackage);
-    this.score = Float.parseFloat(score);
-    this.standfirst = standfirst;
-    this.shortUrl = shortUrl;
-    this.thumbnail = thumbnail;
-    this.wordcount = Integer.parseInt(wordcount);
-    this.commentable = Boolean.parseBoolean(commentable);
-    this.isPremoderated = Boolean.parseBoolean(isPremoderated);
-    this.allowUGc = Boolean.parseBoolean(allowUGc);
-    this.byline = byline;
-    this.publication = publication;
-    this.internalPageCode = internalPageCode;
-    this.productionOffice = productionOffice;
-    this.shouldHideAdverts = Boolean.parseBoolean(shouldHideAdverts);
-    this.liveBloggingNow = Boolean.parseBoolean(liveBloggingNow);
-    this.commentCloseDate = LocalDateTime.parse(commentCloseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    this.starRating = Integer.parseInt(starRating);
-    this.title = title;
-    this.fulltext = fulltext;
-    this.SourceSet = SourceSet;
-    this.Source = Source;
-    this.main = main;
-    this.bylineHtml = bylineHtml;
-    this.BodyText = BodyText;
-    this.lang = lang;
-    this.newspaperPageNumber = Integer.parseInt(newspaperPageNumber);
-    this.charCount = Integer.parseInt(charCount);
-    this.firstPublicationDate = LocalDateTime.parse(firstPublicationDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-    this.newspaperEditionDate = LocalDateTime.parse(newspaperEditionDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-    this.legallySensitive = Boolean.parseBoolean(legallySensitive);
-    this.isLive = Boolean.parseBoolean(isLive);
-    this.isInappropriateForSponsorship = Boolean.parseBoolean(isInappropriateForSponsorship);
-    this.shouldHideReaderRevenue = Boolean.parseBoolean(shouldHideReaderRevenue);
-    this.showAffiliateLinks = Boolean.parseBoolean(showAffiliateLinks);
-    }
-
     // getters
+
     public String getId() {
         return id;
     }
@@ -710,8 +577,14 @@ public class Article {
     }
 
 
-    //fullSetter
-    public void fullSetter(String toSet, String whereToSet) throws IOException{
+    /**
+     * Set a variable with a given name to a specified value
+     * 
+     * @param toSet value to which the variable need to be set
+     * @param whereToSet variable to be set
+     * @throws IllegalArgumentException if the variable to be set is not present in the Article class.
+     */ 
+    public void fullSetter(String toSet, String whereToSet) throws IllegalArgumentException{
         if(whereToSet.equalsIgnoreCase("id")){
             this.setId(toSet);
         }else if(whereToSet.equalsIgnoreCase("type")){
@@ -805,18 +678,8 @@ public class Article {
         } else if (whereToSet.equalsIgnoreCase("showTableOfContents")) {
             this.setShowTableOfContents(toSet);
         } else {
-            throw new IOException(whereToSet+" is not a valid key");
+            throw new IllegalArgumentException(whereToSet+" is not a valid key");
         }
     }
-
-    //This approach might make the code more concise and easier to maintain, although it comes with its own trade-offs, such as reduced performance and less compile-time safety.
-    //And also not tested
-    /*
-    public void fullSetter(String toSet, String whereToSet) throws NoSuchFieldException, IllegalAccessException {
-        Field field = this.getClass().getDeclaredField(whereToSet);
-        field.setAccessible(true);
-        field.set(this, toSet);
-    }
-    */
 
 }
