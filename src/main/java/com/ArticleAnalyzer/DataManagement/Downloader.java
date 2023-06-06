@@ -231,7 +231,7 @@ public class Downloader {
     JSONObject content = new JSONObject();
     //Retrieves the already merged response
     JSONObject added = (JSONObject)new JSONObject(merged).get("response");
-    //Retrieves the response to merge
+    //Retrieves the response that needs to be merged
     JSONObject toAdd = (JSONObject)new JSONObject(toMerge).get("response");
 
     //Create the new JSON response with all the merged results and specifying the correct settings
