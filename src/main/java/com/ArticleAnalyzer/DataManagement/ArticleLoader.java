@@ -41,8 +41,8 @@ public class ArticleLoader {
   * @see loadCSV()
   * @see loadJSON()
   * @throws IOException if the file extension is not specified or there are errors during the reading of the file
-  * @throws CsvValidationException if there are errors during the reading of CSV file
-  * @throws ParseException if there are errors during the reading of the JSON file
+  * @throws CsvValidationException if there are errors while reading the CSV file
+  * @throws ParseException if there are errors while reading the JSON file
 */
   private void loadLibrary() throws IOException, CsvValidationException, ParseException {
     String extension = file.getName().substring(file.getName().lastIndexOf("."));
@@ -59,8 +59,8 @@ public class ArticleLoader {
 
 /**
   * Loads into the Library object the articles contained in the CSV file
-  * @throws IOException if the file extension is not specified or there are errors during the reading of the file
-  * @throws CsvValidationException if there are errors during the reading of CSV file
+  * @throws IOException if the file extension is not specified or there are errors while reading the file
+  * @throws CsvValidationException if there are errors while reading the CSV file
 */
   private void loadCSV() throws IOException, CsvValidationException {
     FileReader fileReader = new FileReader(file);
@@ -98,8 +98,8 @@ public class ArticleLoader {
 
 /**
   * Loads into the Library object the articles contained in the JSON file
-  * @throws IOException if the file extension is not specified or there are errors during the reading of the file
-  * @throws ParseException if there are errors during the reading of the JSON file
+  * @throws IOException if the file extension is not specified or there are errors while reading the file
+  * @throws ParseException if there are errors while reading the JSON file
 */
   private void loadJSON() throws IOException, ParseException {
     FileReader fileReader = new FileReader(file);
