@@ -16,8 +16,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
-  * The ArticleLoader class is responsible for loading articles from different file formats, such as CSV and JSON, into an Library object.
-  * It permits to load the articles and retrieve the loaded Library object.
+  * The ArticleLoader class is responsible for loading articles from different file formats, such as CSV and JSON, into a Library object.
+  * It allows to load the articles and retrieve the loaded Library object.
 */
 public class ArticleLoader {
   private File file;
@@ -37,7 +37,7 @@ public class ArticleLoader {
   }
 
 /**
-  * Loads, according to the file extension, the articles to the Library object
+  * Loads, according to the file extension, the articles into the Library object
   * @see loadCSV()
   * @see loadJSON()
   * @throws IOException if the file extension is not specified or there are errors during the reading of the file
@@ -58,7 +58,7 @@ public class ArticleLoader {
   }
 
 /**
-  * Loads to the Library object the articles contained in the CSV file
+  * Loads into the Library object the articles contained in the CSV file
   * @throws IOException if the file extension is not specified or there are errors during the reading of the file
   * @throws CsvValidationException if there are errors during the reading of CSV file
 */
@@ -97,7 +97,7 @@ public class ArticleLoader {
   }
 
 /**
-  * Loads to the Library object the articles contained in the JSON file
+  * Loads into the Library object the articles contained in the JSON file
   * @throws IOException if the file extension is not specified or there are errors during the reading of the file
   * @throws ParseException if there are errors during the reading of the JSON file
 */
