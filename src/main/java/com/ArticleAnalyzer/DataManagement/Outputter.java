@@ -89,7 +89,7 @@ public class Outputter {
   * @see printToConsole(String s)
   * @see printToFile(String s)
   * @param s the string to print to the console or to a file, based on to the values assumed by the class attributes
-  * @throws IOException if there are errors during the writing of the file
+  * @throws IOException if there are errors while writing the file
 */
   public void print(String s) throws IOException {
     if (toConsole) {
@@ -111,7 +111,7 @@ public class Outputter {
 /**
   * Prints the given string to a file
   * @param s the string to print to a file
-  * @throws IOException if there are errors during the writing of the file
+  * @throws IOException if there are errors while writing the file
 */
   private void printToFile(String s) throws IOException {
     try {
