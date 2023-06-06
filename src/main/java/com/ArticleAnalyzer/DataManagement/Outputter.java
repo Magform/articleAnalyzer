@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 
 /**
   * The Outputter class provides functionality for printing String objects, Article objects, Library objects and LinkedHashMap objects.
-  * It offers options to print the output to the console or to a file.
+  * Offers options to print the output to the console or to a file.
 */
 public class Outputter {
   private boolean toConsole;
@@ -27,7 +27,7 @@ public class Outputter {
   }
 
 /**
-  * Initializes the options to print the output to the console or to a file.
+  * Initializes the options to print output to the console or to a file.
   * @param tc the option to print the output to the console
   * @param tf the option to print the output to a file
 */
@@ -51,16 +51,16 @@ public class Outputter {
   }
 
 /**
-  * Returns the option to print the output to the console
-  * @return the option to print the output to the console
+  * Returns the option to print output to the console
+  * @return the option to print output to the console
 */
   public boolean getToConsole() {
     return toConsole;
   }
 
 /**
-  * Returns the option to print the output to a file
-  * @return the option to print the output to a file
+  * Returns the option to print output to a file
+  * @return the option to print output to a file
 */
   public boolean getToFile(){
     return toFile;
@@ -85,10 +85,10 @@ public class Outputter {
   }
 
 /**
-  * Prints the given string to the console or to a file, according to the values assumed by the class attributes
+  * Prints the given string to the console or to a file, based on the values assumed by the class attributes
   * @see printToConsole(String s)
   * @see printToFile(String s)
-  * @param s the string to print to the console or to a file, according to the values assumed by the class attributes
+  * @param s the string to print to the console or to a file, based on to the values assumed by the class attributes
   * @throws IOException if there are errors during the writing of the file
 */
   public void print(String s) throws IOException {
@@ -101,8 +101,8 @@ public class Outputter {
   }
 
 /**
-  * Prints the given string to the console
-  * @param s the string to print to the console
+  * Prints the given string to console
+  * @param s the string to print to console
 */
   private void printToConsole(String s) {
     System.out.println(s);
@@ -126,10 +126,10 @@ public class Outputter {
   }
 
 /**
-  * Prints the given Article object to JSON format
+  * Prints the given Article object in JSON format
   * @see print(String s)
-  * @param a the Article object to be printed
-  * @throws IOException if there are errors during the writing of the file
+  * @param a the Article object to print
+  * @throws IOException if there are errors while writing the file
 */
   public void print(Article a) throws IOException {
     print("{\n");
@@ -155,10 +155,10 @@ public class Outputter {
   }
 
 /**
-  * Prints the Article object contained in the given Library object to JSON format
+  * Prints the Article object contained in the given Library object in JSON format
   * @see print(Article a)
-  * @param l the Library object which contains the Article objects to be printed
-  * @throws IOException if there are errors during the writing of the file
+  * @param l the Library object which contains the Article objects to print
+  * @throws IOException if there are errors while writing the file
 */
   public void print(Library l) throws IOException {
     for (int i = 0; i < l.getTotalArticleNumber(); i++) {
@@ -168,8 +168,8 @@ public class Outputter {
 
 /**
   * Prints the given LinkedHashMap object with key-value pairs
-  * @param hashMap the LinkedHashMap object with key-value pairs to be printed
-  * @throws IOException if there are errors during the writing of the file
+  * @param hashMap the LinkedHashMap object with key-value pairs to print
+  * @throws IOException if there are errors while writing the file
 */
   public void print(LinkedHashMap<String, Integer> hashMap) throws IOException {
     for (String key : hashMap.keySet()) {
