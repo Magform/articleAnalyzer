@@ -61,7 +61,7 @@ public class DownloaderTest {
     @Test
     public void constructor_workingGetJSONoutput() throws FileNotFoundException, IllegalArgumentException, IOException {
         Downloader test = new Downloader(PATH + "working.txt");
-        assertEquals("outputter_results.json", test.getJSONOutput());
+        assertEquals(PATH + "outputter_results.json", test.getJSONOutput());
     }
 
 }
