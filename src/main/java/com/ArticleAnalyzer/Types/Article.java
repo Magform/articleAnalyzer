@@ -12,58 +12,28 @@ public class Article {
     private String id;
     private String type;
     private String sectionID;
+    private String title;
     private LocalDateTime webPublicationDate;
     private String webUrl;
     private String apiUrl;
-    private String trailText;
     private String headline;
-    private Boolean showInRelatedContent;
-    private String body;
-    private LocalDateTime lastModified;
-    private Boolean hasStoryPackage;
-    private float score;
     private String standfirst;
-    private String shortUrl;
-    private String thumbnail;
-    private int wordcount;
-    private Boolean commentable;
-    private Boolean isPremoderated;
-    private Boolean allowUGc;
-    private String byline;
-    private String publication;
-    private String internalPageCode;
-    private String productionOffice;
-    private Boolean shouldHideAdverts;
-    private Boolean liveBloggingNow;
-    private LocalDateTime commentCloseDate;
-    private int starRating;
-    private String title;
-    private String fulltext;
-    private String SourceSet;
-    private String Source;
+    private String trailText;
     private String main;
-    private String bylineHtml;
-    private String BodyText;
-    private String lang;
+    private String body;
     private int newspaperPageNumber;
+    private int wordcount;
+    private String productionOffice;
+    private String shortUrl;
+    private String lang;
+    private String BodyText;
     private int charCount;
-    private LocalDateTime firstPublicationDate;
-    private LocalDateTime newspaperEditionDate;
-    private Boolean legallySensitive;
-    private Boolean isLive;
-    private Boolean isInappropriateForSponsorship;
-    private Boolean shouldHideReaderRevenue;
-    private Boolean showAffiliateLinks;
-    private Boolean showTableOfContents;
-
-
-
-
 
     /**
      * Initializes all attributes of the class to their default values
      */
     public Article() {
+        this.title = "";
         this.id = "";
         this.type = "";
         this.sectionID = "";
@@ -71,510 +41,398 @@ public class Article {
         this.apiUrl = "";
         this.trailText = "";
         this.headline = "";
-        this.byline = "";
-        this.publication = "";
-        this.internalPageCode = "";
         this.productionOffice = "";
         this.body = "";
         this.standfirst = "";
         this.shortUrl = "";
-        this.thumbnail = "";
-        this.title = "";
-        this.fulltext = "";
-        this.SourceSet = "";
-        this.Source = "";
         this.main = "";
-        this.bylineHtml = "";
         this.BodyText = "";
         this.lang = "";
-        this.score = -1.0f;
-        this.starRating = -1;
         this.newspaperPageNumber = -1;
         this.charCount = -1;
         this.wordcount = -1;
         this.webPublicationDate = null;
-        this.lastModified = null;
-        this.commentCloseDate = null;
-        this.firstPublicationDate = null;
-        this.newspaperEditionDate = null;
-        this.commentable = null;
-        this.isPremoderated = null;
-        this.allowUGc = null;
-        this.shouldHideAdverts = null;
-        this.liveBloggingNow = null;
-        this.hasStoryPackage = null;
-        this.showInRelatedContent = null;
-        this.legallySensitive = null;
-        this.isLive = null;
-        this.isInappropriateForSponsorship = null;
-        this.shouldHideReaderRevenue = null;
-        this.showAffiliateLinks = null;
-        this.showTableOfContents = null;
     }
 
-    // getters
-
+    /**
+     * Returns the ID of the article.
+     *
+     * @return The ID of the article.
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Returns the title of the article.
+     *
+     * @return The title of the article.
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Returns the type of the article.
+     *
+     * @return The type of the article.
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Returns the section ID of the article.
+     *
+     * @return The section ID of the article.
+     */
     public String getSectionID() {
         return sectionID;
     }
 
+    /**
+     * Returns the web publication date of the article.
+     *
+     * @return The web publication date of the article.
+     */
     public LocalDateTime getWebPublicationDate() {
         return webPublicationDate;
     }
 
+    /**
+     * Returns the web URL of the article.
+     *
+     * @return The web URL of the article.
+     */
     public String getWebUrl() {
         return webUrl;
     }
 
+    /**
+     * Returns the API URL of the article.
+     *
+     * @return The API URL of the article.
+     */
     public String getApiUrl() {
         return apiUrl;
     }
 
+    /**
+     * Returns the trail text of the article.
+     *
+     * @return The trail text of the article.
+     */
     public String getTrailText() {
         return trailText;
     }
 
+    /**
+     * Returns the headline of the article.
+     *
+     * @return The headline of the article.
+     */
     public String getHeadline() {
         return headline;
     }
 
-    public Boolean getShowInRelatedContent() {
-        return showInRelatedContent;
-    }
-
+    /**
+     * Returns the body of the article.
+     *
+     * @return The body of the article.
+     */
     public String getBody() {
         return body;
     }
 
-    public LocalDateTime getLastModified() {
-        return lastModified;
-    }
-
-    public Boolean getHasStoryPackage() {
-        return hasStoryPackage;
-    }
-
-    public float getScore() {
-        return score;
-    }
-
+    /**
+     * Returns the standfirst of the article.
+     *
+     * @return The standfirst of the article.
+     */
     public String getStandfirst() {
         return standfirst;
     }
 
+    /**
+     * Returns the short URL of the article.
+     *
+     * @return The short URL of the article.
+     */
     public String getShortUrl() {
         return shortUrl;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
+    /**
+     * Returns the word count of the article.
+     *
+     * @return The word count of the article.
+     */
     public int getWordcount() {
         return wordcount;
     }
 
-    public Boolean getCommentable() {
-        return commentable;
-    }
-
-    public Boolean getPremoderated() {
-        return isPremoderated;
-    }
-
-    public Boolean getAllowUGc() {
-        return allowUGc;
-    }
-
-    public String getByline() {
-        return byline;
-    }
-
-    public String getPublication() {
-        return publication;
-    }
-
-    public String getInternalPageCode() {
-        return internalPageCode;
-    }
-
+    /**
+     * Returns the production office of the article.
+     *
+     * @return The production office of the article.
+     */
     public String getProductionOffice() {
         return productionOffice;
     }
 
-    public Boolean getShouldHideAdverts() {
-        return shouldHideAdverts;
-    }
-
-    public Boolean getLiveBloggingNow() {
-        return liveBloggingNow;
-    }
-
-    public LocalDateTime getCommentCloseDate() {
-        return commentCloseDate;
-    }
-
-    public int getStarRating() {
-        return starRating;
-    }
-
-    public String getTitle(){
-        return title;
-    }
-
-    public String getFullText(){
-        return fulltext;
-    }
-
-    public String getSourceSet(){
-        return SourceSet;
-    }
-
-    public String getSource(){
-        return Source;
-    }
-
+    /**
+     * Returns the main content of the article.
+     *
+     * @return The main content of the article.
+     */
     public String getMain() {
         return main;
     }
-    
-    public String getBylineHtml() {
-        return bylineHtml;
-    }
-    
+
+    /**
+     * Returns the body text of the article.
+     *
+     * @return The body text of the article.
+     */
     public String getBodyText() {
         return BodyText;
     }
-    
+
+    /**
+     * Returns the language of the article.
+     *
+     * @return The language of the article.
+     */
     public String getLang() {
         return lang;
     }
-    
+
+    /**
+     * Returns the newspaper page number of the article.
+     *
+     * @return The newspaper page number of the article.
+     */
     public int getNewspaperPageNumber() {
         return newspaperPageNumber;
     }
-    
+
+    /**
+     * Returns the character count of the article.
+     *
+     * @return The character count of the article.
+     */
     public int getCharCount() {
         return charCount;
     }
-    
-    public LocalDateTime getFirstPublicationDate() {
-        return firstPublicationDate;
-    }
-    
-    public LocalDateTime getNewspaperEditionDate() {
-        return newspaperEditionDate;
-    }
-    
-    public Boolean getLegallySensitive() {
-        return legallySensitive;
-    }
-    
-    public Boolean getIsLive() {
-        return isLive;
-    }
-
-    public Boolean getIsInappropriateForSponsorShip() {
-        return isInappropriateForSponsorship;
-    }
-    
-    public Boolean getShouldHideReaderRevenue() {
-        return shouldHideReaderRevenue;
-    }
-    
-    public Boolean getShowAffiliateLinks() {
-        return showAffiliateLinks;
-    }
-    
-    public Boolean getShowTableOfContents() {
-        return showTableOfContents;
-    }
 
 
-
-    // setters
+    /**
+     * Sets the ID of the article.
+     *
+     * @param id The ID of the article.
+     */
     public void setId(String id) {
         this.id = id;
     }
-    
+
+    /**
+     * Sets the type of the article.
+     *
+     * @param type The type of the article.
+     */
     public void setType(String type) {
         this.type = type;
     }
-    
+
+    /**
+     * Sets the section ID of the article.
+     *
+     * @param sectionID The section ID of the article.
+     */
     public void setSectionID(String sectionID) {
         this.sectionID = sectionID;
     }
-    
+
+    /**
+     * Sets the web publication date of the article.
+     *
+     * @param webPublicationDate The web publication date of the article.
+     */
     public void setWebPublicationDate(LocalDateTime webPublicationDate) {
         this.webPublicationDate = webPublicationDate;
     }
-    
+
+    /**
+     * Sets the web publication date of the article by parsing the provided string.
+     *
+     * @param webPublicationDate The web publication date string in the format "yyyy-MM-dd'T'HH:mm:ss'Z'".
+     */
     public void setWebPublicationDate(String webPublicationDate) {
         this.webPublicationDate = LocalDateTime.parse(webPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
     }
 
+    /**
+     * Sets the web URL of the article.
+     *
+     * @param webUrl The web URL of the article.
+     */
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl;
     }
-    
+
+    /**
+     * Sets the API URL of the article.
+     *
+     * @param apiUrl The API URL of the article.
+     */
     public void setApiUrl(String apiUrl) {
         this.apiUrl = apiUrl;
     }
-    
+
+    /**
+     * Sets the trail text of the article.
+     *
+     * @param trailText The trail text of the article.
+     */
     public void setTrailText(String trailText) {
         this.trailText = trailText;
     }
-    
+
+    /**
+     * Sets the headline of the article.
+     *
+     * @param headline The headline of the article.
+     */
     public void setHeadline(String headline) {
         this.headline = headline;
     }
-    
-    public void setShowInRelatedContent(Boolean showInRelatedContent) {
-        this.showInRelatedContent = showInRelatedContent;
-    }
-    
-    public void setShowInRelatedContent(String showInRelatedContent) {
-        this.showInRelatedContent = Boolean.parseBoolean(showInRelatedContent);
-    }
 
+    /**
+     * Sets the body of the article.
+     *
+     * @param body The body of the article.
+     */
     public void setBody(String body) {
         this.body = body;
     }
-    
-    public void setLastModified(LocalDateTime lastModified) {
-        this.lastModified = lastModified;
-    }
-    
-    public void setLastModified(String lastModified) {
-        this.lastModified = LocalDateTime.parse(lastModified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    }
-    public void setHasStoryPackage(Boolean hasStoryPackage) {
-        this.hasStoryPackage = hasStoryPackage;
-    }
-    
-    public void setHasStoryPackage(String hasStoryPackage) {
-        this.hasStoryPackage = Boolean.parseBoolean(hasStoryPackage);
-    }
-    
-    public void setScore(float score) {
-        this.score = score;
-    }
-    
-    public void setScore(String score) {
-        this.score = Float.parseFloat(score);
-    }
 
+    /**
+     * Sets the standfirst of the article.
+     *
+     * @param standfirst The standfirst of the article.
+     */
     public void setStandfirst(String standfirst) {
         this.standfirst = standfirst;
     }
-    
+
+    /**
+     * Sets the short URL of the article.
+     *
+     * @param shortUrl The short URL of the article.
+     */
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
     }
-    
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-    
+
+    /**
+     * Sets the word count of the article.
+     *
+     * @param wordcount The word count of the article.
+     */
     public void setWordcount(int wordcount) {
         this.wordcount = wordcount;
     }
-    
+
+    /**
+     * Sets the word count of the article by parsing the provided string.
+     *
+     * @param wordcount The word count of the article as a string.
+     */
     public void setWordcount(String wordcount) {
         this.wordcount = Integer.parseInt(wordcount);
     }
 
-    public void setCommentable(Boolean commentable) {
-        this.commentable = commentable;
-    }
-    
-    public void setCommentable(String commentable) {
-        this.commentable = Boolean.parseBoolean(commentable);
-    }
-
-    public void setIsPremoderated(Boolean isPremoderated) {
-        this.isPremoderated = isPremoderated;
-    }
-    
-    public void setIsPremoderated(String isPremoderated) {
-        this.isPremoderated = Boolean.parseBoolean(isPremoderated);
-    }
-
-    public void setAllowUGc(Boolean allowUGc) {
-        this.allowUGc = allowUGc;
-    }
-
-    public void setAllowUGc(String allowUGc) {
-        this.allowUGc = Boolean.parseBoolean(allowUGc);
-    }
-    
-    public void setByline(String byline) {
-        this.byline = byline;
-    }
-    
-    public void setPublication(String publication) {
-        this.publication = publication;
-    }
-    
-    public void setInternalPageCode(String internalPageCode) {
-        this.internalPageCode = internalPageCode;
-    }
-    
+    /**
+     * Sets the production office of the article.
+     *
+     * @param productionOffice The production office of the article.
+     */
     public void setProductionOffice(String productionOffice) {
         this.productionOffice = productionOffice;
     }
-    
-    public void setShouldHideAdverts(Boolean shouldHideAdverts) {
-        this.shouldHideAdverts = shouldHideAdverts;
-    }
-    
-    public void setShouldHideAdverts(String shouldHideAdverts) {
-        this.shouldHideAdverts = Boolean.parseBoolean(shouldHideAdverts);
-    }
 
-    public void setLiveBloggingNow(Boolean liveBloggingNow) {
-        this.liveBloggingNow = liveBloggingNow;
-    }
-    
-    public void setLiveBloggingNow(String liveBloggingNow) {
-        this.liveBloggingNow = Boolean.parseBoolean(liveBloggingNow);
-    }
-
-    public void setCommentCloseDate(LocalDateTime commentCloseDate) {
-        this.commentCloseDate = commentCloseDate;
-    }
-    
-    public void setCommentCloseDate(String commentCloseDate) {
-        this.commentCloseDate = LocalDateTime.parse(commentCloseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    }
-
-    public void setStarRating(int starRating) {
-        this.starRating = starRating;
-    }
-
-    public void setStarRating(String starRating) {
-        this.starRating = Integer.parseInt(starRating);
-    }
-
-    public void setTitle(String title){
+    /**
+     * Sets the title of the article.
+     *
+     * @param title The title of the article.
+     */
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setFullText(String fulltext){
-        this.fulltext = fulltext;
-    }
-
-    public void setSourceSet(String SourceSet){
-        this.SourceSet = SourceSet;
-    }
-
-    public void setSource(String Source){
-        this.Source = Source;
-    }
-
+    /**
+     * Sets the main content of the article.
+     *
+     * @param main The main content of the article.
+     */
     public void setMain(String main) {
         this.main = main;
     }
-    
-    public void setBylineHtml(String bylineHtml) {
-        this.bylineHtml = bylineHtml;
-    }
-    
+
+    /**
+     * Sets the body text of the article.
+     *
+     * @param bodyText The body text of the article.
+     */
     public void setBodyText(String bodyText) {
         this.BodyText = bodyText;
     }
-    
+
+    /**
+     * Sets the language of the article.
+     *
+     * @param lang The language of the article.
+     */
     public void setLang(String lang) {
         this.lang = lang;
     }
-    
+
+    /**
+     * Sets the newspaper page number of the article.
+     *
+     * @param newspaperPageNumber The newspaper page number of the article.
+     */
     public void setNewspaperPageNumber(int newspaperPageNumber) {
         this.newspaperPageNumber = newspaperPageNumber;
     }
-    
+
+    /**
+     * Sets the newspaper page number of the article by parsing the provided string.
+     *
+     * @param newspaperPageNumber The newspaper page number of the article as a string.
+     */
     public void setNewspaperPageNumber(String newspaperPageNumber) {
         this.newspaperPageNumber = Integer.parseInt(newspaperPageNumber);
     }
 
+    /**
+     * Sets the character count of the article.
+     *
+     * @param charCount The character count of the article.
+     */
     public void setCharCount(int charCount) {
         this.charCount = charCount;
     }
-    
+
+    /**
+     * Sets the character count of the article by parsing the provided string.
+     *
+     * @param charCount The character count of the article as a string.
+     */
     public void setCharCount(String charCount) {
         this.charCount = Integer.parseInt(charCount);
     }
 
-    public void setFirstPublicationDate(LocalDateTime firstPublicationDate) {
-        this.firstPublicationDate = firstPublicationDate;
-    }
-    
-    public void setFirstPublicationDate(String firstPublicationDate) {
-        this.firstPublicationDate = LocalDateTime.parse(firstPublicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    }
-
-    public void setNewspaperEditionDate(LocalDateTime newspaperEditionDate) {
-        this.newspaperEditionDate = newspaperEditionDate;
-    }
-
-    public void setNewspaperEditionDate(String newspaperEditionDate) {
-        this.newspaperEditionDate = LocalDateTime.parse(newspaperEditionDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    }
-
-    public void setLegallySensitive(Boolean legallySensitive) {
-        this.legallySensitive = legallySensitive;
-    }
-
-    public void setLegallySensitive(String legallySensitive) {
-        this.legallySensitive = Boolean.parseBoolean(legallySensitive);
-    }
-    
-    public void setLive(Boolean live) {
-        this.isLive = live;
-    }
-    
-    public void setLive(String live) {
-        this.isLive = Boolean.parseBoolean(live);
-    }
-
-    public void setInappropriateForSponsorship(Boolean isInappropriateForSponsorship) {
-        this.isInappropriateForSponsorship = isInappropriateForSponsorship;
-    }
-    
-    public void setInappropriateForSponsorship(String isInappropriateForSponsorship) {
-        this.isInappropriateForSponsorship = Boolean.parseBoolean(isInappropriateForSponsorship);
-    }
-
-    public void setShouldHideReaderRevenue(Boolean shouldHideReaderRevenue) {
-        this.shouldHideReaderRevenue = shouldHideReaderRevenue;
-    }
-    
-    public void setShouldHideReaderRevenue(String shouldHideReaderRevenue) {
-        this.shouldHideReaderRevenue = Boolean.parseBoolean(shouldHideReaderRevenue);
-    }
-
-    public void setShowAffiliateLinks(Boolean showAffiliateLinks) {
-        this.showAffiliateLinks = showAffiliateLinks;
-    }
-    
-    public void setShowAffiliateLinks(String showAffiliateLinks) {
-        this.showAffiliateLinks = Boolean.parseBoolean(showAffiliateLinks);
-    }
-
-    public void setShowTableOfContents(Boolean showTableOfContents) {
-        this.showTableOfContents = showTableOfContents;
-    }
-    
-    public void setShowTableOfContents(String showTableOfContents) {
-        this.showTableOfContents = Boolean.parseBoolean(showTableOfContents);
-    }
 
 
     /**
@@ -599,12 +457,6 @@ public class Article {
             this.setTrailText(toSet);
         } else if (whereToSet.equalsIgnoreCase("headline")) {
             this.setHeadline(toSet);
-        } else if (whereToSet.equalsIgnoreCase("byline")) {
-            this.setByline(toSet);
-        } else if (whereToSet.equalsIgnoreCase("publication")) {
-            this.setPublication(toSet);
-        } else if (whereToSet.equalsIgnoreCase("internalPageCode")) {
-            this.setInternalPageCode(toSet);
         } else if (whereToSet.equalsIgnoreCase("productionOffice")) {
             this.setProductionOffice(toSet);
         } else if (whereToSet.equalsIgnoreCase("body")) {
@@ -613,28 +465,14 @@ public class Article {
             this.setStandfirst(toSet);
         } else if (whereToSet.equalsIgnoreCase("shortUrl")) {
             this.setShortUrl(toSet);
-        } else if (whereToSet.equalsIgnoreCase("thumbnail")) {
-            this.setThumbnail(toSet);
         } else if (whereToSet.equalsIgnoreCase("title")) {
             this.setTitle(toSet);
-        } else if (whereToSet.equalsIgnoreCase("fulltext")) {
-            this.setFullText(toSet);
-        } else if (whereToSet.equalsIgnoreCase("SourceSet")) {
-            this.setSourceSet(toSet);
-        } else if (whereToSet.equalsIgnoreCase("Source")) {
-            this.setSource(toSet);
         } else if (whereToSet.equalsIgnoreCase("main")) {
             this.setMain(toSet);
-        } else if (whereToSet.equalsIgnoreCase("bylineHtml")) {
-            this.setBylineHtml(toSet);
         } else if (whereToSet.equalsIgnoreCase("BodyText")) {
             this.setBodyText(toSet);
         } else if (whereToSet.equalsIgnoreCase("lang")) {
             this.setLang(toSet);
-        } else if (whereToSet.equalsIgnoreCase("score")) {
-            this.setScore(toSet);
-        } else if (whereToSet.equalsIgnoreCase("starRating")) {
-            this.setStarRating(toSet);
         } else if (whereToSet.equalsIgnoreCase("newspaperPageNumber")) {
             this.setNewspaperPageNumber(toSet);
         } else if (whereToSet.equalsIgnoreCase("charCount")) {
@@ -643,40 +481,6 @@ public class Article {
             this.setWordcount(toSet);
         } else if (whereToSet.equalsIgnoreCase("webPublicationDate")) {
             this.setWebPublicationDate(toSet);
-        } else if (whereToSet.equalsIgnoreCase("lastModified")) {
-            this.setLastModified(toSet);
-        } else if (whereToSet.equalsIgnoreCase("commentCloseDate")) {
-            this.setCommentCloseDate(toSet);
-        } else if (whereToSet.equalsIgnoreCase("firstPublicationDate")) {
-            this.setFirstPublicationDate(toSet);
-        } else if (whereToSet.equalsIgnoreCase("newspaperEditionDate")) {
-            this.setNewspaperEditionDate(toSet);
-        } else if (whereToSet.equalsIgnoreCase("commentable")) {
-            this.setCommentable(toSet);
-        } else if (whereToSet.equalsIgnoreCase("isPremoderated")) {
-            this.setIsPremoderated(toSet);
-        } else if (whereToSet.equalsIgnoreCase("allowUGc")) {
-            this.setAllowUGc(toSet);
-        } else if (whereToSet.equalsIgnoreCase("shouldHideAdverts")) {
-            this.setShouldHideAdverts(toSet);
-        } else if (whereToSet.equalsIgnoreCase("liveBloggingNow")) {
-            this.setLiveBloggingNow(toSet);
-        } else if (whereToSet.equalsIgnoreCase("hasStoryPackage")) {
-            this.setHasStoryPackage(toSet);
-        } else if (whereToSet.equalsIgnoreCase("showInRelatedContent")) {
-            this.setShowInRelatedContent(toSet);
-        } else if (whereToSet.equalsIgnoreCase("legallySensitive")) {
-            this.setLegallySensitive(toSet);
-        } else if (whereToSet.equalsIgnoreCase("isLive")) {
-            this.setLive(toSet);
-        } else if (whereToSet.equalsIgnoreCase("isInappropriateForSponsorship")) {
-            this.setInappropriateForSponsorship(toSet);
-        } else if (whereToSet.equalsIgnoreCase("shouldHideReaderRevenue")) {
-            this.setShouldHideReaderRevenue(toSet);
-        } else if (whereToSet.equalsIgnoreCase("showAffiliateLinks")) {
-            this.setShowAffiliateLinks(toSet);
-        } else if (whereToSet.equalsIgnoreCase("showTableOfContents")) {
-            this.setShowTableOfContents(toSet);
         } else {
             throw new IllegalArgumentException(whereToSet+" is not a valid key");
         }
