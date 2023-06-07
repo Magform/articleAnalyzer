@@ -79,7 +79,7 @@ public class Library {
 
     /**
      * Resets the internal index for the getNextArticle() function, allowing it to start from the first article again.
-     * @see #getNextArticle()
+     * @see getNextArticle()
     */
     public void resetScannedArticle() {
         scannedArticles = 0;
