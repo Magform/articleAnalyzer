@@ -159,7 +159,7 @@ public class Argparser {
             throw new IllegalArgumentException("OutputFile is required if you want to print the output to a file");
           }
           else {
-            outputter.setFileName(cmd.getOptionValue("o"));
+            outputter.setFile(cmd.getOptionValue("o"));
           }
 
           if (cmd.hasOption("s")) {

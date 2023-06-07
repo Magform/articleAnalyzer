@@ -20,10 +20,10 @@ public class Main {
       // Retrieve necessary components from the argparser
       outputter = argparser.getOutputter();
       articleLoader = argparser.getArticleLoader();
-      
+
       // Load the articles into a Library
-      Library toAnalyze = articleLoader.getLoadedLibrary();
-      
+      Library toAnalyze = articleLoader.getLibrary();
+
       // Create an Elaborator instance with the loaded library
       elaborator = new Elaborator(toAnalyze);
 

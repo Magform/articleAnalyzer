@@ -25,7 +25,7 @@ public class Outputter {
         toFile = false;
         file = "";
     }
-    
+
     /**
      * Initializes the options to print output to the console or to a file.
      * @param tc the option to print the output to the console
@@ -63,7 +63,7 @@ public class Outputter {
      * @return true if printing to console is enabled, false otherwise.
      */
     public boolean getToConsole() {
-        return toConsole;       
+        return toConsole;
     }
 
     /**
@@ -80,10 +80,10 @@ public class Outputter {
      * @throws IOException if an I/O error occurs
     */
     public void setFile(String fileName) throws IOException {
-        file = fileName;   
-        check();    
+        file = fileName;
+        check();
     }
-    
+
     /**
       * Prints the given string to the console or to a file, based on the values assumed by the class attributes
       * @see printToConsole(String)
@@ -161,13 +161,13 @@ public class Outputter {
         if (!toPrint.getBody().equals("")) {
             print("\"body\" : \"" + toPrint.getBody() + "\",");
         }
-        if (!toPrint.getNewspaperPage().equals("")) {
+        if (toPrint.getNewspaperPage() != 0) {
             print("\"newspaperPage\" : \"" + toPrint.getNewspaperPage() + "\",");
         }
-        if (!toPrint.getWords().equals("")) {
+        if (toPrint.getWords() != 0) {
             print("\"words\" : \"" + toPrint.getWords() + "\"");
         }
-        print("}");
+        print("}\n");
     }
 
     /**
@@ -177,17 +177,12 @@ public class Outputter {
      * @throws IOException if an error occurs while printing
      */
     public void print(Library toPrint) throws IOException {
-        print("{\n");
-        print("\"article\":\n");
-        print("[\n");
-        for (int i = 1; i <= toPrint.getTotalArticlesNumber(); i++) {
-            print(toPrint.getArticle(i));
-            if (i != toPrint.getTotalArticlesNumber()) {
-                print(",");
-            }
+      for (int i = 0; i < toPrint.getTotalArticlesNumber(); i++) {
+        print(toPrint.getArticle(i));
+        if (i != toPrint.getTotalArticlesNumber() - 1) {
+          print(",\n");
         }
-        print("]");
-        print("}");
+      }
     }
 
     /**
@@ -212,10 +207,10 @@ public class Outputter {
                 throw new IOException("File where to print not setted");
             }
             File f = new File(file);
-            if (file.exists()) {
-                file.delete();
+            if (f.exists()) {
+                f.delete();
             }
-            file.createNewFile();
+            f.createNewFile();
         }
     }
 }

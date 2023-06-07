@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
+import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -49,7 +50,7 @@ public class ArticleLoader {
         String extension = "";
         try {
             extension = file.getName().substring(file.getName().lastIndexOf("."));
-        } 
+        }
         catch (StringIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("The file has no extension");
         }
@@ -106,7 +107,7 @@ public class ArticleLoader {
             library.addArticle(articleToAdd);
         }
         reader.close();
-    }  
+    }
 
     /**
      * Loads articles from a JSON file into the article library.
@@ -127,17 +128,18 @@ public class ArticleLoader {
             try {
                 articleToAdd.fullSetter((String)article.get("id"), "identifier");
                 articleToAdd.fullSetter((String)article.get("sectionId"), "section");
-                articleToAdd.fullSetter((String)article.get("publication"), "source");
-                articleToAdd.fullSetter((String)article.get("firstPublicationDate"), "publicationDate");
-                articleToAdd.fullSetter((String)article.get("lang"), "language");
                 articleToAdd.fullSetter((String)article.get("webUrl"), "url");
-                articleToAdd.fullSetter((String)article.get("headline"), "title");
-                articleToAdd.fullSetter((String)article.get("trailText"), "subtitle");
-                articleToAdd.fullSetter((String)article.get("bodyText"), "body");
-                articleToAdd.fullSetter((String)article.get("newspaperPageNumber"), "newspaperPage");
-                articleToAdd.fullSetter((String)article.get("wordcount"), "words");
+                JSONObject articleFields = (JSONObject)article.get("fields");
+                articleToAdd.fullSetter((String)articleFields.get("publication"), "source");
+                articleToAdd.fullSetter((String)articleFields.get("firstPublicationDate"), "publicationDate");
+                articleToAdd.fullSetter((String)articleFields.get("lang"), "language");
+                articleToAdd.fullSetter((String)articleFields.get("headline"), "title");
+                articleToAdd.fullSetter((String)articleFields.get("trailText"), "subtitle");
+                articleToAdd.fullSetter((String)articleFields.get("bodyText"), "body");
+                articleToAdd.fullSetter((String)articleFields.get("newspaperPageNumber"), "newspaperPage");
+                articleToAdd.fullSetter((String)articleFields.get("wordcount"), "words");
             }
-            catch (IllegalArgumentException e) {      
+            catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
             library.addArticle(articleToAdd);
@@ -153,10 +155,10 @@ public class ArticleLoader {
      * @throws IOException if an I/O error occurs while reading the file
      * @throws ParseException if an error occurs while parsing a JSON file
      * @throws CsvValidationException if an error occurs while validating a CSV file
-     * @throws IllegalArgumentException if the file extension is not specified or is not one of the managed ones 
+     * @throws IllegalArgumentException if the file extension is not specified or is not one of the managed ones
      */
-    public Library getLoadedLibrary() throws FileNotFoundException, IOException, ParseException, CsvValidationException, IllegalArgumentException {
+    public Library getLibrary() throws FileNotFoundException, IOException, ParseException, CsvValidationException, IllegalArgumentException {
         loadLibrary();
-        return loadedLibrary;
+        return library;
     }
 }

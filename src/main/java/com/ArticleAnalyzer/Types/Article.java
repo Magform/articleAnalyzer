@@ -40,7 +40,7 @@ public class Article {
     public String getIdentifier() {
         return identifier;
     }
- 
+
     /**
      * Returns the article's section.
      * @return the article's section
@@ -48,7 +48,7 @@ public class Article {
     public String getSection() {
         return section;
     }
- 
+
     /**
      * Returns the article's source.
      * @return the article's source
@@ -56,7 +56,7 @@ public class Article {
     public String getSource() {
         return source;
     }
- 
+
     /**
      * Returns the article's first publication date.
      * @return the article's first publication date
@@ -64,7 +64,7 @@ public class Article {
     public String getPublicationDate() {
         return publicationDate;
     }
- 
+
     /**
      * Returns the article's first publication date.
      * @return the article's first publication date
@@ -72,7 +72,7 @@ public class Article {
     public String getLanguage() {
         return language;
     }
- 
+
     /**
      * Returns the article's url.
      * @return the article's url
@@ -88,7 +88,7 @@ public class Article {
     public String getTitle() {
         return title;
     }
- 
+
     /**
      * Returns the article's subtitle.
      * @return the article's subtitle
@@ -96,7 +96,7 @@ public class Article {
     public String getSubtitle() {
         return subtitle;
     }
- 
+
     /**
      * Returns the article's body.
      * @return the article's body
@@ -104,7 +104,7 @@ public class Article {
     public String getBody() {
         return body;
     }
- 
+
     /**
      * Returns the article's page number in the newspaper.
      * @return the article's page number in the newspaper
@@ -128,7 +128,7 @@ public class Article {
     public void setIdentifier(String id) {
         identifier = id;
     }
- 
+
     /**
      * Sets the article's section.
      * @param se the article's section
@@ -136,7 +136,7 @@ public class Article {
     public void setSection(String se) {
         section = se;
     }
- 
+
     /**
      * Sets the article's source.
      * @param so the article's source
@@ -144,15 +144,15 @@ public class Article {
     public void setSource(String so) {
         source = so;
     }
- 
+
     /**
      * Sets the article's first publication date.
      * @param pd the article's first publication date
     */
     public void setPublicationDate(String pd) {
-        publicationdate = pd;
+        publicationDate = pd;
     }
- 
+
     /**
      * Sets the article's language.
      * @param l the article's language
@@ -160,7 +160,7 @@ public class Article {
     public void setLanguage(String l) {
         language = l;
     }
- 
+
     /**
      * Sets the article's url.
      * @param u the article's url
@@ -168,7 +168,7 @@ public class Article {
     public void setUrl(String u) {
         url = u;
     }
- 
+
     /**
      * Sets the article's title.
      * @param t the article's title
@@ -176,7 +176,7 @@ public class Article {
     public void setTitle(String t) {
         title = t;
     }
- 
+
     /**
      * Sets the article's subtitle.
      * @param st the article's subtitle
@@ -192,7 +192,7 @@ public class Article {
     public void setBody(String b) {
         body = b;
     }
- 
+
     /**
      * Sets the article's page number in the newspaper.
      * @param np the article's page number in the newspaper
@@ -200,7 +200,7 @@ public class Article {
     public void setNewspaperPage(int np) {
         newspaperPage = np;
     }
- 
+
     /**
      * Sets the article's words count.
      * @param w the article's words count
@@ -208,14 +208,14 @@ public class Article {
     public void setWords(int w) {
         words = w;
     }
- 
+
     /**
      * Sets the given Article attribute name to the given value.
      * @param attributeValue the attribute's value which needs to be set
      * @param attributeName the attribute's name to be set
      * @throws NumberFormatException if there are errors during the convertion of the value from String to int
      * @throws IllegalArgumentException if the attribute to be set is not one of the Article's attributes
-    */ 
+    */
     public void fullSetter(String attributeValue, String attributeName) throws IllegalArgumentException {
         if (attributeName.equalsIgnoreCase("identifier")) {
             setIdentifier(attributeValue);
@@ -246,7 +246,12 @@ public class Article {
         }
         else if (attributeName.equalsIgnoreCase("newspaperPage")) {
             try {
-                setNewspaperPage(Integer.parseInt(attributeValue));
+                if (attributeValue == null) {
+                  setNewspaperPage(0);
+                }
+                else {
+                  setNewspaperPage(Integer.parseInt(attributeValue));
+                }
             }
             catch (NumberFormatException e) {
                 throw new IllegalArgumentException(attributeValue + " must be a number if related to the page number in the newspaper");
@@ -254,7 +259,12 @@ public class Article {
         }
         else if (attributeName.equalsIgnoreCase("words")) {
             try {
-                setWords(Integer.parseInt(attributeValue));
+                if (attributeValue == null) {
+                  setWords(0);
+                }
+                else {
+                  setWords(Integer.parseInt(attributeValue));
+                }
             }
             catch (NumberFormatException e) {
                 throw new IllegalArgumentException(attributeValue + " must be a number if related to the article's words count");

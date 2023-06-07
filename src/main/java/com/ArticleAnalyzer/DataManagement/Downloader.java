@@ -179,10 +179,10 @@ public class Downloader {
         }
         try {
             String mergedResults = "";
-            Outputter toJSON = new Outputter(false, true, JSONoutput);
+            Outputter toJSON = new Outputter(false, true, JSONOutput);
             for (int i = 0; i < totalPageNumber; i++) {
                 //Create the web url with the specified parameters for each page formed of the given page-size
-                urlString = link + "&show-fields=all";
+                urlString = link + "show-fields=all";
                 urlString = urlString + "&page=" + initialPage;
                 initialPage++;
                 if (articlesPerPage != -1) {
@@ -200,7 +200,7 @@ public class Downloader {
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.connect();
-                
+
                 Scanner scanner = new Scanner(connection.getInputStream());
                 String result = "";
                 while (scanner.hasNextLine()) {

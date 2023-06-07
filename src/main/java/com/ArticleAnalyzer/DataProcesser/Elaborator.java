@@ -35,7 +35,7 @@ public class Elaborator {
      * @see orderMap()
     */
     private void analyze() {
-        for (int i = 0; i < library.getTotalArticleNumber(); i++) {
+        for (int i = 0; i < library.getTotalArticlesNumber(); i++) {
           HashMap<String, Boolean> founded = new HashMap<String, Boolean>();
           Article article = library.getArticle(i);
           String text = article.getTitle() + article.getBody();
