@@ -13,26 +13,17 @@ public class ArticleTest {
     @Test
     public void DefaultConstructor() {
         Article article = new Article();
-
-        assertEquals("", article.getId());
-        assertEquals("", article.getType());
-        assertEquals("", article.getSectionID());
-        assertEquals("", article.getWebUrl());
-        assertEquals("", article.getApiUrl());
-        assertEquals("", article.getTrailText());
-        assertEquals("", article.getHeadline());
-        assertEquals("", article.getProductionOffice());
-        assertEquals("", article.getBody());
-        assertEquals("", article.getStandfirst());
-        assertEquals("", article.getShortUrl());
+        assertEquals("", article.getIdentifier());
+        assertEquals("", article.getSection());
+        assertEquals("", article.getSource());
+        assertEquals("", article.getPublicationDate());
+        assertEquals("", article.getLanguage());
+        assertEquals("", article.getUrl());
         assertEquals("", article.getTitle());
-        assertEquals("", article.getMain());
-        assertEquals("", article.getBodyText());
-        assertEquals("", article.getLang());
-        assertEquals(-1, article.getNewspaperPageNumber());
-        assertEquals(-1, article.getCharCount());
-        assertEquals(-1, article.getWordcount());
-        assertNull(article.getWebPublicationDate());
+        assertEquals("", article.getSubtitle());
+        assertEquals("", article.getBody());
+        assertEquals(0, article.getNewspaperPage());
+        assertEquals(0, article.getWords());
     }
 
 }

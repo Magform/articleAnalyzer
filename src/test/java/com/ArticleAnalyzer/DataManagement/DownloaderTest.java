@@ -15,53 +15,53 @@ public class DownloaderTest {
 
     //Test for default constructor
     @Test
-    public void defaultConstructor(){
+    public void defaultConstructor() {
         Downloader test = new Downloader();
-        assertNull(test.getJSONoutput());
+        assertEquals("", test.getJSONOutput());
     }
 
     @Test(expected = FileNotFoundException.class)
-    public void constructor_invalidFile() throws FileNotFoundException, IllegalArgumentException, IOException{
+    public void constructor_invalidFile() throws FileNotFoundException, IllegalArgumentException, IOException {
         Downloader test = new Downloader("Invalid String");
     }
 
     //These test need to be configured with the correct path using PATH variable, and also you need to configure your APIKey inside the Downloader_configurationFile
-    
-    private String PATH = ""; //path of the Downloader_configurationFile directory
 
-    
+    private String PATH = "src/test/java/com/ArticleAnalyzer/DataManagement/Downloader_configurationFile/"; //path of the Downloader_configurationFile directory
+
+
     @Test(expected = IllegalArgumentException.class)
-    public void constructor_noAPI() throws FileNotFoundException, IllegalArgumentException, IOException{
-        Downloader test = new Downloader(PATH+"/noAPI.txt");
+    public void constructor_noAPI() throws FileNotFoundException, IllegalArgumentException, IOException {
+        Downloader test = new Downloader(PATH + "noAPI.txt");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void constructor_noEndpoint() throws FileNotFoundException, IllegalArgumentException, IOException{
-        Downloader test = new Downloader(PATH+"/noEndpoint.txt");
+    public void constructor_noEndpoint() throws FileNotFoundException, IllegalArgumentException, IOException {
+        Downloader test = new Downloader(PATH + "noEndpoint.txt");
 
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void constructor_extraKey() throws FileNotFoundException, IllegalArgumentException, IOException{
-        Downloader test = new Downloader(PATH+"/extraKey.txt");
+    public void constructor_extraKey() throws FileNotFoundException, IllegalArgumentException, IOException {
+        Downloader test = new Downloader(PATH + "extraKey.txt");
 
     }
-  
+
     @Test(expected = IOException.class)
-    public void constructor_invalidLink() throws FileNotFoundException, IllegalArgumentException, IOException{
-        Downloader test = new Downloader(PATH+"/invalidLink.txt");
+    public void constructor_invalidLink() throws FileNotFoundException, IllegalArgumentException, IOException {
+        Downloader test = new Downloader(PATH + "invalidLink.txt");
     }
 
     @Test
-    public void constructor_working() throws FileNotFoundException, IllegalArgumentException, IOException{
-        Downloader test = new Downloader(PATH+"/working.txt");
+    public void constructor_working() throws FileNotFoundException, IllegalArgumentException, IOException {
+        Downloader test = new Downloader(PATH + "working.txt");
         //if nothing is throw I suppose that everything worked fine
     }
 
     @Test
-    public void constructor_workingGetJSONoutput() throws FileNotFoundException, IllegalArgumentException, IOException{
-        Downloader test = new Downloader(PATH+"/working.txt");
-        assertEquals("outputter_results.json", test.getJSONoutput());
+    public void constructor_workingGetJSONoutput() throws FileNotFoundException, IllegalArgumentException, IOException {
+        Downloader test = new Downloader(PATH + "working.txt");
+        assertEquals("outputter_results.json", test.getJSONOutput());
     }
-    
+
 }
