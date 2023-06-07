@@ -38,8 +38,8 @@ public class ArticleLoader {
 
     /**
      * Loads the article library from the specified file.
-     * @see #loadCSV()
-     * @see #loadJSON()
+     * @see loadCSV()
+     * @see loadJSON()
      * @throws FileNotFoundException if the file is not found
      * @throws IOException if an I/O error occurs while reading the file
      * @throws ParseException if an error occurs while parsing a JSON file
@@ -149,7 +149,7 @@ public class ArticleLoader {
 
     /**
      * Returns the Library object after it has been loaded with the articles contained in the file.
-     * @see #loadLibrary()
+     * @see loadLibrary()
      * @return the loaded Library object
      * @throws IOException if an I/O error occurs while reading the file
      * @throws ParseException if an error occurs while parsing a JSON file
