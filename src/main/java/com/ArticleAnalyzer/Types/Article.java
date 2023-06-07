@@ -123,10 +123,10 @@ public class Article {
 
     /**
      * Sets the article's identifier.
-     * @param i the article's identifier
+     * @param id the article's identifier
     */
     public void setIdentifier(String id) {
-        identifier = i;
+        identifier = id;
     }
  
     /**
