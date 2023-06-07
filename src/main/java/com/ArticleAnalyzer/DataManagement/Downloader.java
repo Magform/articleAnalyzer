@@ -158,7 +158,6 @@ public class Downloader {
     /**
      * Downloads data from TheGuardian endpoint and saves the response data in a file.
      * It downloads a specified number of pages based on the given page size and merges all the responses from each downloaded page.
-     *
      * @throws IllegalArgumentException if different contents in the configuration file are invalid
      * @throws IOException if there are errors during the download process
     */
