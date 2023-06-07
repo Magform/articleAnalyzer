@@ -61,7 +61,7 @@ public class Outputter {
     /**
      * Returns whether printing to console is enabled.
      * @return true if printing to console is enabled, false otherwise.
-     */
+    */
     public boolean getToConsole() {
         return toConsole;
     }
@@ -69,7 +69,7 @@ public class Outputter {
     /**
      * Returns whether printing to a file is enabled.
      * @return true if printing to a file is enabled, false otherwise.
-     */
+    */
     public boolean getToFile() {
         return toFile;
     }
@@ -103,7 +103,7 @@ public class Outputter {
     /**
      * Prints the given string to console.
      * @param toPrint the string to be printed
-     */
+    */
     private void printToConsole(String toPrint) {
         System.out.print(toPrint);
     }
@@ -112,7 +112,7 @@ public class Outputter {
      * Prints the given string to a file.
      * @param toPrint the string to be printed
      * @throws IOException if an error occurs while writing to the file
-     */
+    */
     private void printToFile(String toPrint) throws IOException {
         try {
             File f = new File(file);
@@ -175,7 +175,7 @@ public class Outputter {
      * @see print(Article)
      * @param toPrint the Library object containing articles to be printed
      * @throws IOException if an error occurs while printing
-     */
+    */
     public void print(Library toPrint) throws IOException {
       for (int i = 0; i < toPrint.getTotalArticlesNumber(); i++) {
         print(toPrint.getArticle(i));
@@ -189,7 +189,7 @@ public class Outputter {
      * Prints the given LinkedHashMap object with key-value pairs.
      * @param toPrint the LinkedHashMap object with key-value pairs to print
      * @throws IOException if an error occurs while printing
-     */
+    */
     public void print(LinkedHashMap<String, Integer> toPrint) throws IOException {
         for (String key : toPrint.keySet()) {
             print(key + " " + toPrint.get(key) + "\n");
