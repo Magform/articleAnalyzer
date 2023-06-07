@@ -213,7 +213,6 @@ public class Article {
      * Sets the given Article attribute name to the given value.
      * @param attributeValue the attribute's value which needs to be set
      * @param attributeName the attribute's name to be set
-     * @throws NumberFormatException if there are errors during the convertion of the value from String to int
      * @throws IllegalArgumentException if the attribute to be set is not one of the Article's attributes
     */
     public void fullSetter(String attributeValue, String attributeName) throws IllegalArgumentException {
