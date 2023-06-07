@@ -15,28 +15,28 @@ import java.net.URL;
 /**
  * The Downloader class is responsible for downloading data from a specified endpoint based on a configuration file.
  * It currently supports TheGuardian as the implemented endpoint.
- */
+*/
 public class Downloader {
     private File configurationFile;
     private String endpoint;
     private String link;
     private String APIkey;
     private String query;
-    private String JSONoutput;
+    private String JSONOutput;
     private int articlesPerPage;
     private int initialPage;
     private int totalPageNumber;
 
     /**
      * Initializes all attributes of the class to their default values.
-     */
+    */
     public Downloader() {
-        endpoint = null;
         configurationFile = null;
-        link = null;
-        query = null;
-        APIkey = null;
-        JSONoutput = null;
+        endpoint = "";
+        link = "";
+        APIkey = "";
+        query = "";
+        JSONOutput = "";
         articlesPerPage = -1;
         initialPage = -1;
         totalPageNumber = -1;
@@ -44,24 +44,23 @@ public class Downloader {
 
     /**
      * Initializes the Downloader object with the specified settings in the configuration file and downloads the articles.
-     *
-     * @param cf the path to the configuration file
-     * @throws FileNotFoundException     if the configuration file does not exist
-     * @throws IllegalArgumentException  if the configuration file contains invalid contents
-     * @throws IOException               if there are errors during the download process
-     */
+     * @param cf the configuration file path
+     * @throws FileNotFoundException if the configuration file does not exist
+     * @throws IllegalArgumentException if the configuration file contains invalid contents
+     * @throws IOException if there are errors during the download process
+    */
     public Downloader(String cf) throws FileNotFoundException, IllegalArgumentException, IOException {
         configurationFile = new File(cf);
-        endpoint = null;
-        link = null;
-        query = null;
-        APIkey = null;
-        JSONoutput = "downloaded.json";
+        endpoint = "";
+        link = "";
+        APIkey = "";
+        query = "";
+        JSONOutput = "downloaded.json";
         articlesPerPage = -1;
         initialPage = 1;
         totalPageNumber = 1;
         Scanner configurationFileScanner = new Scanner(this.configurationFile);
-        // Read the configuration file and set all the variables accordingly
+        //Reads the configuration file and sets all the variables accordingly
         while (configurationFileScanner.hasNextLine()) {
             String line = configurationFileScanner.nextLine();
             int splitter = line.indexOf(":");
@@ -69,51 +68,62 @@ public class Downloader {
                 configurationFileScanner.close();
                 throw new IllegalArgumentException("Invalid configuration file");
             }
-
             String key = line.substring(0, splitter);
             String value = line.substring(splitter + 1, line.length());
             try {
                 value = value.substring(value.indexOf("\"") + 1, value.length());
                 value = value.substring(0, value.indexOf("\""));
-            } catch (IndexOutOfBoundsException e) {
+            }
+            catch (IndexOutOfBoundsException e) {
                 configurationFileScanner.close();
                 throw new IllegalArgumentException("Invalid argument in configuration file");
             }
 
             if (key.equalsIgnoreCase("link")) {
                 link = value;
-            } else if (key.equalsIgnoreCase("endpoint")) {
+            }
+            else if (key.equalsIgnoreCase("endpoint")) {
                 endpoint = value;
-            } else if (key.equalsIgnoreCase("query")) {
+            }
+            else if (key.equalsIgnoreCase("query")) {
                 query = value;
-            } else if (key.equalsIgnoreCase("APIkey")) {
+            }
+            else if (key.equalsIgnoreCase("APIkey")) {
                 APIkey = value;
-            } else if (key.equalsIgnoreCase("JSONoutput")) {
-                JSONoutput = value;
-            } else if (key.equalsIgnoreCase("articlesPerPage")) {
+            }
+            else if (key.equalsIgnoreCase("JSONOutput")) {
+                JSONOutput = value;
+            }
+            else if (key.equalsIgnoreCase("articlesPerPage")) {
                 try {
                     articlesPerPage = Integer.parseInt(value);
-                } catch (NumberFormatException e) {
-                    configurationFileScanner.close();
-                    throw new IllegalArgumentException("articlesPerPage contains a non-int value");
                 }
-            } else if (key.equalsIgnoreCase("initialPage")) {
+                catch (NumberFormatException e) {
+                    configurationFileScanner.close();
+                    throw new IllegalArgumentException("articlesPerPage must be an int value");
+                }
+            }
+            else if (key.equalsIgnoreCase("initialPage")) {
                 try {
                     initialPage = Integer.parseInt(value);
-                } catch (NumberFormatException e) {
-                    configurationFileScanner.close();
-                    throw new IllegalArgumentException("initialPage contains a non-int value");
                 }
-            } else if (key.equalsIgnoreCase("totalPageNumber")) {
+                catch (NumberFormatException e) {
+                    configurationFileScanner.close();
+                    throw new IllegalArgumentException("initialPage  must be an int value");
+                }
+            }
+            else if (key.equalsIgnoreCase("totalPageNumber")) {
                 try {
                     totalPageNumber = Integer.parseInt(value);
-                } catch (NumberFormatException e) {
-                    configurationFileScanner.close();
-                    throw new IllegalArgumentException("totalPageNumber contains a non-int value");
                 }
-            } else {
+                catch (NumberFormatException e) {
+                    configurationFileScanner.close();
+                    throw new IllegalArgumentException("totalPageNumber must be an int value");
+                }
+            }
+            else {
                 configurationFileScanner.close();
-                throw new IllegalArgumentException(key + " is an invalid key but it is in the configuration file");
+                throw new IllegalArgumentException(key + " is an invalid key in the configuration file");
             }
         }
         configurationFileScanner.close();
@@ -122,26 +132,25 @@ public class Downloader {
 
     /**
      * Returns the file path of the saved response data.
-     *
      * @return The file path of the saved response data.
-     */
-    public String getJSONoutput() {
-        return JSONoutput;
+    */
+    public String getJSONOutput() {
+        return JSONOutput;
     }
 
     /**
-     * Starts the download process based on a specified endpoint.
-     *
+     * Starts the download process basing on a specified endpoint.
      * @throws IllegalArgumentException if the specified endpoint is invalid
-     * @throws IOException              if there are errors during the download process
-     */
+     * @throws IOException if there are errors during the download process
+    */
     private void download() throws IOException, IllegalArgumentException {
-        if (endpoint == null) {
-            throw new IllegalArgumentException("Endpoint needs to be defined");
+        if (endpoint.equalsIgnoreCase("")) {
+            throw new IllegalArgumentException("Endpoint must be defined");
         }
         if (endpoint.equalsIgnoreCase("TheGuardian")) {
             downloadFromTheGuardian();
-        } else {
+        }
+        else {
             throw new IllegalArgumentException(endpoint + " is an invalid endpoint");
         }
     }
@@ -152,28 +161,27 @@ public class Downloader {
      *
      * @throws IllegalArgumentException if different contents in the configuration file are invalid
      * @throws IOException if there are errors during the download process
-     */
+    */
     private void downloadFromTheGuardian() throws IOException {
         String urlString = "";
-        // Check if anything is configured incorrectly
-        if (link == null || link.equalsIgnoreCase("")) {
+        //Checks if anything is configured incorrectly
+        if (link.equalsIgnoreCase("")) {
             throw new IllegalArgumentException("link needs to be configured");
         }
-        if (endpoint == null || endpoint.equalsIgnoreCase("")) {
+        if (endpoint.equalsIgnoreCase("")) {
             throw new IllegalArgumentException("endpoint needs to be configured");
         }
-        if (APIkey == null || APIkey.equalsIgnoreCase("")) {
+        if (APIkey.equalsIgnoreCase("")) {
             throw new IllegalArgumentException("APIkey needs to be configured");
         }
         if (articlesPerPage > 200 || articlesPerPage < -1) {
             throw new IllegalArgumentException("articlesPerPage value is invalid (it must be an int between 0 and 200 inclusive)");
         }
-
         try {
             String mergedResults = "";
             Outputter toJSON = new Outputter(false, true, JSONoutput);
             for (int i = 0; i < totalPageNumber; i++) {
-                // Merge all variables into the URL
+                //Create the web url with the specified parameters for each page formed of the given page-size
                 urlString = link + "&show-fields=all";
                 urlString = urlString + "&page=" + initialPage;
                 initialPage++;
@@ -187,71 +195,80 @@ public class Downloader {
                     urlString = urlString + "&q=" + query.replace(" ", "+");
                 }
 
-                // Start URL connection and process the response
+                //Establishes an URL connection, processes and retrieves the response
                 URL url = new URL(urlString);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.connect();
-
-                // Read the response and append it to the mergedResults
+                
                 Scanner scanner = new Scanner(connection.getInputStream());
-                StringBuilder result = new StringBuilder();
+                String result = "";
                 while (scanner.hasNextLine()) {
-                    result.append(scanner.nextLine()).append("\n");
+                  result = result + scanner.nextLine() + "\n";
                 }
 
-                mergedResults = theGuardianMerge(mergedResults, result.toString());
+                //Adds the response retrieved from the current download connection into the previously merged response
+                mergedResults = mergeTheGuardianResponses(mergedResults, result);
 
+                //Terminate the established connection
                 connection.disconnect();
             }
-
             toJSON.print(mergedResults);
 
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e) {
             throw new IOException(urlString + " is an invalid link");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new IOException("Error with connection to the API with URL: " + urlString);
         }
     }
 
     /**
-     * Returns all responses provided by The Guardian merged into a single JSON response with all the settings modified.
-     *
-     * @param firstJSON  the responses that have already been merged
-     * @param secondJSON the response that needs to be merged with the others
-     * @return all the responses provided by The Guardian merged into a single JSON response
-     */
-    private String theGuardianMerge(String firstJSON, String secondJSON) {
-        if (firstJSON.isEmpty()) {
-            return secondJSON;
+     * Returns all responses provided by The Guardian merged into a unique JSON response with all the settings modified
+     * @param merged the responses that have already been merged
+     * @param toMerge the response that needs to be merged with the others
+     * @return all the responses provided by The Guardian merged into a unique JSON response
+    */
+    private String mergeTheGuardianResponses(String merged, String toMerge) {
+        if (merged == "") {
+            return toMerge;
         }
-        if (secondJSON.isEmpty()) {
-            return firstJSON;
+        if (toMerge == "") {
+          return merged;
         }
         JSONObject results = new JSONObject();
         JSONObject content = new JSONObject();
-        JSONObject first = new JSONObject(firstJSON).getJSONObject("response");
-        JSONObject second = new JSONObject(secondJSON).getJSONObject("response");
+        //Retrieves the already merged response
+        JSONObject added = (JSONObject)new JSONObject(merged).get("response");
+        //Retrieves the response that needs to be merged
+        JSONObject toAdd = (JSONObject)new JSONObject(toMerge).get("response");
 
-        content.put("status", first.getString("status"));
-        content.put("userTier", first.getString("userTier"));
-        content.put("total", first.getInt("total") + second.getInt("total"));
-        content.put("pageSize", first.getInt("pageSize"));
-        content.put("pages", first.getInt("pages") + second.getInt("pages"));
-        content.put("orderBy", first.getString("orderBy"));
+        //Create the new JSON response with all the merged results and specifying the correct settings
+        content.put("status", added.getString("status"));
+        content.put("userTier", added.getString("userTier"));
+        content.put("total", added.getInt("total") + toAdd.getInt("total"));
+        content.put("pageSize", added.getInt("pageSize"));
+        content.put("pages", added.getInt("pages") + toAdd.getInt("pages"));
+        content.put("orderBy", added.getString("orderBy"));
 
         JSONArray articles = new JSONArray();
-        JSONArray firstArticles = first.getJSONArray("results");
-        JSONArray secondArticles = second.getJSONArray("results");
+        //Retrieves all the articles contained in the response that have already been merged
+        JSONArray articlesAdded = (JSONArray)added.get("results");
+        //Retrieves all the articles contained in the response that need to be merged
+        JSONArray articlesToAdd = (JSONArray)toAdd.get("results");
 
-        articles = firstArticles;
+        articles = articlesAdded;
 
-        for (int i = 0; i < secondArticles.length(); i++) {
-            articles.put(secondArticles.getJSONObject(i));
+        //Merges each article of the response to merge to the already merge articles
+        for (int i = 0; i < articlesToAdd.length(); i++) {
+          articles.put(articlesToAdd.getJSONObject(i));
         }
 
+        //Adds the completely merged articles
         content.put("results", articles);
 
+        //Adds the complete response created
         results.put("response", content);
         return results.toString();
     }
