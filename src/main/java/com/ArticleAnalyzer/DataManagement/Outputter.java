@@ -128,7 +128,6 @@ public class Outputter {
 
     /**
      * Prints the properties of an Article object.
-     * @see print(Article)
      * @param toPrint the Article object to be printed
      * @throws IOException if an error occurs while printing
     */
