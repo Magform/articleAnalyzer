@@ -26,19 +26,24 @@ The Article class describes an article from an online newspaper.
 
 Each Article object created is composed of:
 
-- id: the unique article id
+- identifier: the unique article identifier
+- section: the argument section regarding the article
+- source: the online newspaper the article comes from
+- publicationDate: the date of the first publication of the article
+- language: the article writing language
 - url: the web url of the page which contains the article
-- source: the online newspaper the articles come from
-- date: the article first publication date
-- title: the article title
-- body: the article body
+- title: the article's title
+- subtitle: the article's subtitle
+- body: the article's body
+- newspaperPage: the page of the newspaper which contains the article
+- words: the body words count of the article
 
 The Article class provides:
 
 - default constructor: initializes all the attributes of the class to their default values (every attribute of this class is a [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object, so they are initialized with "")
-- constructor with parameters: initializes all the attributes with the respective given parameters
 - getters for each attribute
 - setters for each attribute
+- fullSetter: sets the given Article object attribute name to the given value. A [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html) exception is thrown if the given attribute name to be set is not one of the Article object's attributes
 
 #### Library
 The Library class represents a collection of [Article](#Article) objects, implemented with an array.
@@ -53,7 +58,7 @@ The Library class provides:
 - default constructor: initializes all the attributes of the class to their default values (the two indexes are initialized to 0)
 - constructor with an [Article](#Article) object as a parameter: add the given [Article](#Article) object to the first position of the collection
 - addArticle: add the given [Article](#Article) object to the position pointed by the interna index totalArticlesNumber
-- getTotalArticleNumber: returns the number of effective articles contained in the collection
+- getTotalArticlesNumber: returns the number of effective articles contained in the collection
 - getArticle: returns the [Article](#Article) object contained in the position given. If the position given in invalid, an [java.lang.IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html) exception is thrown
 - getNextArticle: returns the next [Article](#Article) object scanned by the internal index scannedArticles. If there are not [Article](#Article) objects in the collection, it returns null
 - resetScannedArticle: reset the internal index scannedArticles to 0 in order to allow the method getNextArticle to scan the collection from the start again
@@ -118,7 +123,7 @@ The Downloader class provides:
     - the api-key
     - show-fields=all, which allows to receive the title and the body of each article
     - the query
-    - the page-size; if not specified, the default value is 10
+    - the page size; if not specified, the default value is 10
     - the page to download; if not specified, the default initial page value where to start the download is 1
 
     It establishes the HTTP connection for each page to download with the GET request method using a [java.net.HttpURLConnection](https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html) object and opens the connection with The Guardian API. In the end, it closes the connection, merge the current response received with the others already merged, saves the response in a file using an [Outputter](#Outputter) object. Different exceptions are thrown, basing on the errors occurred during the execution of the method:

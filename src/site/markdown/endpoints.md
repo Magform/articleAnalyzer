@@ -7,6 +7,7 @@ Here a list of all the endpoints which allow to download articles from different
         - [Example 1](#Example_1)
         - [Example 2](#Example_2)
         - [Example 3](#Example_3)
+        - [Example 4](#Example_4)
 
 ## The Guardian
 This endpoint allows you to obtain articles directly from The Guardian's website via an API key. For the configuration, you need to specify:
