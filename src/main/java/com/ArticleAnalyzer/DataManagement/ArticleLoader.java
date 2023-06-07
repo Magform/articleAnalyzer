@@ -45,7 +45,7 @@ public class ArticleLoader {
      * @throws ParseException if an error occurs while parsing a JSON file
      * @throws CsvValidationException if an error occurs while validating a CSV file
      * @throws IllegalArgumentException if the file extension is not specified or is not one of the managed ones
-     */
+    */
     private void loadLibrary() throws IOException, CsvValidationException, ParseException {
         String extension = "";
         try {
@@ -113,7 +113,7 @@ public class ArticleLoader {
      * Loads articles from a JSON file into the article library.
      * @throws IOException if an I/O error occurs while reading the file
      * @throws ParseException if an error occurs while parsing the JSON file
-     */
+    */
     private void loadJSON() throws IOException, ParseException {
         FileReader fileReader = new FileReader(file);
         JSONParser parser = new JSONParser();
@@ -154,7 +154,7 @@ public class ArticleLoader {
      * @throws IOException if an I/O error occurs while reading the file
      * @throws ParseException if an error occurs while parsing a JSON file
      * @throws CsvValidationException if an error occurs while validating a CSV file
-     */
+    */
     public Library getLibrary() throws IOException, CsvValidationException, ParseException {
         loadLibrary();
         return library;
