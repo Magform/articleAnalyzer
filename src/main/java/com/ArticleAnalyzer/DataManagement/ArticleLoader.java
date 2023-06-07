@@ -45,8 +45,8 @@ public class ArticleLoader {
      * @throws ParseException if an error occurs while parsing a JSON file
      * @throws CsvValidationException if an error occurs while validating a CSV file
      * @throws IllegalArgumentException if the file extension is not specified or is not one of the managed ones
-    */
-    private void loadLibrary() throws FileNotFoundException, IOException, ParseException, CsvValidationException {
+     */
+    private void loadLibrary() throws IOException, CsvValidationException, ParseException {
         String extension = "";
         try {
             extension = file.getName().substring(file.getName().lastIndexOf("."));
@@ -71,7 +71,7 @@ public class ArticleLoader {
      * @throws IOException if an I/O error occurs while reading the file
      * @throws CsvValidationException if an error occurs while validating the CSV file
     */
-    private void loadCSV() throws FileNotFoundException, IOException, CsvValidationException {
+    private void loadCSV() throws IOException, CsvValidationException {
         FileReader fileReader = new FileReader(file);
         CSVReader reader = new CSVReader(fileReader);
         String[] index = reader.readNext();
@@ -113,7 +113,7 @@ public class ArticleLoader {
      * Loads articles from a JSON file into the article library.
      * @throws IOException if an I/O error occurs while reading the file
      * @throws ParseException if an error occurs while parsing the JSON file
-    */
+     */
     private void loadJSON() throws IOException, ParseException {
         FileReader fileReader = new FileReader(file);
         JSONParser parser = new JSONParser();
@@ -151,13 +151,11 @@ public class ArticleLoader {
      * Returns the Library object after it has been loaded with the articles contained in the file.
      * @see #loadLibrary()
      * @return the loaded Library object
-     * @throws FileNotFoundException if the file is not found
      * @throws IOException if an I/O error occurs while reading the file
      * @throws ParseException if an error occurs while parsing a JSON file
      * @throws CsvValidationException if an error occurs while validating a CSV file
-     * @throws IllegalArgumentException if the file extension is not specified or is not one of the managed ones
-    */
-    public Library getLibrary() throws FileNotFoundException, IOException, ParseException, CsvValidationException, IllegalArgumentException {
+     */
+    public Library getLibrary() throws IOException, CsvValidationException, ParseException {
         loadLibrary();
         return library;
     }
