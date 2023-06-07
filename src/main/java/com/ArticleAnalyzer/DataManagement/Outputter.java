@@ -39,7 +39,7 @@ public class Outputter {
 
     /**
      * Initializes the file path with the given value
-     * @see Outputter(boolean tc, boolean tf)
+     * @see Outputter(boolean, boolean)
      * @param tc the option to print the output to the console
      * @param tf the option to print the output to a file
      * @param fileName the file path
