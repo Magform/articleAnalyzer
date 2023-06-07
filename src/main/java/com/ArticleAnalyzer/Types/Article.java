@@ -216,7 +216,7 @@ public class Article {
      * @throws NumberFormatException if there are errors during the convertion of the value from String to int
      * @throws IllegalArgumentException if the attribute to be set is not one of the Article's attributes
     */ 
-    public void fullSetter(String attributeValue, String attributeName) throws NumberFormatException, IllegalArgumentException {
+    public void fullSetter(String attributeValue, String attributeName) throws IllegalArgumentException {
         if (attributeName.equalsIgnoreCase("identifier")) {
             setIdentifier(attributeValue);
         }
@@ -246,22 +246,18 @@ public class Article {
         }
         else if (attributeName.equalsIgnoreCase("newspaperPage")) {
             try {
-                boolean done = false;
                 setNewspaperPage(Integer.parseInt(attributeValue));
-                done = true;
             }
             catch (NumberFormatException e) {
-                throw new NumberFormatException(attributeValue + " must be a number if related to the page number in the newspaper");
+                throw new IllegalArgumentException(attributeValue + " must be a number if related to the page number in the newspaper");
             }
         }
         else if (attributeName.equalsIgnoreCase("words")) {
             try {
-                boolean done = false;
                 setWords(Integer.parseInt(attributeValue));
-                done = true;
             }
             catch (NumberFormatException e) {
-                throw new NumberFormatException(attributeValue + " must be a number if related to the article's words count");
+                throw new IllegalArgumentException(attributeValue + " must be a number if related to the article's words count");
             }
         }
         else {
