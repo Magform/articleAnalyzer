@@ -99,7 +99,7 @@ public class ArticleLoader {
                         articleToAdd.fullSetter(line[i], "body");
                     }
                 }
-                catch(IllegalArgumentException e) {
+                catch (IllegalArgumentException e) {
                     System.out.println(e);
                 }
             }
@@ -124,17 +124,22 @@ public class ArticleLoader {
         while (iteratorArticles.hasNext()) {
             JSONObject article = iteratorArticles.next();
             Article articleToAdd = new Article();
-            articleToAdd.fullSetter((String)article.get("id"), "identifier");
-            articleToAdd.fullSetter((String)article.get("sectionId"), "section");
-            articleToAdd.fullSetter((String)article.get("publication"), "source");
-            articleToAdd.fullSetter((String)article.get("firstPublicationDate"), "publicationDate");
-            articleToAdd.fullSetter((String)article.get("lang"), "language");
-            articleToAdd.fullSetter((String)article.get("webUrl"), "url");
-            articleToAdd.fullSetter((String)article.get("headline"), "title");
-            articleToAdd.fullSetter((String)article.get("trailText"), "subtitle");
-            articleToAdd.fullSetter((String)article.get("bodyText"), "body");
-            articleToAdd.fullSetter((String)article.get("newspaperPageNumber"), "newspaperPage");
-            articleToAdd.fullSetter((String)article.get("wordcount"), "words");
+            try {
+                articleToAdd.fullSetter((String)article.get("id"), "identifier");
+                articleToAdd.fullSetter((String)article.get("sectionId"), "section");
+                articleToAdd.fullSetter((String)article.get("publication"), "source");
+                articleToAdd.fullSetter((String)article.get("firstPublicationDate"), "publicationDate");
+                articleToAdd.fullSetter((String)article.get("lang"), "language");
+                articleToAdd.fullSetter((String)article.get("webUrl"), "url");
+                articleToAdd.fullSetter((String)article.get("headline"), "title");
+                articleToAdd.fullSetter((String)article.get("trailText"), "subtitle");
+                articleToAdd.fullSetter((String)article.get("bodyText"), "body");
+                articleToAdd.fullSetter((String)article.get("newspaperPageNumber"), "newspaperPage");
+                articleToAdd.fullSetter((String)article.get("wordcount"), "words");
+            }
+            catch (IllegalArgumentException e) {      
+                System.out.println(e);
+            }
             library.addArticle(articleToAdd);
         }
         fileReader.close();
