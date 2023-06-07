@@ -11,23 +11,21 @@ import java.io.IOException;
 import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
-import java.text.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * The ArticleLoader class is responsible for loading articles from different file formats, such as CSV and JSON, into a Library object.
  * It provides methods to load the articles and retrieve the loaded Library object.
- */
+*/
 public class ArticleLoader {
-
     private File file;
     private Library loadedLibrary;
 
    /**
     * Constructs an ArticleLoader object with the specified file.
-    *
     * @param fileName the file path of the article data
     * @throws FileNotFoundException if the file is not found
     */
@@ -117,7 +115,7 @@ public class ArticleLoader {
      * @throws org.json.simple.parser.ParseException if an error occurs while parsing the JSON file
      * @throws ClassCastException if an error occure while casting something
      */
-    private void loadJSON() throws IOException, ParseException, org.json.simple.parser.ParseException, ClassCastException{
+    private void loadJSON() throws IOException, ParseException {
         FileReader fileReader = new FileReader(file);
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(fileReader);
@@ -175,7 +173,7 @@ public class ArticleLoader {
      * @throws CsvValidationException if an error occurs while validating a CSV file
      * @throws IllegalArgumentException if the file extension is not specified or is not one of the managed ones 
      */
-    public Library getLoadedLibrary() throws FileNotFoundException, IOException, ParseException, org.json.simple.parser.ParseException, CsvValidationException, IllegalArgumentException{
+    public Library getLoadedLibrary() throws FileNotFoundException, IOException, ParseException, CsvValidationException, IllegalArgumentException{
         loadLibrary();
         return loadedLibrary;
     }
