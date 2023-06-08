@@ -229,4 +229,4 @@ After all the [Javadoc](https://www.oracle.com/it/technical-resources/articles/j
 
 `mvn javadoc:javadoc`
 
-and open the file index.html located in the path target/site/apidocs.
+and, to show the documentation, open the file index.html located in the path target/site/apidocs in a web browser.
