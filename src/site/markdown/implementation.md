@@ -225,7 +225,7 @@ In order to deploy the [Javadoc](https://www.oracle.com/it/technical-resources/a
 - configuration
     - show: private, which allows to display all the private attributes and methods of the classes
 
-After all the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical Java API documentation. To create it, run on the command line:
+After all the [Javadoc](https://www.oracle.com/it/technical-resources/articles/java/javadoc-tool.html) comments are written, it is possible to create a graphic documentation of the classes which faithfully reproduces a typical [Java API documentation](https://docs.oracle.com/javase/8/docs/api/). To create it, run on the command line:
 
 `mvn javadoc:javadoc`
 
