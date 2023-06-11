@@ -29,7 +29,7 @@ In the case of the ArticleAnalyzer project, in this diagram are specified:
 ![ActivityDiagram](../../src/site/UML/ActivityDiagram.drawio.png)
 
 ## Sequence diagram
-The UML Sequence diagram allows to specify the different actors and implementation classes involved on the program. Although in this diagram the execution flow is represented by oriented arrows, here are also shown:
+The [UML Sequence diagram](https://plantuml.com/sequence-diagram) allows to specify the different actors and implementation classes involved on the program. Although in this diagram the execution flow is represented by oriented arrows, here are also shown:
 
 - the various interactions between the classes and what each one needs from the others with parameters (straight arrow) and return values (dashed arrow)
 - the life line for each actor and class object created, represented by a rectangle perpendicular to the actor or the class
