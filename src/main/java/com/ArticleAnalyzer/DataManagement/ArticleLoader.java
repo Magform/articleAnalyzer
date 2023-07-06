@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
 import java.util.Iterator;
+import java.util.Map;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -118,31 +120,56 @@ public class ArticleLoader {
         FileReader fileReader = new FileReader(file);
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(fileReader);
-        JSONObject response = (JSONObject)obj;
-        JSONObject responseFields = (JSONObject)response.get("response");
-        JSONArray results = (JSONArray)responseFields.get("results");
-        Iterator<JSONObject> iteratorArticles = results.iterator();
-        while (iteratorArticles.hasNext()) {
-            JSONObject article = iteratorArticles.next();
-            Article articleToAdd = new Article();
-            try {
-                articleToAdd.fullSetter((String)article.get("id"), "identifier");
-                articleToAdd.fullSetter((String)article.get("sectionId"), "section");
-                articleToAdd.fullSetter((String)article.get("webUrl"), "url");
-                JSONObject articleFields = (JSONObject)article.get("fields");
-                articleToAdd.fullSetter((String)articleFields.get("publication"), "source");
-                articleToAdd.fullSetter((String)articleFields.get("firstPublicationDate"), "publicationDate");
-                articleToAdd.fullSetter((String)articleFields.get("lang"), "language");
-                articleToAdd.fullSetter((String)articleFields.get("headline"), "title");
-                articleToAdd.fullSetter((String)articleFields.get("trailText"), "subtitle");
-                articleToAdd.fullSetter((String)articleFields.get("bodyText"), "body");
-                articleToAdd.fullSetter((String)articleFields.get("newspaperPageNumber"), "newspaperPage");
-                articleToAdd.fullSetter((String)articleFields.get("wordcount"), "words");
+        JSONObject response = (JSONObject) obj;
+        JSONArray results = null;
+        if (response.containsKey("response")) {
+            JSONObject responseFields = (JSONObject) response.get("response");
+            results = (JSONArray) responseFields.get("results");
+            Iterator<JSONObject> iteratorArticles = results.iterator();
+            while (iteratorArticles.hasNext()) {
+                JSONObject article = iteratorArticles.next();
+                Article articleToAdd = new Article();
+                try {
+                    articleToAdd.fullSetter((String)article.get("id"), "identifier");
+                    articleToAdd.fullSetter((String)article.get("sectionId"), "section");
+                    articleToAdd.fullSetter((String)article.get("webUrl"), "url");
+                    JSONObject articleFields = (JSONObject)article.get("fields");
+                    if (articleFields != null) {
+                        articleToAdd.fullSetter((String)articleFields.get("publication"), "source");
+                        articleToAdd.fullSetter((String)articleFields.get("firstPublicationDate"), "publicationDate");
+                        articleToAdd.fullSetter((String)articleFields.get("lang"), "language");
+                        articleToAdd.fullSetter((String)articleFields.get("headline"), "title");
+                        articleToAdd.fullSetter((String)articleFields.get("trailText"), "subtitle");
+                        articleToAdd.fullSetter((String)articleFields.get("bodyText"), "body");
+                        articleToAdd.fullSetter((String)articleFields.get("newspaperPageNumber"), "newspaperPage");
+                        articleToAdd.fullSetter((String)articleFields.get("wordcount"), "words");
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e);
+                }
+                library.addArticle(articleToAdd);
             }
-            catch (IllegalArgumentException e) {
-                System.out.println(e);
+        } else {
+            results = (JSONArray) response.get("article");
+            Iterator<JSONObject> iteratorArticles = results.iterator();
+            while (iteratorArticles.hasNext()) {
+                Article articleToAdd = new Article();
+                JSONObject article = iteratorArticles.next();
+                Iterator<?> articleIterator = article.entrySet().iterator();
+                while (articleIterator.hasNext()) {
+                    Map.Entry<?, ?> pair = (Map.Entry<?, ?>) articleIterator.next();
+                    String key = pair.getKey().toString();
+                    String value = pair.getValue().toString();
+                    try {
+                        if(value.equalsIgnoreCase("id")){
+                            value = "identifier";
+                        }
+                        articleToAdd.fullSetter(value, key);
+                    } catch (IllegalArgumentException e) {
+                    }
+                }
+                library.addArticle(articleToAdd);
             }
-            library.addArticle(articleToAdd);
         }
         fileReader.close();
     }
