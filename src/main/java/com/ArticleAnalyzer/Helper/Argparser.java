@@ -4,6 +4,8 @@ import com.ArticleAnalyzer.DataManagement.ArticleLoader;
 import com.ArticleAnalyzer.DataManagement.Downloader;
 import com.ArticleAnalyzer.DataManagement.Outputter;
 
+import java.io.FileReader;
+import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.apache.commons.cli.Options;
@@ -87,7 +89,7 @@ public class Argparser {
         options.addOption("c", "configurationFile", true, "File path which contains the download configuration");
         options.addOption("om", "outputMethod", true, "Method of printing the output (values admitted: C (console), F (file), CF (console e file))");
         options.addOption("o", "outputFile", true, "Output file path");
-        options.addOption("e", "toExclude", true, "Words to exclude (example: \"an, have, the\")");
+        options.addOption("e", "toExclude", true, "File path which contains the words to exclude");
         options.addOption("s", "show", true, "Number of results to show");
 
         CommandLineParser parser = new DefaultParser();
@@ -172,9 +174,23 @@ public class Argparser {
           }
 
           if (cmd.hasOption("e")) {
-            String toToExclude = cmd.getOptionValue("e").replace("\"", "");
-            toToExclude = toToExclude.replace(" ", "");
-            toExclude = toToExclude.split(",");
+            try {
+              FileReader toExcludeFile = new FileReader(cmd.getOptionValue("e"));
+              Scanner scanToExcludeWords = new Scanner(toExcludeFile);
+              String toToExclude = "";
+              if (scanToExcludeWords.hasNextLine()) {
+                toToExclude = scanToExcludeWords.nextLine().split(" ")[0];
+                while (scanToExcludeWords.hasNextLine()) {
+                  toToExclude = toToExclude + "," + scanToExcludeWords.nextLine().split(" ")[0];
+                }
+              }
+              toExclude = toToExclude.split(",");
+              scanToExcludeWords.close();
+              toExcludeFile.close();
+            }
+            catch (FileNotFoundException e) {
+              throw new IllegalArgumentException("ToExclude argument invalid. File not found");
+            }
           }
 
         }
