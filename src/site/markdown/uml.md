@@ -55,7 +55,7 @@ The [UML Class diagram](https://plantuml.com/class-diagram) allows to specify th
 
 Some classes can be grouped by a package. In this project, the classes in this diagram are grouped by the same packages of the effective [Java](https://docs.oracle.com/javase/8/docs/api/) files.
 
-Each class is interconnected by one or more classes with an association composed of a cardinality and a name for each side of the association. The name describes the connection between the classes, the cardinality represents the number of object class that can be created in the class within is connected.
+Each class is interconnected with one or more classes with an association composed of a cardinality and a name for each side of the association. The name describes the connection between the classes, the cardinality represents the number of object class that can be created in the class within is connected.
 
 These are the possible cardinalities in the class diagram:
 
