@@ -161,8 +161,8 @@ public class ArticleLoader {
                     String key = pair.getKey().toString();
                     String value = pair.getValue().toString();
                     try {
-                        if(value.equalsIgnoreCase("id")){
-                            value = "identifier";
+                        if(key.equalsIgnoreCase("id")){
+                            key = "identifier";
                         }
                         articleToAdd.fullSetter(value, key);
                     } catch (IllegalArgumentException e) {

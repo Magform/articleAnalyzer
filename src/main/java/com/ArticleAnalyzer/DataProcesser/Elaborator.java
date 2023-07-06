@@ -122,6 +122,9 @@ public class Elaborator {
         if (n < -1) {
           throw new IllegalArgumentException("Request a valid number of results");
         }
+        if(n > words.size()){
+          n = words.size();
+        }
         for (int i = 0; i < n; i++) {
           try {
             Map.Entry<String, Integer> entry = getNthEntry(i, words);
@@ -153,6 +156,9 @@ public class Elaborator {
         }
         if (n < -1) {
           throw new IllegalArgumentException("Request a valid number of results");
+        }
+        if(n > words.size()){
+          n = words.size();
         }
         int entryToLoad = 0;
         for (int i = 0; i < n; i++) {
