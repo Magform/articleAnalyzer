@@ -174,13 +174,18 @@ public class Outputter {
      * @param toPrint the Library object containing articles to be printed
      * @throws IOException if an error occurs while printing
     */
-    public void print(Library toPrint) throws IOException {
-      for (int i = 0; i < toPrint.getTotalArticlesNumber(); i++) {
-        print(toPrint.getArticle(i));
-        if (i != toPrint.getTotalArticlesNumber() - 1) {
-          print(",\n");
+    public void print(Library toPrint) throws IOException{
+        print("{\n");
+        print("\"article\":\n");
+        print("[\n");
+        for(int i = 0; i < toPrint.getTotalArticlesNumber(); i++){
+            print(toPrint.getArticle(i));
+            if(i!=toPrint.getTotalArticlesNumber()-1){
+                print(",");
+            }
         }
-      }
+        print("]");
+        print("}");
     }
 
     /**

@@ -124,7 +124,7 @@ public class OutputterTest {
         System.setOut(originalOut);
         String printedOutput = outputStream.toString().trim();
 
-        String expected = "{\"id\":\"test1\",},{\"id\":\"test2\",}";
+        String expected = "{\"article\":[{\"id\":\"test1\",},{\"id\":\"test2\",}]}";
         expected = expected.replaceAll("\\s+", "");
         printedOutput = printedOutput.replaceAll("\\s+", "");
 
@@ -214,7 +214,7 @@ public class OutputterTest {
     }
 
     @Test
-    public void testPrintLibraryToFile() throws IOException {
+    public void testPrintLibraryToFile() throws IOException{
 
         Article testArticle1 = new Article();
         testArticle1.setIdentifier("test1");
@@ -226,7 +226,7 @@ public class OutputterTest {
 
         Outputter test = new Outputter(false, true, "test.txt");
         test.print(testLibrary);
-
+        
         StringBuilder content = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
             String line;
@@ -240,7 +240,7 @@ public class OutputterTest {
         }
 
         String printedOutput = content.toString();
-        String expected = "{\"id\":\"test1\",},{\"id\":\"test2\",}";
+        String expected = "{\"article\":[{\"id\":\"test1\",},{\"id\":\"test2\",}]}";
         expected = expected.replaceAll("\\s+", "");
         printedOutput = printedOutput.replaceAll("\\s+", "");
 
