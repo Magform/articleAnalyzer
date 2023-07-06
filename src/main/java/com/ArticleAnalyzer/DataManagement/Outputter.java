@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
 

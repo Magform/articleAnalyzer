@@ -3,7 +3,6 @@ package com.ArticleAnalyzer.DataProcesser;
 import com.ArticleAnalyzer.Types.Article;
 import com.ArticleAnalyzer.Types.Library;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;

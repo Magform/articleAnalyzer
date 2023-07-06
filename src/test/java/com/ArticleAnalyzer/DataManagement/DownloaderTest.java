@@ -1,7 +1,6 @@
 package com.ArticleAnalyzer.DataManagement;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
