@@ -124,10 +124,7 @@ public class Argparser {
           }
 
 
-          if (!cmd.hasOption("om")) {
-            throw new IllegalArgumentException("Output argument is required");
-          }
-          else {
+          if (cmd.hasOption("om")) {
             if (cmd.getOptionValue("om").equalsIgnoreCase("C")) {
               outputter = new Outputter(true, false);
             }
@@ -157,14 +154,14 @@ public class Argparser {
             }
           }
 
-          if (outputter.getToFile() && !cmd.hasOption("o")) {
+          if (cmd.hasOption("om") && outputter.getToFile() && !cmd.hasOption("o")) {
             throw new IllegalArgumentException("OutputFile is required if you want to print the output to a file");
           }
-          else {
+          else if (cmd.hasOption("om")) {
             outputter.setFile(cmd.getOptionValue("o"));
           }
 
-          if (cmd.hasOption("s")) {
+          if (cmd.hasOption("om") && cmd.hasOption("s")) {
             try {
               toShow = Integer.parseInt(cmd.getOptionValue("s"));
             }
@@ -173,7 +170,7 @@ public class Argparser {
             }
           }
 
-          if (cmd.hasOption("e")) {
+          if (cmd.hasOption("om") && cmd.hasOption("e")) {
             try {
               FileReader toExcludeFile = new FileReader(cmd.getOptionValue("e"));
               Scanner scanToExcludeWords = new Scanner(toExcludeFile);
