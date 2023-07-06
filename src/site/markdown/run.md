@@ -43,7 +43,7 @@ In particular the `-h` option should show you something like this:
   Output file path        
   `-e,--toExclude <arg>`
   &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
-  Words to exclude (example: "an, have, the")       
+  File path which contains the words to exclude       
   `-s,--show <arg>`
   &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
   Number of results to show           
@@ -61,7 +61,7 @@ There is therefore the possibily with the -d option to choose the method of obta
 As output instead we can choose, thanks to the `-om` option whether to have it on the console with `-om C`, on a file with `-om F` or on both with `-om CF`, if we are outputting through a file we need also to choose the file specifying `-o <outputFile>`.
 
 ### Other options
-We can also choose if we want to exclude some words from the output. For example, if we don't want common words (like a, and, or, the, ...) to be shown in the results with the option `-e "<toExclude1>, <toExclude2>"`, we use this feature as `-e "a, and, or, the"`.        
+We can also choose if we want to exclude some words from the output. For example, if we don't want common words (like a, and, or, the, ...) to be shown in the results, we have to write them in a file and specify its name with the option `-e <fileName>`.        
 The last option is `-s` which allows to choose the number of results you want to show, using `-s <resultsNumber>`
 
 ## Examples
@@ -78,6 +78,6 @@ This example shows that the articles are loaded from the file articles.csv and a
     -d file -i articles.csv -om F -o occurrences.txt
 
 ### Example 3
-This example is more advanced than the previous ones as the articles are obtained by the file articles.json and the 50 words with more occurrences (counted once in each article and order by the words which appear more) which are not a, an, the, or, be are printed both to console and the file occurrences.txt. In this example, the options are specified by their full names using the `--` clause.
+This example is more advanced than the previous ones as the articles are obtained by the file articles.json and the 50 words with more occurrences (counted once in each article and order by the words which appear more) which are not included in the file wordsToExclude.txt are printed both to console and the file occurrences.txt. In this example, the options are specified by their full names using the `--` clause.
 
-    --data file --inputFile articles.json --outputMethod CF --outputFile occurrences.txt --toExclude "a, an, the, or, be" --show 50
+    --data file --inputFile articles.json --outputMethod CF --outputFile occurrences.txt --toExclude wordsToExclude.txt --show 50
