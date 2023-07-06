@@ -147,10 +147,10 @@ The Outputter class provides:
 - default constructor: initializes all the attributes of the class to their default values (the two boolean attributes are initialized to false; the file path is initialized to "")
 - constructor with the two boolean given as parameters: initializes the respective boolean attributes to their given values and set the file path to ""
 - constructor with parameters: each attribute is initialized with the respective given values
+- getFile: returns the file path of the file where to save the data
 - getToConsole: returns if the printing is happening to console
 - getToFile: returns if the printing is happening to a file
-- getFileName: returns the file path of the file where to save the data
-- setFileName: initializes the file path with the given path and checks if it is valid. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
+- setFile: initializes the file path with the given path and checks if it is valid. It throws an [java.io.IOException](https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html) exception if the given path is ""
 - print: prints the given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object to console or to file, depending on how the two boolean attributes are set
 - printToConsole: prints the given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object to console
 - printToFile: prints the given [java.lang.String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) object to a file. At every call of this method, the writing of the file is appended to the rest of the content that was saved before.
