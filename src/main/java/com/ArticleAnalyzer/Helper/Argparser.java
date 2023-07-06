@@ -169,6 +169,9 @@ public class Argparser {
               throw new IllegalArgumentException("Show argument requires and integer number");
             }
           }
+          if (cmd.hasOption("om") && !cmd.hasOption("s")) {
+            throw new IllegalArgumentException("Show argument is required");
+          }
 
           if (cmd.hasOption("om") && cmd.hasOption("e")) {
             try {
