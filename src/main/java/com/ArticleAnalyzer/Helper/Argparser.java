@@ -1,146 +1,204 @@
 package com.ArticleAnalyzer.Helper;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.apache.commons.cli.*;
-
-//import com.ArticleAnalyzer.DataManagement.ArticleLoader;
 import com.ArticleAnalyzer.DataManagement.ArticleLoader;
 import com.ArticleAnalyzer.DataManagement.Downloader;
 import com.ArticleAnalyzer.DataManagement.Outputter;
 
+import java.io.FileReader;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.HelpFormatter;
+
+/**
+ * The Argparser class provides options in order to execute the ArticleAnalyzer project.
+*/
 public class Argparser {
+  private Outputter outputter;
+  private ArticleLoader articleLoader;
+  private boolean dataFromFile;
+  private Downloader downloader;
+  private String[] toExclude;
+  private int toShow;
 
-    private Outputter outputter = null;
-    //private ArticleLoader articleLoader = null;
-    private ArticleLoader articleLoader = null;
-
-    private Boolean dataFromFile = null;
-    private Downloader downloader = null;
-    private String[] toExclude = null;
-    private int toShow = -1;
-
-    public Outputter getOutputter(){
+    /**
+     * Returns the Outputter object
+     * @return the Outputter object
+    */
+    public Outputter getOutputter() {
         return outputter;
     }
 
-    public String[] getToExclude(){
+    /**
+     * Returns the array of words to exclude
+     * @return the array of words to exclude
+    */
+    public String[] getToExclude() {
         return toExclude;
     }
 
-    public int getToShow(){
+    /**
+     * Returns the number of results to show
+     * @return the number of results to show
+    */
+    public int getToShow() {
         return toShow;
     }
 
-    public ArticleLoader getArticleLoader(){
+    /**
+     * Returns the ArticleLoader object
+     * @return the ArticleLoader object
+    */
+    public ArticleLoader getArticleLoader() {
         return articleLoader;
     }
 
-    public Downloader getDownloader(){
+    /**
+     * Returns the Downloader object
+     * @return the Downloader object
+    */
+    public Downloader getDownloader() {
         return downloader;
     }
 
-    public Boolean getDataFromFile(){
+    /**
+     * Returns if data are retrived from files
+     * @return if data are retrived from files
+    */
+    public boolean getDataFromFile() {
         return dataFromFile;
     }
 
-    public Argparser(String[] args) throws FileNotFoundException, IllegalArgumentException, IOException{
-
+    /**
+     * Creates an Argparser object providing various command line options and checking if the given arguments are valid or not
+     * @param args the command line arguments
+     * @throws FileNotFoundException if the files required are not specified
+     * @throws IllegalArgumentException if the given arguments are not valid for different reasons
+     * @throws IOException if there are errors when parsing the arguments
+    */
+    public Argparser(String[] args) throws FileNotFoundException, IllegalArgumentException, IOException {
         Options options = new Options();
-        options.addOption("h", "help", false, "Print option list");
-        options.addOption("d", "data", true, "Choose method of obtaining data (file or download)");
-        options.addOption("c", "configurationFile", true, "Select the file that contain the configuration for the downloader");
-        options.addOption("om", "outputMethod", true, "Choose output method (C -> console, F -> file, CF -> console and file)");
-        options.addOption("i", "inputFile", true, "Input file path");
+        options.addOption("h", "help", false, "Possible actions");
+        options.addOption("d", "data", true, "Method of obtaining articles (values admitted: file, download)");
+        options.addOption("i", "inputFile", true, "File path which contains articles");
+        options.addOption("c", "configurationFile", true, "File path which contains the download configuration");
+        options.addOption("om", "outputMethod", true, "Method of printing the output (values admitted: C (console), F (file), CF (console e file))");
         options.addOption("o", "outputFile", true, "Output file path");
-        options.addOption("e", "toExclude", true, "Choose some string to exclude from the output (Ex. \"str1, str2, str3\")");
-        options.addOption("s", "show", true, "Choose the number of results to show");
+        options.addOption("e", "toExclude", true, "File path which contains the words to exclude");
+        options.addOption("s", "show", true, "Number of results to show");
 
-        // parse the command line arguments
         CommandLineParser parser = new DefaultParser();
         try {
-        CommandLine cmd = parser.parse(options, args);
-        // access the options
-        if (cmd.hasOption("h")) {
+          CommandLine cmd = parser.parse(options, args);
+          if (cmd.hasOption("h")) {
             HelpFormatter formatter = new HelpFormatter();
-            formatter.printHelp("Article analyzer", options);
+            formatter.setOptionComparator(null); //options in the order they were declared
+            formatter.printHelp(150, "Article Analyzer", "", options, "");
             System.exit(0);
-        }
-        if(!cmd.hasOption("d")){
-            throw new IllegalArgumentException("Argument data is required");
-        }else{
-            if(cmd.getOptionValue("d").equalsIgnoreCase("file")){
-            dataFromFile = true;
-            }else if(cmd.getOptionValue("d").equalsIgnoreCase("download")){
-            dataFromFile = false;
-            }else{
-                throw new IllegalArgumentException("Invalid argument for data use \"file\" or \"download\"");
-            } 
-        }
+          }
+          if (!cmd.hasOption("d")) {
+            throw new IllegalArgumentException("Data argument is required");
+          }
+          else {
+            if (cmd.getOptionValue("d").equalsIgnoreCase("file")) {
+              dataFromFile = true;
+            }
+            else if (cmd.getOptionValue("d").equalsIgnoreCase("download")) {
+              dataFromFile = false;
+            }
+            else {
+              throw new IllegalArgumentException("Data argument invalid. Values admitted: file, download");
+            }
+          }
 
-
-        if(!dataFromFile && !cmd.hasOption("c")){
-            throw new IllegalArgumentException("Argument configurationFile is required to download file");
-        }else if(dataFromFile){
-
-        }else{
+          if (!dataFromFile && !cmd.hasOption("c")) {
+            throw new IllegalArgumentException("ConfigurationFile argument is required in order to download articles");
+          }
+          else if (!dataFromFile) {
             downloader = new Downloader(cmd.getOptionValue("c"));
-        }
+          }
 
 
-        if(!cmd.hasOption("om")){
-            throw new IllegalArgumentException("Argument outputMethod is required");
-        }else{
-            if(cmd.getOptionValue("om").equalsIgnoreCase("C")){
-            outputter = new Outputter(true, false);
-            }else if(cmd.getOptionValue("om").equalsIgnoreCase("F")){
-            outputter = new Outputter(false, true);
-            }else if(cmd.getOptionValue("om").equalsIgnoreCase("CF")){
-            outputter = new Outputter(true, true);
-            }else{
-                throw new IllegalArgumentException("Invalid argument for data use \"C\" or \"F\" or \"CF\"");
-            } 
-        }
-
-
-        if(dataFromFile && !cmd.hasOption("i")){
-            throw new IllegalArgumentException("Argument inputFile is required if you are taking data from file");
-        }else if(!dataFromFile && !cmd.hasOption("i")){
-            articleLoader = new ArticleLoader(downloader.getJSONoutput());
-        }else{
-            try{
-                articleLoader = new ArticleLoader(cmd.getOptionValue("i"));
-            }catch(FileNotFoundException e){
-                throw new IllegalArgumentException("Invalid data input file");
+          if (cmd.hasOption("om")) {
+            if (cmd.getOptionValue("om").equalsIgnoreCase("C")) {
+              outputter = new Outputter(true, false);
             }
-        }
+            else if (cmd.getOptionValue("om").equalsIgnoreCase("F")) {
+              outputter = new Outputter(false, true);
+            }
+            else if (cmd.getOptionValue("om").equalsIgnoreCase("CF")) {
+              outputter = new Outputter(true, true);
+            }
+            else {
+              throw new IllegalArgumentException("Output argument invalid. Values admitted: C, F, CF");
+            }
+          }
 
+          if (dataFromFile && !cmd.hasOption("i")) {
+            throw new IllegalArgumentException("InputFile argument is required if you want to work with articles saved in a file");
+          }
+          else if (!dataFromFile && !cmd.hasOption("i")) {
+            articleLoader = new ArticleLoader(downloader.getJSONOutput());
+          }
+          else {
+            try {
+              articleLoader = new ArticleLoader(cmd.getOptionValue("i"));
+            }
+            catch (FileNotFoundException e) {
+              throw new IllegalArgumentException("InputFile argument invalid. File not found");
+            }
+          }
 
-        if(outputter.getToFile() && !cmd.hasOption("o")){
-            throw new IllegalArgumentException("Argument outputFile is required if you are outputting data to a file");
-        }else{
+          if (cmd.hasOption("om") && outputter.getToFile() && !cmd.hasOption("o")) {
+            throw new IllegalArgumentException("OutputFile is required if you want to print the output to a file");
+          }
+          else if (cmd.hasOption("om")) {
             outputter.setFile(cmd.getOptionValue("o"));
-        }
+          }
 
-        if(cmd.hasOption("s")){
-            try{
-                toShow = Integer.parseInt(cmd.getOptionValue("s"));
-            }catch(NumberFormatException e){
-                throw new IllegalArgumentException("Argument show need an int");
+          if (cmd.hasOption("om") && cmd.hasOption("s")) {
+            try {
+              toShow = Integer.parseInt(cmd.getOptionValue("s"));
             }
-        }
+            catch (NumberFormatException e) {
+              throw new IllegalArgumentException("Show argument requires and integer number");
+            }
+          }
+          if (cmd.hasOption("om") && !cmd.hasOption("s")) {
+            throw new IllegalArgumentException("Show argument is required");
+          }
 
-        if(cmd.hasOption("e")){
-            String toToExclude = cmd.getOptionValue("e").replace("\"", "");
-            toToExclude = toToExclude.replace(" ", "");
-            toExclude = toToExclude.split(",");
-        }
+          if (cmd.hasOption("om") && cmd.hasOption("e")) {
+            try {
+              FileReader toExcludeFile = new FileReader(cmd.getOptionValue("e"));
+              Scanner scanToExcludeWords = new Scanner(toExcludeFile);
+              String toToExclude = "";
+              if (scanToExcludeWords.hasNextLine()) {
+                toToExclude = scanToExcludeWords.nextLine().split(" ")[0];
+                while (scanToExcludeWords.hasNextLine()) {
+                  toToExclude = toToExclude + "," + scanToExcludeWords.nextLine().split(" ")[0];
+                }
+              }
+              toExclude = toToExclude.split(",");
+              scanToExcludeWords.close();
+              toExcludeFile.close();
+            }
+            catch (FileNotFoundException e) {
+              throw new IllegalArgumentException("ToExclude argument invalid. File not found");
+            }
+          }
 
-        }catch(ParseException e){
-        HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("Article analyzer", options);
-        System.exit(1);
+        }
+        catch (ParseException e) {
+          HelpFormatter formatter = new HelpFormatter();
+          formatter.setOptionComparator(null); //options in the order they were declared
+          formatter.printHelp(150, "Article Analyzer", "", options, "");
+          System.exit(1);
         }
     }
 }

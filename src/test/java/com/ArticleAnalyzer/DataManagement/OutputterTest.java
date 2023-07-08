@@ -21,7 +21,7 @@ public class OutputterTest {
 
     //Test for default constructor
     @Test
-    public void defaultConstructor(){
+    public void defaultConstructor() {
         Outputter test = new Outputter();
         assertEquals("", test.getFile());
         assertEquals(false, test.getToConsole());
@@ -29,7 +29,7 @@ public class OutputterTest {
     }
 
     @Test
-    public void constructorNoFile() throws IOException{
+    public void constructorNoFile() throws IOException {
         Outputter test = new Outputter(false, false);
         assertEquals("", test.getFile());
         assertEquals(false, test.getToConsole());
@@ -41,7 +41,7 @@ public class OutputterTest {
     }
 
     @Test
-    public void constructorWithFile() throws IOException{
+    public void constructorWithFile() throws IOException {
         Outputter test = new Outputter(false, false, "test.txt");
         assertEquals("test.txt", test.getFile());
         assertEquals(false, test.getToConsole());
@@ -53,7 +53,7 @@ public class OutputterTest {
     }
 
     @Test
-    public void testToFile() throws IOException{
+    public void testToFile() throws IOException {
         Outputter test = new Outputter(false, false);
         assertEquals("", test.getFile());
         test.setFile("test.txt");
@@ -62,7 +62,7 @@ public class OutputterTest {
 
     //Test printing to console
     @Test
-    public void testPrintStringToConsole() throws IOException{
+    public void testPrintStringToConsole() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         PrintStream originalOut = System.out;
@@ -78,14 +78,14 @@ public class OutputterTest {
     }
 
     @Test
-    public void testPrintArticleToConsole() throws IOException{
+    public void testPrintArticleToConsole() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         PrintStream originalOut = System.out;
         System.setOut(printStream);
 
         Article testArticle = new Article();
-        testArticle.setId("test");
+        testArticle.setIdentifier("test");
         testArticle.setBody("test");
 
         Outputter test = new Outputter(true, false);
@@ -103,16 +103,16 @@ public class OutputterTest {
     }
 
     @Test
-    public void testPrintLibraryToConsole() throws IOException{
+    public void testPrintLibraryToConsole() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         PrintStream originalOut = System.out;
         System.setOut(printStream);
 
         Article testArticle1 = new Article();
-        testArticle1.setId("test1");
+        testArticle1.setIdentifier("test1");
         Article testArticle2 = new Article();
-        testArticle2.setId("test2");
+        testArticle2.setIdentifier("test2");
 
         Library testLibrary = new Library(testArticle1);
         testLibrary.addArticle(testArticle2);
@@ -124,7 +124,7 @@ public class OutputterTest {
         System.setOut(originalOut);
         String printedOutput = outputStream.toString().trim();
 
-        String expected = "{\"id\":\"test1\",}{\"id\":\"test2\",}";
+        String expected = "{\"article\":[{\"id\":\"test1\",},{\"id\":\"test2\",}]}";
         expected = expected.replaceAll("\\s+", "");
         printedOutput = printedOutput.replaceAll("\\s+", "");
 
@@ -132,13 +132,13 @@ public class OutputterTest {
     }
 
     @Test
-    public void testPrintHashMapToConsole() throws IOException{
+    public void testPrintHashMapToConsole() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         PrintStream originalOut = System.out;
         System.setOut(printStream);
 
-        LinkedHashMap<String, Integer> testHashMap = new LinkedHashMap<>();       
+        LinkedHashMap<String, Integer> testHashMap = new LinkedHashMap<>();
 
         testHashMap.put("test1", 1);
         testHashMap.put("test2", 2);
@@ -159,8 +159,8 @@ public class OutputterTest {
 
     //Test printing to file
     @Test
-    public void testPrintStringToFile() throws IOException{
-        
+    public void testPrintStringToFile() throws IOException {
+
 
         Outputter test = new Outputter(false, true, "test.txt");
         test.print("test test test");
@@ -184,10 +184,10 @@ public class OutputterTest {
     }
 
     @Test
-    public void testPrintArticleToFile() throws IOException{
+    public void testPrintArticleToFile() throws IOException {
 
         Article testArticle = new Article();
-        testArticle.setId("test");
+        testArticle.setIdentifier("test");
         testArticle.setBody("test");
 
         Outputter test = new Outputter(false, true, "test.txt");
@@ -217,9 +217,9 @@ public class OutputterTest {
     public void testPrintLibraryToFile() throws IOException{
 
         Article testArticle1 = new Article();
-        testArticle1.setId("test1");
+        testArticle1.setIdentifier("test1");
         Article testArticle2 = new Article();
-        testArticle2.setId("test2");
+        testArticle2.setIdentifier("test2");
 
         Library testLibrary = new Library(testArticle1);
         testLibrary.addArticle(testArticle2);
@@ -240,7 +240,7 @@ public class OutputterTest {
         }
 
         String printedOutput = content.toString();
-        String expected = "{\"id\":\"test1\",}{\"id\":\"test2\",}";
+        String expected = "{\"article\":[{\"id\":\"test1\",},{\"id\":\"test2\",}]}";
         expected = expected.replaceAll("\\s+", "");
         printedOutput = printedOutput.replaceAll("\\s+", "");
 
@@ -248,9 +248,9 @@ public class OutputterTest {
     }
 
     @Test
-    public void testPrintHashMapToFile() throws IOException{
+    public void testPrintHashMapToFile() throws IOException {
 
-        LinkedHashMap<String, Integer> testHashMap = new LinkedHashMap<>();       
+        LinkedHashMap<String, Integer> testHashMap = new LinkedHashMap<>();
 
         testHashMap.put("test1", 1);
         testHashMap.put("test2", 2);

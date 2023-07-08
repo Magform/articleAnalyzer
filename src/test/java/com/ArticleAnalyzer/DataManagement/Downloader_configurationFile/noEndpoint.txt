@@ -1,5 +1,5 @@
-link: "https://content.guardianapis.com/search"
-APIkey: "APIkey"
+link: "https://content.guardianapis.com/search?"
+APIkey: "APIKey"
 query: "nuclear power"
-articleNumber: "1000"
+articlesPerPage: "1"
 JSONoutput: "outputter_results.json"

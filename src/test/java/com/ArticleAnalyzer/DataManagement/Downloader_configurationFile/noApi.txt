@@ -1,5 +1,5 @@
 endpoint: "TheGuardian"
 link: "https://content.guardianapis.com/search"
 query: "nuclear power"
-articleNumber: "1000"
+articlesPerPage: "1"
 JSONoutput: "outputter_results.json"
