@@ -122,6 +122,7 @@ public class ArticleLoader {
         Object obj = parser.parse(fileReader);
         JSONObject response = (JSONObject) obj;
         JSONArray results = null;
+        //The guardian response format
         if (response.containsKey("response")) {
             JSONObject responseFields = (JSONObject) response.get("response");
             results = (JSONArray) responseFields.get("results");
@@ -149,7 +150,8 @@ public class ArticleLoader {
                 }
                 library.addArticle(articleToAdd);
             }
-        } else {
+            // Outputter format
+        } else if (response.containsKey("article")) {
             results = (JSONArray) response.get("article");
             Iterator<JSONObject> iteratorArticles = results.iterator();
             while (iteratorArticles.hasNext()) {
@@ -170,6 +172,8 @@ public class ArticleLoader {
                 }
                 library.addArticle(articleToAdd);
             }
+        }else{
+            throw new IOException("JSON contain an unknown key");
         }
         fileReader.close();
     }
