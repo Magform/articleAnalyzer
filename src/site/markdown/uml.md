@@ -28,7 +28,7 @@ In the case of the ArticleAnalyzer project, in this diagram are specified:
 - the analyzation of the all the retrieved articles, from saving each article as an Article object into a Library object depending on which source the articles come from, to elaborating them, extracting their words and their occurrences (counted once in each article) and ordering them by the more occurrences a word has
 - the printing of the results according to the chosen output method, the words to exclude from the response and the number of results to show
 
-![ActivityDiagram](../../src/site/UML/ActivityDiagram.drawio.png)
+![ActivityDiagram](images/ActivityDiagram.drawio.png)
 
 ## Sequence diagram
 The [UML Sequence diagram](https://plantuml.com/sequence-diagram) allows to specify the different actors and implementation classes involved on the program. Although in this diagram the execution flow is represented by oriented arrows, here are also shown:
@@ -45,7 +45,7 @@ The activities sequence described in the diagram in this project are:
 - after all the options are set, the Main class creates an Outputter object and an ArticleLoader object received by the internal Argparser ones
 - the Main class obtains the Library object with all the Article objects and it will be analyzed by the created Elaborator object which will allow to print the results basing on the given options specified before
 
-![SequenceDiagram](../../src/site/UML/SequenceDiagram.drawio.png)
+![SequenceDiagram](images/SequenceDiagram.drawio.png)
 
 ## Class diagram
 The [UML Class diagram](https://plantuml.com/class-diagram) allows to specify the features of all the project classes, regarding all their attributes and the methods and constructors' signature and the interconnections between them. Each attribute, method and class can assume three types of visibility (private, public, protected), basing on which other classes can see it and which not. Each class described in this diagram is principally composed of:
@@ -73,9 +73,9 @@ Here examples of some cardinalities described in this project's class diagram.
 - Each Library object belongs to different Elaborator objects, but at least one. Each Elaborator object contains one and only one Library object
 - Each Downloader object belongs to various Argparser objects, but at least one. Each Argparser object has one and only one Downloader object
 
-![ClassDiagram](../../src/site/UML/DesignModel.drawio.png)
+![ClassDiagram](images/DesignModel.drawio.png)
 
 ## Domain model
 For this project a domain model have been created, a domain classification based on the interactions between objects without describing what each object can do in terms of operations.
 
-![DomainModel](../../src/site/UML/DomainModel.drawio.png)
+![DomainModel](images/DomainModel.drawio.png)
