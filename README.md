@@ -11,14 +11,14 @@ Remember to specify your API-key in the files saved in the Downloader_configurat
 
 These are the command line options to run the project
 
-    -c, --configurationFile <arg>   File che contiene la configurazione del download
-    -d, --data <arg>                Metodo di ottenimento degli articoli (valori ammessi: file, download)
-    -e, --toExclude <arg>           Parole da escludere ("an, have, the")
-    -h, --help                      Azioni possibili
-    -i, --inputFile <arg>           Path del file di input
-    -o, --outputFile <arg>          Path del file di output
-    -om, --outputMethod <arg>       Metodo di stampa dell'output (valori ammessi: C (console), F (file), CF (console e file)
-    -s, --show <arg>                Numero di risultati da mostrare
+    -h, --help                      Possible actions
+    -d, --data <arg>                Method of obtaining articles (values admitted: file, download)
+    -i, --inputFile <arg>           File path which contains articles
+    -c, --configurationFile <arg>   File path which contains the download configuration
+    -om, --outputMethod <arg>       Method of printing the output (values admitted: C (console), F (file), CF (console and file))
+    -o, --outputFile <arg>          Output file path
+    -e, --toExclude <arg>           File path which contains the words to exclude
+    -s, --show <arg>                Number of results to show
 
 ## to deploy javadoc
     mvn javadoc:javadoc
