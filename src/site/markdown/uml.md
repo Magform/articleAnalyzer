@@ -15,6 +15,7 @@ The [UML use case diagram](https://plantuml.com/use-case-diagram) allows to spec
 Here the requirements document for the Article analyze project.
 
 ![UseCaseDiagram](images/UseCaseDiagram.drawio.png)
+
 ## Activity diagram
 The [UML activity diagram](https://plantuml.com/activity-diagram-beta) allows to specify neatly the activities which should happen during the execution of the program. Here some base information on this diagram which could contains:
 
