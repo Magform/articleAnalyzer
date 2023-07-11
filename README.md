@@ -9,6 +9,17 @@ Remember to specify your API-key in the files saved in the Downloader_configurat
 ## to run
     java -jar target/articleAnalyzer-1.0-SNAPSHOT-jar-with-dependencies.jar
 
+These are the command line options to run the project
+
+    -c, --configurationFile <arg>   File che contiene la configurazione del download
+    -d, --data <arg>                Metodo di ottenimento degli articoli (valori ammessi: file, download)
+    -e, --toExclude <arg>           Parole da escludere ("an, have, the")
+    -h, --help                      Azioni possibili
+    -i, --inputFile <arg>           Path del file di input
+    -o, --outputFile <arg>          Path del file di output
+    -om, --outputMethod <arg>       Metodo di stampa dell'output (valori ammessi: C (console), F (file), CF (console e file)
+    -s, --show <arg>                Numero di risultati da mostrare
+
 ## to deploy javadoc
     mvn javadoc:javadoc
 
