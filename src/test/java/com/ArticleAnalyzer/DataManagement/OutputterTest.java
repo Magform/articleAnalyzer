@@ -42,22 +42,22 @@ public class OutputterTest {
 
     @Test
     public void constructorWithFile() throws IOException {
-        Outputter test = new Outputter(false, false, "test.txt");
-        assertEquals("test.txt", test.getFile());
+        Outputter test = new Outputter(false, false, "target/test.txt");
+        assertEquals("target/test.txt", test.getFile());
         assertEquals(false, test.getToConsole());
         assertEquals(false, test.getToFile());
-        test = new Outputter(true, true, "test.txt");
+        test = new Outputter(true, true, "target/test.txt");
         assertEquals(true, test.getToConsole());
         assertEquals(true, test.getToFile());
-        assertEquals("test.txt", test.getFile());
+        assertEquals("target/test.txt", test.getFile());
     }
 
     @Test
     public void testToFile() throws IOException {
         Outputter test = new Outputter(false, false);
         assertEquals("", test.getFile());
-        test.setFile("test.txt");
-        assertEquals("test.txt", test.getFile());
+        test.setFile("target/test.txt");
+        assertEquals("target/test.txt", test.getFile());
     }
 
     //Test printing to console
@@ -162,11 +162,11 @@ public class OutputterTest {
     public void testPrintStringToFile() throws IOException {
 
 
-        Outputter test = new Outputter(false, true, "test.txt");
+        Outputter test = new Outputter(false, true, "target/test.txt");
         test.print("test test test");
 
         StringBuilder content = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("target/test.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.isEmpty()) {
@@ -190,11 +190,11 @@ public class OutputterTest {
         testArticle.setIdentifier("test");
         testArticle.setBody("test");
 
-        Outputter test = new Outputter(false, true, "test.txt");
+        Outputter test = new Outputter(false, true, "target/test.txt");
         test.print(testArticle);
 
         StringBuilder content = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("target/test.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.isEmpty()) {
@@ -224,11 +224,11 @@ public class OutputterTest {
         Library testLibrary = new Library(testArticle1);
         testLibrary.addArticle(testArticle2);
 
-        Outputter test = new Outputter(false, true, "test.txt");
+        Outputter test = new Outputter(false, true, "target/test.txt");
         test.print(testLibrary);
         
         StringBuilder content = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("target/test.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.isEmpty()) {
@@ -255,11 +255,11 @@ public class OutputterTest {
         testHashMap.put("test1", 1);
         testHashMap.put("test2", 2);
 
-        Outputter test = new Outputter(false, true, "test.txt");
+        Outputter test = new Outputter(false, true, "target/test.txt");
         test.print(testHashMap);
 
         StringBuilder content = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("target/test.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.isEmpty()) {
