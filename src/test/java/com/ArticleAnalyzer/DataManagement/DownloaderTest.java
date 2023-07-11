@@ -24,7 +24,7 @@ public class DownloaderTest {
         Downloader test = new Downloader("Invalid String");
     }
 
-    //These test need to be configured with the correct path using PATH variable, and also you need to configure your APIKey inside the Downloader_configurationFile
+    //These test need to be configured with the correct path using PATH variable, you also need to configure your APIKey inside the Downloader_configurationFile
 
     private String PATH = "src/test/java/com/ArticleAnalyzer/DataManagement/Downloader_configurationFile/"; //path of the Downloader_configurationFile directory
 
@@ -54,7 +54,7 @@ public class DownloaderTest {
     @Test
     public void constructor_working() throws FileNotFoundException, IllegalArgumentException, IOException {
         Downloader test = new Downloader(PATH + "working.txt");
-        //if nothing is throw I suppose that everything worked fine
+        //if no exception is thrown I assume everything worked fine
     }
 
     @Test
