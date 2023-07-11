@@ -1,6 +1,6 @@
 # Article analyzer
 
-The main aim of this project is to develop a software capable of download, or load from file, articles from different online newspapers and to extract and visualize words, from their titles and bodies, and occurrences (counted once in each article) which appear more in the set of articles received.
+The main aim of this project is to develop a software capable of downloading, or loading from file, articles from different online newspapers and to extract and visualize words, from their titles, subtitles and bodies, and occurrences (counted once in each article) which appear more in the set of articles received.
 
 ## Table of contents
 - [Getting started](#Getting_started)
@@ -29,8 +29,9 @@ Before using this application, ensure you meet the following prerequisites:
 To build the project and install the necessary dependance you need to follow these steps:    
 
 1. Open a terminal     
-2. Navigate to the directory of the project     
-3. Run the following command:
+2. Navigate to the directory of the project
+3. Remember to specify your API-key in the files saved in the Downloader_configurationFile directory of the tests in order to run the project tests
+4. Run the following command:
 
     `mvn install`
 
@@ -38,7 +39,8 @@ To build the project and install the necessary dependance you need to follow the
 To execute the test and provide the results you need to follow these steps:      
 
 1. Open a terminal      
-2. Navigate to the directory of the project     
+2. Navigate to the directory of the project
+3. Remember to specify your API-key in the files saved in the Downloader_configurationFile directory of the tests in order to run the project tests    
 3. Run the following command:
 
     `mvn test`
