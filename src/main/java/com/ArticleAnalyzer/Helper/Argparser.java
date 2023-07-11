@@ -92,6 +92,8 @@ public class Argparser {
         options.addOption("e", "toExclude", true, "File path which contains the words to exclude");
         options.addOption("s", "show", true, "Number of results to show");
 
+        toShow = -1;
+
         CommandLineParser parser = new DefaultParser();
         try {
           CommandLine cmd = parser.parse(options, args);
@@ -168,9 +170,6 @@ public class Argparser {
             catch (NumberFormatException e) {
               throw new IllegalArgumentException("Show argument requires and integer number");
             }
-          }
-          if (cmd.hasOption("om") && !cmd.hasOption("s")) {
-            throw new IllegalArgumentException("Show argument is required");
           }
 
           if (cmd.hasOption("om") && cmd.hasOption("e")) {
