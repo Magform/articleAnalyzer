@@ -23,7 +23,7 @@ These are the command line options to run the project
 ## to deploy javadoc
     mvn javadoc:javadoc
 
-## to deploy documentantion
+## to deploy documentation
     mvn site
     mvn site:run
 
