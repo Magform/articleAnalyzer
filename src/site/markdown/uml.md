@@ -2,12 +2,19 @@
 The design side of the project, with some UML (Unified Modeling Language) diagrams which allow to understand what is the aim for the project in its integrity. For all the UML diagrams and an easy way to create them, see [here](https://plantuml.com/). The UML diagrams for this project have been created with [draw.io](https://app.diagrams.net/).
 
 ## Table of contents
+- [Requirements - Use case diagram](#Requirements_-_Use_case_diagram)
 - [Activity diagram](#Activity_diagram)
 - [Sequence diagram](#Sequence_diagram)
 - [Class diagram](#Class_diagram)
     - [Cardinality examples](#Cardinality_examples)
 - [Domain model](#Domain_model)
 
+## Requirements - Use case diagram
+The [UML use case diagram](https://plantuml.com/use-case-diagram) allows to specify the actors (represented by a stylized man) involved in a software program and how each actor operate in it (circles connected with arrows oriented to the actor who does the activity). The use case diagram is often matched to a table which describes more accurately in natural language what is the aim of the program. The combination of the use case diagram and the description table can be seen as a requirements document for the project.
+
+Here the requirements document for the Article analyze project.
+
+![UseCaseDiagram](images/UseCaseDiagram.drawio.png)
 ## Activity diagram
 The [UML activity diagram](https://plantuml.com/activity-diagram-beta) allows to specify neatly the activities which should happen during the execution of the program. Here some base information on this diagram which could contains:
 
