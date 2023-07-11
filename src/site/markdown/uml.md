@@ -6,6 +6,7 @@ The design side of the project, with some UML (Unified Modeling Language) diagra
 - [Sequence diagram](#Sequence_diagram)
 - [Class diagram](#Class_diagram)
     - [Cardinality examples](#Cardinality_examples)
+- [Domain model](#Domain_model)
 
 ## Activity diagram
 The [UML activity diagram](https://plantuml.com/activity-diagram-beta) allows to specify neatly the activities which should happen during the execution of the program. Here some base information on this diagram which could contains:
@@ -73,3 +74,8 @@ Here examples of some cardinalities described in this project's class diagram.
 - Each Downloader object belongs to various Argparser objects, but at least one. Each Argparser object has one and only one Downloader object
 
 ![ClassDiagram](../../src/site/UML/DesignModel.drawio.png)
+
+## Domain model
+For this project a domain model have been created, a domain classification based on the interactions between objects without describing what each object can do in terms of operations.
+
+![DomainModel](../../src/site/UML/DomainModel.drawio.png)
